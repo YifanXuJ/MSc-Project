@@ -1,0 +1,8 @@
+# ignore all the data
+/other_files/
+/SHP15_*/
+*.model
+*.npy
+.DS_Store
+.ipynb_checkpoints/
+labeled_data.txt
