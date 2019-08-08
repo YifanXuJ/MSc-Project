@@ -1,0 +1,1 @@
+python create_training_data.py --begin_time 10 --end_time 10 --file_name_3D training_data_3D_3x3_10.npy --file_name_4D training_data_4D_3x3_10
