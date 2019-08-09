@@ -1,3 +1,2 @@
-# MSc-Project
-Segmentation for 4D data
+# MSc-Project - Segmentation for 4D data
 
