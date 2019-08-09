@@ -16,6 +16,7 @@ from joblib import load
 import argparse
 import time
 
+# this function get args for segmentation
 def get_args():
 	parser = argparse.ArgumentParser(description='Show results')
 
@@ -31,58 +32,77 @@ def get_args():
 	print(args)
 	return args
 
-def segment(path_img, save_path_4D, save_path_3D, model_4D, model_3D, mask_centre, radius, size, z_index):
+# function for saving the .png file
+def save_png(raw_img_path, save_folder, img_data, height, width):
+	plt.figure(figsize=(height/1000, width/1000), dpi=100)
+	plt.imshow(img_data, 'gray')
+	plt.axis('off')
+	save_path = os.path.join(save_folder, os.path.basename(raw_img_path)+'.png')
+	plt.savefig(save_path, dpi=1000)
+
+
+def segment(path_img, save_path_4D, save_path_3D, model_4D, model_3D, z_index, mask, feature_index, size):
 	'''
 	path_img: the absolute path for specific slice
 	save_path_4D: target folder to save the 4D-based segmentation result
 	save_path_3D: target folder to save the 3D-based segmentation result
 	model_4D: 4D-based model to cluster
 	model_3D: 3D-based model to cluster
-	mask_centre & radius: centre and radius for mask
-	size: the type for feature extraction
 	z_index: the index for z-axis, used for plot point cloud
+	feature_index: save the index for features
+	size: size of used features
 	'''
 	start = time.time()
-	img = cv2.imread(path_img, -1)
-	height, width = img.shape
-	mask = np.zeros((height, width), np.uint8)
-	cv2.circle(mask, mask_centre, radius, 1, thickness=-1)
-
+	# record the time
 	if size == 1:
-		feature_4D, feature_3D = features.get_all_features_1(path_img, mask_centre, radius)
+		feature_4D, feature_3D = features.get_all_features_1(path_img, feature_index)
 	elif size == 3:
-		feature_4D, feature_3D = features.get_all_features_3(path_img, mask_centre, radius)
+		feature_4D, feature_3D = features.get_all_features_3(path_img, feature_index)
 	elif size == 5:
-		feature_4D, feature_3D = features.get_all_features_5(path_img, mask_centre, radius)
+		feature_4D, feature_3D = features.get_all_features_5(path_img, feature_index)
 	else:
 		raise ValueError('Please input the right size, should be 1, 3 or 5.')
 
 	print('Segmenting...')
 	prediction_4D = model_4D.predict(feature_4D)
 	prediction_3D = model_3D.predict(feature_3D)
-
-	final_img_4D = np.ones((height,width), np.uint8)
-	final_img_3D = np.ones((height,width), np.uint8)
+	# type is numpy array
+	print('Finished!')
 
 	coordinate = mask.nonzero()
-	total_element = len(prediction_4D)
-	for i in range(total_element):
-		final_img_4D[coordinate[0][i], coordinate[1][i]] = np.abs(1-prediction_4D[i])
-		final_img_3D[coordinate[0][i], coordinate[1][i]] = prediction_3D[i]
-	print('Finished!')
+	# here need to assign the value manually. 
+	# Since the classfier will return 0 and 1 randomly
+	zero_point_4D_co = np.argwhere(prediction_4D==1)
+	# class "1" in 4D model means pore
+	zero_point_3D_co = np.argwhere(prediction_3D==0)
+	# class "0" in 3D model means pore
+
+	height, width = mask.shape
+	final_img_4D = np.ones((height,width), np.uint8)
+	final_img_3D = np.ones((height,width), np.uint8)
 	
+	point_4D_co = []
+	point_3D_co = []
+	for i in zero_point_4D_co:
+		final_img_4D[coordinate[0][i], coordinate[1][i]] = 0
+		point_4D_co.append([int(coordinate[0][i]), int(coordinate[1][i])])
+	for j in zero_point_3D_co:
+		final_img_3D[coordinate[0][j], coordinate[1][j]] = 0
+		point_3D_co.append([int(coordinate[0][j]), int(coordinate[1][j])])
+	# write the image data
 
 	print('Saving results...')
 	# will return the coordinate for pore, and finally will return 
-
-	zero_location_4D = np.argwhere(final_img_4D==0)
+	# zero_location_4D = np.argwhere(final_img_4D==0)
+	zero_location_4D = np.array(point_4D_co)
 	z_4D_index = np.array([z_index] * len(zero_location_4D)).reshape((len(zero_location_4D),1))
 	point_coordinate_4D = np.concatenate((zero_location_4D, z_4D_index), axis=1)
 	# 3D coordiante: x: point_coordinate_4D[:,0]
 	#				 y: point_coordinate_4D[:,1]
 	#				 z: point_coordinate_4D[:,2]
 
-	zero_location_3D = np.argwhere(final_img_3D==0)
+	# zero_location_3D = np.argwhere(final_img_3D==0)
+	zero_location_3D = np.array(point_3D_co)
 	z_3D_index = np.array([z_index] * len(zero_location_3D)).reshape((len(zero_location_3D),1))
 	point_coordinate_3D = np.concatenate((zero_location_3D, z_3D_index), axis=1)
 	# 3D coordiante: x: point_coordinate_3D[:,0]
@@ -90,29 +110,19 @@ def segment(path_img, save_path_4D, save_path_3D, model_4D, model_3D, mask_centr
 	#				 z: point_coordinate_3D[:,2]
 
 	# Save the picture
-	# it just generate the image for segmentation. Such process will lost the information
-	plt.figure(figsize=(height/1000, width/1000), dpi=100)
-	plt.imshow(final_img_4D, 'gray')
-	plt.axis('off')
-	save_path = os.path.join(save_path_4D, os.path.basename(path_img)+'.png')
-	plt.savefig(save_path, dpi=1000)
-	plt.close()
-
-	plt.figure(figsize=(height/1000, width/1000), dpi=100)
-	plt.imshow(final_img_3D, 'gray')
-	plt.axis('off')
-	save_path = os.path.join(save_path_3D, os.path.basename(path_img)+'.png')
-	plt.savefig(save_path, dpi=1000)
-	plt.close()
-	print('Finished!')
+	# Such process will lost information, just for visualization
+	# call the function defined above
+	save_png(path_img, save_path_4D, final_img_4D, height, width)
+	save_png(path_img, save_path_3D, final_img_3D, height, width)
 	end = time.time()
-	print('Using time:', end-start)
+	print(end-start)
 
 	return point_coordinate_4D, point_coordinate_3D
 
 
 args = get_args()
-# Here we set different paramater
+
+# Here we set the paramater
 mask_centre = (700, 810)
 radius = 550
 
@@ -130,19 +140,25 @@ document_path_3D = os.path.join(os.path.dirname(sub_all_tif[0]),'segmentation_3D
 if not os.path.exists(document_path_3D):
 	os.mkdir(document_path_3D)
 
+# load the model
 model_4D_type = load(args.model_4D)
 model_3D_type = load(args.model_3D)
 
+# just pick one slice to get the mask and its corresponding features index
+mask, feature_index = features.get_mask(sub_all_tif[0], mask_centre, radius, args.size)
+
+# save point result every 100 slices
 group_num = 100
 begin_flag = 1
+
 print('Will segment', len(sub_all_tif), 'slices')
-for index, i in enumerate(sub_all_tif):
-	# 
+for index, i in enumerate(sub_all_tif[:3]):
 	if begin_flag:
-		point_coordinate_4D, point_coordinate_3D = segment(i, document_path_4D, document_path_3D, model_4D_type, model_3D_type, mask_centre, radius, args.size, index)
+												 # segment(path_img, save_path_4D, save_path_3D, model_4D, model_3D, z_index, mask, feature_index, size)
+		point_coordinate_4D, point_coordinate_3D = segment(i, document_path_4D, document_path_3D, model_4D_type, model_3D_type, index, mask, feature_index, args.size)
 		begin_flag = 0
 	else:
-		add_point_4D, add_point_3D = segment(i, document_path_4D, document_path_3D, model_4D_type, model_3D_type, mask_centre, radius, args.size, index)
+		add_point_4D, add_point_3D = segment(i, document_path_4D, document_path_3D, model_4D_type, model_3D_type, index, mask, feature_index, args.size)
 		point_coordinate_4D = np.concatenate((point_coordinate_4D, add_point_4D), axis=0)
 		point_coordinate_3D = np.concatenate((point_coordinate_3D, add_point_3D), axis=0)
 	if (index+1) % group_num == 0:
@@ -157,13 +173,6 @@ path_4D = os.path.join(document_path_4D, 'point_data_4D_'+str(index//group_num).
 path_3D = os.path.join(document_path_3D, 'point_data_3D_'+str(index//group_num).rjust(len(str(len(sub_all_tif)//group_num)), '0')+'.csv')
 np.savetxt(path_4D, point_coordinate_4D, delimiter=',')
 np.savetxt(path_3D, point_coordinate_3D, delimiter=',')
-
-
-
-
-
-
-
 
 
 
