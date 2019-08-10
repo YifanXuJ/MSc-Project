@@ -18,10 +18,10 @@ import module.content as content
 centre = (700, 810)
 # Here, centre match the definition in image, but not match the definition in matrix
 # In matrix index, we use [row, column], which equals to (column, row) in image
-radius = 560
+radius = 550
 # assign the target timestamp manually
 # will automatically pick the first slice
-timestamp_index = 5
+timestamp_index = 6
 
 current_path = os.getcwd()
 all_timestamp = content.get_folder(current_path)
