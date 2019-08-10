@@ -74,8 +74,8 @@ def segment(path_img, save_path_4D, save_path_3D, model_4D, model_3D, z_index, m
 	# Since the classfier will return 0 and 1 randomly
 	zero_point_4D_co = np.argwhere(prediction_4D==1)
 	# class "1" in 4D model means pore
-	zero_point_3D_co = np.argwhere(prediction_3D==0)
-	# class "0" in 3D model means pore
+	zero_point_3D_co = np.argwhere(prediction_3D==1)
+	# class "1" in 3D model means pore
 
 	height, width = mask.shape
 	final_img_4D = np.ones((height,width), np.uint8)
@@ -140,9 +140,11 @@ document_path_3D = os.path.join(os.path.dirname(sub_all_tif[0]),'segmentation_3D
 if not os.path.exists(document_path_3D):
 	os.mkdir(document_path_3D)
 
-# load the model
-model_4D_type = load(args.model_4D)
-model_3D_type = load(args.model_3D)
+# load the model from 'model' folder
+model_4D_path = os.path.join(current_path, 'model', args.model_4D+'.model')
+model_3D_path = os.path.join(current_path, 'model', args.model_3D+'.model')
+model_4D_type = load(model_4D_path)
+model_3D_type = load(model_3D_path)
 
 # just pick one slice to get the mask and its corresponding features index
 mask, feature_index = features.get_mask(sub_all_tif[0], mask_centre, radius, args.size)
