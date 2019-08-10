@@ -20,6 +20,17 @@ from sklearn.cluster import MeanShift
 
 from joblib import dump, load
 
+def load_training_data(path):
+	raw_training_data = np.load(path)
+	num_sample_groups = raw_training_data.shape[0]
+	num_samples = raw_training_data.shape[1]
+	num_dim = raw_training_data.shape[2]
+
+	training_data = np.zeros((num_sample_groups*num_samples, num_dim))
+	for i in range(num_sample_groups):
+		training_data[i*num_samples:(i+1)*num_samples, :] = raw_training_data[i] 
+	return training_data
+
 def kmeans_algorithm(num_cluster, training_data, filename):
 	# filename should be a string
 	if not isinstance(filename, str):

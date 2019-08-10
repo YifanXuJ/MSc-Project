@@ -138,7 +138,7 @@ def get_all_features_3(path, feature_index):
 
 # This function is used to get features from known point -> for evaluation
 def get_assign_features_3(path, x_coordinate, y_coordinate):
-	print('Get 3x3 features')
+	# print('Get 3x3 features')
 	# name_slice = os.path.basename(path)
 	# # get the name for this slice -> to locate its location
 	time_slice = os.path.basename(os.path.dirname(path))
@@ -273,7 +273,7 @@ def get_all_features_1(path, feature_index):
 	return feature_4D, feature_3D
 
 def get_assign_features_1(path, x_coordinate, y_coordinate):
-	print('Get 1x1 features')
+	# print('Get 1x1 features')
 	# name_slice = os.path.basename(path)
 	# # get the name for this slice -> to locate its location
 	time_slice = os.path.basename(os.path.dirname(path))
@@ -460,7 +460,7 @@ def get_all_features_5(path, feature_index):
 def get_assign_features_5(path, x_coordinate, y_coordinate):
 	# name_slice = os.path.basename(path)
 	# # get the name for this slice -> to locate its location
-	print('Get 5x5 features')
+	# print('Get 5x5 features')
 	time_slice = os.path.basename(os.path.dirname(path))
 	# get the time stamp for this slice -> to licate its time stamp
 	root_path = os.path.dirname(os.path.dirname(path))

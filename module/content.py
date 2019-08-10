@@ -10,7 +10,7 @@ import os
 import glob
 
 def get_folder(path):
-	# assigin the path, and return all the target folder as a sorted list
+	# assigin the path, and return all the target folder (SHP...) as a sorted list
 	all_files = os.listdir(path)
 	all_files.sort()
 	all_folder = []
