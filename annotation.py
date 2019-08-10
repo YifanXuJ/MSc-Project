@@ -22,16 +22,19 @@ import module.content as content
 begin_timestamp_index = 5
 end_timestamp_index = 5
 # set the range for randomly choosing slice
-begin_slice = 700
+begin_slice = 600
 end_slice = 800
 # set the number of slices
-num_slices = 10
+num_slices = 100
 # set the number of points for each slice
 num_points = 1
 
 # set the mask centre and radius for each slice
 mask_centre = (700, 810)
 radius = 550
+
+# set the filename
+filename = 'labeled_data_test.txt'
 
 
 def add_mask(centre, radius, source_image):
@@ -59,15 +62,23 @@ def transform(coordinate, x_coordinate, y_coordinate):
 		transformed_coordinate.append(location)
 	return transformed_coordinate
 
-# before labeling the data, delete the old file
-if os.path.exists("./labeled_data.txt"):
-	os.remove("./labeled_data.txt")
+
 
 current_path = os.getcwd()
 print("Current path:", current_path)
 
 all_folder = content.get_folder(current_path)
 sample_timestamp = all_folder[begin_timestamp_index:(end_timestamp_index+1)]
+
+save_folder = os.path.join(current_path, 'validation_data')
+if not os.path.exists(save_folder):
+	os.mkdir(save_folder)
+file_path = os.path.join(save_folder, filename)
+
+# before labeling the data, delete the old file
+if os.path.exists(file_path):
+	os.remove(file_path)
+
 
 print('Will choose timestamp from {begin} to {end}'.format(begin=all_folder[begin_timestamp_index], end=all_folder[end_timestamp_index]))
 print('Will randomly choose {:d} slices from {:d} to {:d}'.format(num_slices, begin_slice, end_slice))
@@ -80,7 +91,7 @@ for sub_timestamp in sample_timestamp:
 	# First, we label all pore
 	print('Please label {:d} points for pore in each picture!'.format(num_points))
 	random_slice_pore = np.random.randint(begin_slice, end_slice, num_slices)
-	for i in random_slice_pore:
+	for index, i in enumerate(random_slice_pore):
 		slice_path = sub_all_tif[i]
 		slice_img = cv2.imread(slice_path, -1)
 		# now get the slice image
@@ -88,34 +99,34 @@ for sub_timestamp in sample_timestamp:
 		x_coordinate, y_coordinate = random_effective_area(masked_image)
 
 		plt.imshow(masked_image[x_coordinate-100:x_coordinate+100, y_coordinate-100:y_coordinate+100], 'gray')
-		plt.title('Please label {:d} points for pore! \n Current slice: {str}'.format(num_points, str=os.path.basename(slice_path)), color='red')
+		plt.title('Please label {:d} points for pore! ({:d}/{:d}) \n Current slice: {str}'.format(num_points, (index+1), num_slices, str=os.path.basename(slice_path)), color='red')
 		# show 400x400 area to label
 		coordinate = plt.ginput(n=num_points, timeout=0)
 
 		# note that x, y from the ginput function is oppisite to our x and y, we need to transfer it
 		transformed_coordinate = transform(coordinate, x_coordinate, y_coordinate)
 		
-		with open('./labeled_data.txt', 'a') as f:
+		with open(file_path, 'a') as f:
 			f.writelines([slice_path, ' ', str(transformed_coordinate), ' ', '0', '\n'])
 			# '0' means pore
 
 	print('Please label {:d} points for non-pore in each picture!'.format(num_points))
 	# Then we label all non-pore
 	random_slice_nonpore = np.random.randint(begin_slice, end_slice, num_slices)
-	for i in random_slice_nonpore:
+	for index, i in enumerate(random_slice_nonpore):
 		slice_path = sub_all_tif[i]
 		slice_img = cv2.imread(slice_path, -1)
 		masked_image = add_mask(mask_centre, radius, slice_img)
 		x_coordinate, y_coordinate = random_effective_area(masked_image)
 
 		plt.imshow(masked_image[x_coordinate-100:x_coordinate+100, y_coordinate-100:y_coordinate+100], 'gray')
-		plt.title('Please label {:d} points for non-pore! \n Current slice: {str}'.format(num_points, str=os.path.basename(slice_path)), color='red')
+		plt.title('Please label {:d} points for non-pore! ({:d}/{:d}) \n Current slice: {str}'.format(num_points, (index+1), num_slices, str=os.path.basename(slice_path)), color='red')
 		# show 400x400 area to label
 		coordinate = plt.ginput(n=num_points, timeout=0)
 
 		transformed_coordinate = transform(coordinate, x_coordinate, y_coordinate)
 
-		with open('./labeled_data.txt','a') as f:
+		with open(file_path,'a') as f:
 			f.writelines([slice_path, ' ', str(transformed_coordinate), ' ', '1', '\n'])
 			# '1' means non-pore
 
