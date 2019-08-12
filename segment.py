@@ -154,13 +154,13 @@ model_3D_type = load(model_3D_path)
 mask, feature_index = features.get_mask(sub_all_tif[0], mask_centre, radius, args.size)
 
 # save point result every 100 slices
-group_num = 300
+group_num = 312
 begin_flag = 1
 
 print('Will segment', len(sub_all_tif), 'slices')
 for index, i in enumerate(sub_all_tif[:3]):
 	if begin_flag:
-												 # segment(path_img, save_path_4D, save_path_3D, model_4D, model_3D, z_index, mask, feature_index, size)
+												 # segment(path_img, save_path_4D, save_path_3D, model_4D, model_3D, z_index, mask, feature_index, size, pore_4D, pore_3D)
 		point_coordinate_4D, point_coordinate_3D = segment(i, document_path_4D, document_path_3D, model_4D_type, model_3D_type, index, mask, feature_index, args.size, args.pore_4D, args.pore_3D)
 		begin_flag = 0
 	else:
