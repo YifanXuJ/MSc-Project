@@ -1,7 +1,8 @@
 '''
 This file will report the accuracy accordiing to the validation data
-We need to know how our clustering algorithm return the class, and need to match
-our defination in validation data of pore -- 0 and non-pore -- 1.
+We need to know how our clustering algorithm return the class, and need to match our defination in validation data of pore -- 0 and non-pore -- 1.
+Also, data and model should match
+
 
 Author: Yan Gao
 email: gaoy4477@gmail.com
@@ -17,6 +18,11 @@ def get_args():
                         help='File name of saved model for 4D data')
 	parser.add_argument('--model_3D', nargs="?", type=str, 
                         help='File name of saved model for 3D data')
+	parser.add_argument('--filename_4D', nargs="?", type=str, 
+                        help='File name of saved 4D data')
+	parser.add_argument('--filename_3D', nargs="?", type=str, 
+                        help='File name of saved 3D data')
+
 	args = parser.parse_args()
 	print(args)
 	return args
@@ -34,11 +40,8 @@ def transfer(prediction):
 args = get_args()
 
 # This part we load validation data
-filename_4D = 'validation_data_4D_3.npy'
-filename_3D = 'validation_data_3D_3.npy'
-
-filepath_4D = os.path.join(os.getcwd(), 'validation_data', filename_4D)
-filepath_3D = os.path.join(os.getcwd(), 'validation_data', filename_3D)
+filepath_4D = os.path.join(os.getcwd(), 'validation_data', args.filename_4D+'.npy')
+filepath_3D = os.path.join(os.getcwd(), 'validation_data', args.filename_3D+'.npy')
 
 validation_data_4D = np.load(filepath_4D, allow_pickle=True)
 validation_data_3D = np.load(filepath_3D, allow_pickle=True)
