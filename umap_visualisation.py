@@ -1,31 +1,27 @@
+import os
 import numpy as np 
 import umap
-from sklearn.manifold import TSNE
 import matplotlib.pyplot as plt 
 from mpl_toolkits.mplot3d import Axes3D
+import module.train as train
+
 import warnings
+
 
 warnings.filterwarnings('ignore')
 
+data_3D = 'training_3D_5_3x3'
+data_4D = 'training_4D_5_3x3'
 
-raw_training_data_4D = np.load('training_data_4D_3.npy')
-raw_training_data_3D = np.load('training_data_3D_3.npy')
+data_4D_path = os.path.join(os.getcwd(), 'training_data', data_4D+'.npy')
+data_3D_path = os.path.join(os.getcwd(), 'training_data', data_3D+'.npy')
 
-num_sample_groups = raw_training_data_4D.shape[0]
-num_samples = raw_training_data_4D.shape[1]
-num_dim_4D = raw_training_data_4D.shape[2]
-num_dim_3D = raw_training_data_3D.shape[2]
-
-training_data_4D = np.zeros((num_sample_groups*num_samples, num_dim_4D))
-training_data_3D = np.zeros((num_sample_groups*num_samples, num_dim_3D))
-
-for i in range(num_sample_groups):
-    training_data_4D[i*num_samples:(i+1)*num_samples,:] = raw_training_data_4D[i]
-    training_data_3D[i*num_samples:(i+1)*num_samples,:] = raw_training_data_3D[i]
+training_data_4D = train.load_training_data(data_4D_path)
+training_data_3D = train.load_training_data(data_3D_path)
 
 print('Using subset of the data...')
-subset_training_data_4D = training_data_4D[0:20000]
-subset_training_data_3D = training_data_3D[0:20000]
+subset_training_data_4D = training_data_4D[20000:40000]
+subset_training_data_3D = training_data_3D[20000:40000]
 
 print('Embedding for 4D data...')
 embedding_4D_2 = umap.UMAP(n_components=2).fit_transform(subset_training_data_4D)
@@ -57,8 +53,8 @@ ax.set_title('2D projection for 3D data',fontsize=12,color='r')
 plt.show()
 
 
-# X_embedded_4D = TSNE(n_components=2).fit_transform(subset_training_data_4D)
-# X_embedded_3D = TSNE(n_components=2).fit_transform(subset_training_data_3D)
 
-# plt.scatter(X_embedded_4D[:,0],X_embedded_4D[:,1])
-# plt.scatter(X_embedded_3D[:,0],X_embedded_3D[:,1])
+
+
+
+
