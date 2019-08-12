@@ -11,8 +11,13 @@ python create_validation_data.py
 python training.py --data_3D training_3D_5_3x3 --data_4D training_4D_5_3x3 --model_type mini_batch_kmeans --num_cluster 2 --name_4D mini_kmeans_4D_2_3x3 --name_3D mini_kmeans_3D_2_3x3
 
 
+# show single slice
+python show_single.py --model_4D mini_kmeans_4D_2_3x3 --model_3D mini_kmeans_3D_2_3x3 --size 3 --timestamp 5 --slice 500
+
+
+
 # Validate data
-python validate.py --model_4D mini_kmeans_4D_2_3x3 --model_3D mini_kmeans_3D_2_3x3
+python validate.py --model_4D mini_kmeans_4D_2_3x3 --model_3D mini_kmeans_3D_2_3x3 --filename_4D validation_data_4D_3 --filename_3D validation_data_3D_3
 
 
 # Segment slices
