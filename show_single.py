@@ -28,10 +28,13 @@ def get_args():
 						help='Target timestamp')
 	parser.add_argument('--slice', nargs="?", type=int,
 						help='Target slice')
+	parser.add_argument('--pore_4D', nargs="?", type=int,
+						help='Label for pore in 4D model')
+	parser.add_argument('--pore_3D', nargs="?", type=int,
+						help='Label for pore in 3D model')
 	args = parser.parse_args()
 	print(args)
 	return args
-
 
 
 args = get_args()
@@ -72,11 +75,11 @@ prediction_3D = model_3D_type.predict(feature_3D)
 # write the image
 
 coordinate = mask.nonzero()
-# here need to assign the value manually. 
-# Since the classfier will return 0 and 1 randomly
-zero_point_4D_co = np.argwhere(prediction_4D==1)
+# here need to assign the pore label manually. 
+# Since the classfier will return the label randomly
+zero_point_4D_co = np.argwhere(prediction_4D==args.pore_4D)
 # class "1" in 4D model means pore
-zero_point_3D_co = np.argwhere(prediction_3D==1)
+zero_point_3D_co = np.argwhere(prediction_3D==args.pore_3D)
 # class "1" in 3D model means pore
 
 height, width = mask.shape
@@ -103,7 +106,6 @@ plt.title('Segment for 3D data')
 plt.figure()
 img = cv2.imread(target_slice, -1)
 plt.imshow(img, 'gray')
-plt.axis('off')
 plt.title('Original slice')
 
 plt.show()

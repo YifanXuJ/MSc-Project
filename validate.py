@@ -22,15 +22,19 @@ def get_args():
                         help='File name of saved 4D data')
 	parser.add_argument('--filename_3D', nargs="?", type=str, 
                         help='File name of saved 3D data')
+	parser.add_argument('--pore_4D', nargs="?", type=int,
+						help='Label for pore in 4D model')
+	parser.add_argument('--pore_3D', nargs="?", type=int,
+						help='Label for pore in 3D model')
 
 	args = parser.parse_args()
 	print(args)
 	return args
 
-def transfer(prediction):
+def transfer(prediction, target_label):
 	transfer_result = np.zeros(len(prediction))
-	for i, value in enumerate(prediction):
-		if value == 1:
+	for i, label in enumerate(prediction):
+		if label == target_label:
 			transfer_result[i] = 0
 		else:
 			transfer_result[i] = 1
@@ -62,8 +66,8 @@ model_3D_type = load(model_3D_path)
 prediction_4D = model_4D_type.predict(data_feature_4D)
 prediction_3D = model_3D_type.predict(data_feature_3D)
 # transfer the label (only if needed)
-transfer_prediction_4D = transfer(prediction_4D)
-transfer_prediction_3D = transfer(prediction_3D)
+transfer_prediction_4D = transfer(prediction_4D, args.pore_4D)
+transfer_prediction_3D = transfer(prediction_3D, args.pore_3D)
 
 accuracy_4D = np.sum(transfer_prediction_4D==data_label) / len(data_label)
 accuracy_3D = np.sum(transfer_prediction_3D==data_label) / len(data_label)

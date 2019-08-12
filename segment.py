@@ -28,6 +28,10 @@ def get_args():
 						help='Size of features, should be 1, 3 or 5')
 	parser.add_argument('--timestamp', nargs="?", type=int,
 						help='Target timestamp')
+	parser.add_argument('--pore_4D', nargs="?", type=int,
+						help='Label for pore in 4D model')
+	parser.add_argument('--pore_3D', nargs="?", type=int,
+						help='Label for pore in 3D model')
 	args = parser.parse_args()
 	print(args)
 	return args
@@ -41,7 +45,7 @@ def save_png(raw_img_path, save_folder, img_data, height, width):
 	plt.savefig(save_path, dpi=1000)
 
 
-def segment(path_img, save_path_4D, save_path_3D, model_4D, model_3D, z_index, mask, feature_index, size):
+def segment(path_img, save_path_4D, save_path_3D, model_4D, model_3D, z_index, mask, feature_index, size, pore_4D, pore_3D):
 	'''
 	path_img: the absolute path for specific slice
 	save_path_4D: target folder to save the 4D-based segmentation result
@@ -72,9 +76,9 @@ def segment(path_img, save_path_4D, save_path_3D, model_4D, model_3D, z_index, m
 	coordinate = mask.nonzero()
 	# here need to assign the value manually. 
 	# Since the classfier will return 0 and 1 randomly
-	zero_point_4D_co = np.argwhere(prediction_4D==1)
+	zero_point_4D_co = np.argwhere(prediction_4D==pore_4D)
 	# class "1" in 4D model means pore
-	zero_point_3D_co = np.argwhere(prediction_3D==1)
+	zero_point_3D_co = np.argwhere(prediction_3D==pore_3D)
 	# class "1" in 3D model means pore
 
 	height, width = mask.shape
@@ -150,17 +154,17 @@ model_3D_type = load(model_3D_path)
 mask, feature_index = features.get_mask(sub_all_tif[0], mask_centre, radius, args.size)
 
 # save point result every 100 slices
-group_num = 100
+group_num = 300
 begin_flag = 1
 
 print('Will segment', len(sub_all_tif), 'slices')
 for index, i in enumerate(sub_all_tif[:3]):
 	if begin_flag:
 												 # segment(path_img, save_path_4D, save_path_3D, model_4D, model_3D, z_index, mask, feature_index, size)
-		point_coordinate_4D, point_coordinate_3D = segment(i, document_path_4D, document_path_3D, model_4D_type, model_3D_type, index, mask, feature_index, args.size)
+		point_coordinate_4D, point_coordinate_3D = segment(i, document_path_4D, document_path_3D, model_4D_type, model_3D_type, index, mask, feature_index, args.size, args.pore_4D, args.pore_3D)
 		begin_flag = 0
 	else:
-		add_point_4D, add_point_3D = segment(i, document_path_4D, document_path_3D, model_4D_type, model_3D_type, index, mask, feature_index, args.size)
+		add_point_4D, add_point_3D = segment(i, document_path_4D, document_path_3D, model_4D_type, model_3D_type, index, mask, feature_index, args.size, args.pore_4D, args.pore_3D)
 		point_coordinate_4D = np.concatenate((point_coordinate_4D, add_point_4D), axis=0)
 		point_coordinate_3D = np.concatenate((point_coordinate_3D, add_point_3D), axis=0)
 	if (index+1) % group_num == 0:
