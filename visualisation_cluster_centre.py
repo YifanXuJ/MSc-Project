@@ -22,12 +22,13 @@ def get_args():
 	print(args)
 	return args
 
-
+# this function will transfer 9x1 array to 3x3 array with uint16 type
 def get_image(array):
 	dim = int(np.sqrt(len(array)))
 	convert = array.astype(np.uint16)
 	img = convert.reshape((dim, dim))
 	return img
+
 
 
 args = get_args()
@@ -55,6 +56,7 @@ dim_3D = centre_3D[0].shape[0]
 # This part show the centre for 3D data
 size_img = int(dim_3D/3)
 for i in range(num_centres_3D):
+# loop for all centres
 	array_1 = centre_3D[i][:size_img]
 	img_1 = get_image(array_1)
 	# mid slice
@@ -115,36 +117,36 @@ for i in range(num_centres_4D):
 
 	# plot the centre
 	fig = plt.figure()
-	fig.suptitle('Visualisation for 4D centre {:d} \n From top to bottom: current, past, future'.format(i+1)) 
-	ax = plt.subplot(331)
-	ax.imshow(img_2, 'gray')
-	ax.set_title('bot slice')
-	ax = plt.subplot(332)
-	ax.imshow(img_1, 'gray')
-	ax.set_title('mid slice')
-	ax = plt.subplot(333)
-	ax.imshow(img_3, 'gray')
-	ax.set_title('top slice')
-
-	ax = plt.subplot(334)
-	ax.imshow(img_5, 'gray')
-	ax.set_title('bot slice')
-	ax = plt.subplot(335)
-	ax.imshow(img_4, 'gray')
-	ax.set_title('mid slice')
-	ax = plt.subplot(336)
-	ax.imshow(img_6, 'gray')
-	ax.set_title('top slice')
-
+	fig.suptitle('Visualisation for 4D centre {:d} \n From left to right: past, now, future \n from top to bottom: top, mid, bot'.format(i+1)) 
 	ax = plt.subplot(337)
-	ax.imshow(img_8, 'gray')
-	ax.set_title('bot slice')
+	ax.imshow(img_5, 'gray')
+	# ax.set_title('bot slice')
+	ax = plt.subplot(334)
+	ax.imshow(img_4, 'gray')
+	# ax.set_title('mid slice')
+	ax = plt.subplot(331)
+	ax.imshow(img_6, 'gray')
+	# ax.set_title('top slice')
+
 	ax = plt.subplot(338)
-	ax.imshow(img_7, 'gray')
-	ax.set_title('mid slice')
+	ax.imshow(img_2, 'gray')
+	# ax.set_title('bot slice')
+	ax = plt.subplot(335)
+	ax.imshow(img_1, 'gray')
+	# ax.set_title('mid slice')
+	ax = plt.subplot(332)
+	ax.imshow(img_3, 'gray')
+	# ax.set_title('top slice')
+
 	ax = plt.subplot(339)
+	ax.imshow(img_8, 'gray')
+	# ax.set_title('bot slice')
+	ax = plt.subplot(336)
+	ax.imshow(img_7, 'gray')
+	# ax.set_title('mid slice')
+	ax = plt.subplot(333)
 	ax.imshow(img_9, 'gray')
-	ax.set_title('top slice')
+	# ax.set_title('top slice')
 
 plt.show()
 
