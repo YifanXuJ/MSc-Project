@@ -82,10 +82,11 @@ for sub_timestamp in target_timestamp:
 	sample_feature_num = int(subsampling_rate * total_feature_num)
 	sample_list = random.sample(range(total_feature_num), sample_feature_num)
 	# get the sample feature index
-	sub_feature_index = []
-	for i in sample_list:
-		sub_feature_index.append(feature_index[i])
-
+	sub_feature_index = [feature_index[i] for i in sample_list]
+	# sub_feature_index = []
+	# for i in sample_list:
+	# 	sub_feature_index.append(feature_index[i])
+	
 	for each_tif in target_slice:
 		if args.size == 3:
 			feature_4D, feature_3D = features.get_all_features_3(each_tif, sub_feature_index)

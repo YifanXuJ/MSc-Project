@@ -43,6 +43,7 @@ def save_png(raw_img_path, save_folder, img_data, height, width):
 	plt.axis('off')
 	save_path = os.path.join(save_folder, os.path.basename(raw_img_path)+'.png')
 	plt.savefig(save_path, dpi=1000)
+	plt.close()
 
 
 def segment(path_img, save_path_4D, save_path_3D, model_4D, model_3D, z_index, mask, feature_index, size, pore_4D, pore_3D):
@@ -85,14 +86,17 @@ def segment(path_img, save_path_4D, save_path_3D, model_4D, model_3D, z_index, m
 	final_img_4D = np.ones((height,width), np.uint8)
 	final_img_3D = np.ones((height,width), np.uint8)
 	
-	point_4D_co = []
-	point_3D_co = []
+	# point_4D_co = []
+	# point_3D_co = []
+	point_4D_co = [[int(coordinate[0][i]), int(coordinate[1][i])] for i in zero_point_4D_co]
+	point_3D_co = [[int(coordinate[0][i]), int(coordinate[1][i])] for i in zero_point_3D_co]
+	
 	for i in zero_point_4D_co:
 		final_img_4D[coordinate[0][i], coordinate[1][i]] = 0
-		point_4D_co.append([int(coordinate[0][i]), int(coordinate[1][i])])
+		# point_4D_co.append([int(coordinate[0][i]), int(coordinate[1][i])])
 	for j in zero_point_3D_co:
 		final_img_3D[coordinate[0][j], coordinate[1][j]] = 0
-		point_3D_co.append([int(coordinate[0][j]), int(coordinate[1][j])])
+		# point_3D_co.append([int(coordinate[0][j]), int(coordinate[1][j])])
 	# write the image data
 
 	print('Saving results...')
@@ -158,7 +162,7 @@ group_num = 312
 begin_flag = 1
 
 print('Will segment', len(sub_all_tif), 'slices')
-for index, i in enumerate(sub_all_tif[:3]):
+for index, i in enumerate(sub_all_tif):
 	if begin_flag:
 												 # segment(path_img, save_path_4D, save_path_3D, model_4D, model_3D, z_index, mask, feature_index, size, pore_4D, pore_3D)
 		point_coordinate_4D, point_coordinate_3D = segment(i, document_path_4D, document_path_3D, model_4D_type, model_3D_type, index, mask, feature_index, args.size, args.pore_4D, args.pore_3D)

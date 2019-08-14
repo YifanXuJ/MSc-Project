@@ -56,10 +56,11 @@ def random_effective_area(masked_image):
 
 # transform the coordinate 
 def transform(coordinate, x_coordinate, y_coordinate):
-	transformed_coordinate = []
-	for element in coordinate:
-		location = (element[1]+x_coordinate-100, element[0]+y_coordinate-100)
-		transformed_coordinate.append(location)
+	transformed_coordinate = [(element[1]+x_coordinate-100, element[0]+y_coordinate-100) for element in coordinate]
+	# transformed_coordinate = []
+	# for element in coordinate:
+	# 	location = (element[1]+x_coordinate-100, element[0]+y_coordinate-100)
+	# 	transformed_coordinate.append(location)
 	return transformed_coordinate
 
 

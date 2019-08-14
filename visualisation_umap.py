@@ -21,12 +21,12 @@ warnings.filterwarnings('ignore')
 # if dont want to show the centre, just assign flag_show_centre = False
 # show centre only for kmeans or mini_batch_kmeans algorithm
 flag_show_centre = True
-model_4D = 'mini_kmeans_4D_2_3x3'
-model_3D = 'mini_kmeans_3D_2_3x3'
+model_4D = 'mini_kmeans_4D_3_3x3_6'
+model_3D = 'mini_kmeans_3D_3_3x3_6'
 
 # Load the data
-data_3D = 'training_3D_5_3x3'
-data_4D = 'training_4D_5_3x3'
+data_3D = 'training_3D_6_3x3'
+data_4D = 'training_4D_6_3x3'
 
 data_4D_path = os.path.join(os.getcwd(), 'training_data', data_4D+'.npy')
 data_3D_path = os.path.join(os.getcwd(), 'training_data', data_3D+'.npy')
@@ -35,9 +35,11 @@ print('Loading data...')
 training_data_4D = train.load_training_data(data_4D_path)
 training_data_3D = train.load_training_data(data_3D_path)
 
-print('Using subset of the data...')
-subset_training_data_4D = training_data_4D[20000:40000]
-subset_training_data_3D = training_data_3D[20000:40000]
+begin_num = 20000
+end_num = 40000
+print('Using subset of the data, {:d} points'.format(end_num-begin_num))
+subset_training_data_4D = training_data_4D[begin_num:end_num]
+subset_training_data_3D = training_data_3D[begin_num:end_num]
 
 print('Embedding for 4D data...')
 embedding_4D_2_model = umap.UMAP(n_components=2).fit(subset_training_data_4D)
@@ -64,18 +66,18 @@ if flag_show_centre:
 
 	# Assume we have known just 2 centres, we can change this assumption
 	# project 4D centre
-	centre_4D_list_3D = []
-	centre_4D_list_2D = []
+	centre_4D_list_3D = [embedding_4D_3_model.transform(centre_4D[i].reshape(1,-1)) for i in range(num_centre_4D)]
+	centre_4D_list_2D = [embedding_4D_2_model.transform(centre_4D[i].reshape(1,-1)) for i in range(num_centre_4D)]
 
-	centre_3D_list_3D = []
-	centre_3D_list_2D = []
-	for i in range(num_centre_4D):
-		centre_4D_list_3D.append(embedding_4D_3_model.transform(centre_4D[i].reshape(1,-1)))
-		centre_4D_list_2D.append(embedding_4D_2_model.transform(centre_4D[i].reshape(1,-1)))
+	centre_3D_list_3D = [embedding_3D_3_model.transform(centre_3D[i].reshape(1,-1)) for i in range(num_centre_3D)]
+	centre_3D_list_2D = [embedding_3D_2_model.transform(centre_3D[i].reshape(1,-1)) for i in range(num_centre_3D)]
+	# for i in range(num_centre_4D):
+	# 	centre_4D_list_3D.append(embedding_4D_3_model.transform(centre_4D[i].reshape(1,-1)))
+	# 	centre_4D_list_2D.append(embedding_4D_2_model.transform(centre_4D[i].reshape(1,-1)))
 
-	for i in range(num_centre_3D):
-		centre_3D_list_3D.append(embedding_3D_3_model.transform(centre_3D[i].reshape(1,-1)))
-		centre_3D_list_2D.append(embedding_3D_2_model.transform(centre_3D[i].reshape(1,-1)))
+	# for i in range(num_centre_3D):
+	# 	centre_3D_list_3D.append(embedding_3D_3_model.transform(centre_3D[i].reshape(1,-1)))
+	# 	centre_3D_list_2D.append(embedding_3D_2_model.transform(centre_3D[i].reshape(1,-1)))
 
 
 # transform the data

@@ -13,11 +13,11 @@ def get_folder(path):
 	# assigin the path, and return all the target folder (SHP...) as a sorted list
 	all_files = os.listdir(path)
 	all_files.sort()
-	all_folder = []
-	for i in all_files:
-		if 'SHP' in i:
-		# the filter condition
-			all_folder.append(i)
+	all_folder = [i for i in all_files if 'SHP' in i]
+	# for i in all_files:
+	# 	if 'SHP' in i:
+	# 	# the filter condition
+	# 		all_folder.append(i)
 
 	return all_folder
 

@@ -21,17 +21,25 @@ def get_mask(path, mask_centre, radius, size):
 	mask = np.zeros((height, width), np.uint8)
 	cv2.circle(mask, mask_centre, radius, 1, thickness=-1)
 	# Now begin to index the features
-	feature_index = []
 	coordinate = mask.nonzero()
-	for i, j in zip(coordinate[0], coordinate[1]):
-		if size == 3:
-			feature_index.append([i-1, i+2, j-1, j+2])
-		elif size == 1:
-			feature_index.append([i, j])
-		elif size == 5:
-			feature_index.append([i-2, i+3, j-2, j+3])
-		else:
-			raise ValueError('Have not input the correct size!')
+	if size == 3:
+		feature_index = [[i-1, i+2, j-1, j+2] for i, j in zip(coordinate[0], coordinate[1])]
+	elif size == 1:
+		feature_index = [[i, j] for i, j in zip(coordinate[0], coordinate[1])]
+	elif size == 5:
+		feature_index = [[i-2, i+3, j-2, j+3] for i, j in zip(coordinate[0], coordinate[1])]
+	else:
+		raise ValueError('Have not input the correct size!')
+	# feature_index = []
+	# for i, j in zip(coordinate[0], coordinate[1]):
+	# 	if size == 3:
+	# 		feature_index.append([i-1, i+2, j-1, j+2])
+	# 	elif size == 1:
+	# 		feature_index.append([i, j])
+	# 	elif size == 5:
+	# 		feature_index.append([i-2, i+3, j-2, j+3])
+	# 	else:
+	# 		raise ValueError('Have not input the correct size!')
 	return mask, feature_index
 	
 
@@ -92,27 +100,37 @@ def get_all_features_3(path, feature_index):
 
 	print('Getting features...')
 	# creat 9 list to store the result
-	feature_img_1 = []
-	feature_img_2 = []
-	feature_img_3 = []
-	feature_img_4 = []
-	feature_img_5 = []
-	feature_img_6 = []
-	feature_img_7 = []
-	feature_img_8 = []
-	feature_img_9 = []
+	# feature_img_1 = []
+	# feature_img_2 = []
+	# feature_img_3 = []
+	# feature_img_4 = []
+	# feature_img_5 = []
+	# feature_img_6 = []
+	# feature_img_7 = []
+	# feature_img_8 = []
+	# feature_img_9 = []
 
 	# feature index has been inputted
-	for i in feature_index:
-		feature_img_1.append(img_1[i[0]:i[1], i[2]:i[3]].ravel())
-		feature_img_2.append(img_2[i[0]:i[1], i[2]:i[3]].ravel())
-		feature_img_3.append(img_3[i[0]:i[1], i[2]:i[3]].ravel())
-		feature_img_4.append(img_4[i[0]:i[1], i[2]:i[3]].ravel())
-		feature_img_5.append(img_5[i[0]:i[1], i[2]:i[3]].ravel())
-		feature_img_6.append(img_6[i[0]:i[1], i[2]:i[3]].ravel())
-		feature_img_7.append(img_7[i[0]:i[1], i[2]:i[3]].ravel())
-		feature_img_8.append(img_8[i[0]:i[1], i[2]:i[3]].ravel())
-		feature_img_9.append(img_9[i[0]:i[1], i[2]:i[3]].ravel())
+	feature_img_1 = [img_1[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
+	feature_img_2 = [img_2[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
+	feature_img_3 = [img_3[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
+	feature_img_4 = [img_4[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
+	feature_img_5 = [img_5[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
+	feature_img_6 = [img_6[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
+	feature_img_7 = [img_7[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
+	feature_img_8 = [img_8[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
+	feature_img_9 = [img_9[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
+
+	# for i in feature_index:
+	# 	feature_img_1.append(img_1[i[0]:i[1], i[2]:i[3]].ravel())
+	# 	feature_img_2.append(img_2[i[0]:i[1], i[2]:i[3]].ravel())
+	# 	feature_img_3.append(img_3[i[0]:i[1], i[2]:i[3]].ravel())
+	# 	feature_img_4.append(img_4[i[0]:i[1], i[2]:i[3]].ravel())
+	# 	feature_img_5.append(img_5[i[0]:i[1], i[2]:i[3]].ravel())
+	# 	feature_img_6.append(img_6[i[0]:i[1], i[2]:i[3]].ravel())
+	# 	feature_img_7.append(img_7[i[0]:i[1], i[2]:i[3]].ravel())
+	# 	feature_img_8.append(img_8[i[0]:i[1], i[2]:i[3]].ravel())
+	# 	feature_img_9.append(img_9[i[0]:i[1], i[2]:i[3]].ravel())
 
 	# transform to the numpy array
 	feature_img_1 = np.array(feature_img_1)
@@ -250,14 +268,14 @@ def get_all_features_1(path, feature_index):
 	# three images for space + time
 
 	print('Getting features...')
-	feature_img_1 = []
-	feature_img_2 = []
-	feature_img_3 = []
+	feature_img_1 = [img_1[i[0], i[1]] for i in feature_index]
+	feature_img_2 = [img_2[i[0], i[1]] for i in feature_index]
+	feature_img_3 = [img_3[i[0], i[1]] for i in feature_index]
 
-	for i in feature_index:
-		feature_img_1.append(img_1[i[0], i[1]])
-		feature_img_2.append(img_2[i[0], i[1]])
-		feature_img_3.append(img_3[i[0], i[1]])
+	# for i in feature_index:
+	# 	feature_img_1.append(img_1[i[0], i[1]])
+	# 	feature_img_2.append(img_2[i[0], i[1]])
+	# 	feature_img_3.append(img_3[i[0], i[1]])
 	
 	feature_img_1 = np.array(feature_img_1)
 	feature_img_2 = np.array(feature_img_2)
@@ -393,39 +411,39 @@ def get_all_features_5(path, feature_index):
 
 	print('Getting features...')
 	# creat 9 list to store the result
-	feature_img_1 = []
-	feature_img_2 = []
-	feature_img_3 = []
-	feature_img_4 = []
-	feature_img_5 = []
-	feature_img_6 = []
-	feature_img_7 = []
-	feature_img_8 = []
-	feature_img_9 = []
-	feature_img_10 = []
-	feature_img_11 = []
-	feature_img_12 = []
-	feature_img_13 = []
-	feature_img_14 = []
-	feature_img_15 = []
+	feature_img_1  = [img_1[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
+	feature_img_2  = [img_2[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
+	feature_img_3  = [img_3[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
+	feature_img_4  = [img_4[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
+	feature_img_5  = [img_5[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
+	feature_img_6  = [img_6[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
+	feature_img_7  = [img_7[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
+	feature_img_8  = [img_8[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
+	feature_img_9  = [img_9[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
+	feature_img_10 = [img_10[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
+	feature_img_11 = [img_11[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
+	feature_img_12 = [img_12[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
+	feature_img_13 = [img_13[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
+	feature_img_14 = [img_14[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
+	feature_img_15 = [img_15[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
 
-	# feature index has been inputted
-	for i in feature_index:
-		feature_img_1.append(img_1[i[0]:i[1], i[2]:i[3]].ravel())
-		feature_img_2.append(img_2[i[0]:i[1], i[2]:i[3]].ravel())
-		feature_img_3.append(img_3[i[0]:i[1], i[2]:i[3]].ravel())
-		feature_img_4.append(img_4[i[0]:i[1], i[2]:i[3]].ravel())
-		feature_img_5.append(img_5[i[0]:i[1], i[2]:i[3]].ravel())
-		feature_img_6.append(img_6[i[0]:i[1], i[2]:i[3]].ravel())
-		feature_img_7.append(img_7[i[0]:i[1], i[2]:i[3]].ravel())
-		feature_img_8.append(img_8[i[0]:i[1], i[2]:i[3]].ravel())
-		feature_img_9.append(img_9[i[0]:i[1], i[2]:i[3]].ravel())
-		feature_img_10.append(img_10[i[0]:i[1], i[2]:i[3]].ravel())
-		feature_img_11.append(img_11[i[0]:i[1], i[2]:i[3]].ravel())
-		feature_img_12.append(img_12[i[0]:i[1], i[2]:i[3]].ravel())
-		feature_img_13.append(img_13[i[0]:i[1], i[2]:i[3]].ravel())
-		feature_img_14.append(img_14[i[0]:i[1], i[2]:i[3]].ravel())
-		feature_img_15.append(img_15[i[0]:i[1], i[2]:i[3]].ravel())
+	# # feature index has been inputted
+	# for i in feature_index:
+	# 	feature_img_1.append(img_1[i[0]:i[1], i[2]:i[3]].ravel())
+	# 	feature_img_2.append(img_2[i[0]:i[1], i[2]:i[3]].ravel())
+	# 	feature_img_3.append(img_3[i[0]:i[1], i[2]:i[3]].ravel())
+	# 	feature_img_4.append(img_4[i[0]:i[1], i[2]:i[3]].ravel())
+	# 	feature_img_5.append(img_5[i[0]:i[1], i[2]:i[3]].ravel())
+	# 	feature_img_6.append(img_6[i[0]:i[1], i[2]:i[3]].ravel())
+	# 	feature_img_7.append(img_7[i[0]:i[1], i[2]:i[3]].ravel())
+	# 	feature_img_8.append(img_8[i[0]:i[1], i[2]:i[3]].ravel())
+	# 	feature_img_9.append(img_9[i[0]:i[1], i[2]:i[3]].ravel())
+	# 	feature_img_10.append(img_10[i[0]:i[1], i[2]:i[3]].ravel())
+	# 	feature_img_11.append(img_11[i[0]:i[1], i[2]:i[3]].ravel())
+	# 	feature_img_12.append(img_12[i[0]:i[1], i[2]:i[3]].ravel())
+	# 	feature_img_13.append(img_13[i[0]:i[1], i[2]:i[3]].ravel())
+	# 	feature_img_14.append(img_14[i[0]:i[1], i[2]:i[3]].ravel())
+	# 	feature_img_15.append(img_15[i[0]:i[1], i[2]:i[3]].ravel())
 
 	# transform to the numpy array
 	feature_img_1 = np.array(feature_img_1)
