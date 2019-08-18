@@ -5,4 +5,5 @@
 *.npy
 .DS_Store
 .ipynb_checkpoints/
-labeled_data.txt
+validation_data/
+

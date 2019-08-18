@@ -21,12 +21,12 @@ warnings.filterwarnings('ignore')
 # if dont want to show the centre, just assign flag_show_centre = False
 # show centre only for kmeans or mini_batch_kmeans algorithm
 flag_show_centre = True
-model_4D = 'mini_kmeans_4D_3_3x3_6'
-model_3D = 'mini_kmeans_3D_3_3x3_6'
+model_4D = 'mini_kmeans_4D_3_3x3'
+model_3D = 'mini_kmeans_3D_3_3x3'
 
 # Load the data
-data_3D = 'training_3D_6_3x3'
-data_4D = 'training_4D_6_3x3'
+data_3D = 'training_3D_5_3x3'
+data_4D = 'training_4D_5_3x3'
 
 data_4D_path = os.path.join(os.getcwd(), 'training_data', data_4D+'.npy')
 data_3D_path = os.path.join(os.getcwd(), 'training_data', data_3D+'.npy')
@@ -93,7 +93,10 @@ ax = plt.subplot(projection='3d')
 ax.scatter(embedding_4D_3[:,0], embedding_4D_3[:,1], embedding_4D_3[:,2], alpha=0.01)
 if flag_show_centre:
 	for i in range(num_centre_4D):
-		ax.scatter(centre_4D_list_3D[i][:,0], centre_4D_list_3D[i][:,1], centre_4D_list_3D[i][:,2], color='red')
+		if i == 1:
+			ax.scatter(centre_4D_list_3D[i][:,0], centre_4D_list_3D[i][:,1], centre_4D_list_3D[i][:,2], color='yellow')
+		else:
+			ax.scatter(centre_4D_list_3D[i][:,0], centre_4D_list_3D[i][:,1], centre_4D_list_3D[i][:,2], color='red')
 ax.set_title('3D projection for 4D data',fontsize=12,color='r')
 
 plt.figure()
@@ -101,7 +104,10 @@ ax = plt.subplot(projection='3d')
 ax.scatter(embedding_3D_3[:,0], embedding_3D_3[:,1], embedding_3D_3[:,2], alpha=0.01)
 if flag_show_centre:
 	for i in range(num_centre_3D):
-		ax.scatter(centre_3D_list_3D[i][:,0], centre_3D_list_3D[i][:,1], centre_3D_list_3D[i][:,2], color='red')
+		if i == 2:
+			ax.scatter(centre_3D_list_3D[i][:,0], centre_3D_list_3D[i][:,1], centre_3D_list_3D[i][:,2], color='yellow')
+		else:
+			ax.scatter(centre_3D_list_3D[i][:,0], centre_3D_list_3D[i][:,1], centre_3D_list_3D[i][:,2], color='red')
 ax.set_title('3D projection for 3D data',fontsize=12,color='r')
 
 

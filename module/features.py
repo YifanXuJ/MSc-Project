@@ -79,9 +79,9 @@ def get_all_features_3(path, feature_index):
 		target_space_list = [location_slice_index, location_slice_index+1, location_slice_index+2]
 	elif location_slice_index == 1247:
 		# totally there are 1248 slices, this is a magic number
-		target_space_list = [location_slice_index, location_slice_index-2, location_slice_index-1]
+		target_space_list = [location_slice_index-2, location_slice_index-1, location_slice_index]
 	else:
-		target_space_list = [location_slice_index, location_slice_index-1, location_slice_index+1]
+		target_space_list = [location_slice_index-1, location_slice_index, location_slice_index+1]
 	# this 'if' argument find the 3D space for given slice
 
 	print('Loading 9 images...')
@@ -188,9 +188,9 @@ def get_assign_features_3(path, x_coordinate, y_coordinate):
 		target_space_list = [location_slice_index, location_slice_index+1, location_slice_index+2]
 	elif location_slice_index == 1247:
 		# totally there are 1248 slices, this is a magic number
-		target_space_list = [location_slice_index, location_slice_index-2, location_slice_index-1]
+		target_space_list = [location_slice_index-2, location_slice_index-1, location_slice_index]
 	else:
-		target_space_list = [location_slice_index, location_slice_index-1, location_slice_index+1]
+		target_space_list = [location_slice_index-1, location_slice_index, location_slice_index+1]
 	# this 'if' argument find the 3D space for given slice
 
 	img_1 = cv2.imread(current_all_tif[target_space_list[0]], -1)
@@ -376,14 +376,14 @@ def get_all_features_5(path, feature_index):
 	if location_slice_index == 0:
 		target_space_list = [location_slice_index, location_slice_index+1, location_slice_index+2, location_slice_index+3, location_slice_index+4]
 	elif location_slice_index == 1:
-		target_space_list = [location_slice_index, location_slice_index-1, location_slice_index+1, location_slice_index+2, location_slice_index+3]
+		target_space_list = [location_slice_index-1, location_slice_index, location_slice_index+1, location_slice_index+2, location_slice_index+3]
 	elif location_slice_index == 1246:
-		target_space_list = [location_slice_index, location_slice_index-3, location_slice_index-2, location_slice_index-1, location_slice_index+1]
+		target_space_list = [location_slice_index-3, location_slice_index-2, location_slice_index-1, location_slice_index, location_slice_index+1]
 	elif location_slice_index == 1247:
 		# totally there are 1248 slices, this is a magic number
-		target_space_list = [location_slice_index, location_slice_index-4, location_slice_index-3, location_slice_index-2, location_slice_index-1]
+		target_space_list = [location_slice_index-4, location_slice_index-3, location_slice_index-2, location_slice_index-1, location_slice_index]
 	else:
-		target_space_list = [location_slice_index, location_slice_index-2, location_slice_index-1, location_slice_index+1, location_slice_index+2]
+		target_space_list = [location_slice_index-2, location_slice_index-1, location_slice_index, location_slice_index+1, location_slice_index+2]
 	# this 'if' argument find the 3D space for given slice
 
 	print('Loading 15 images...')
@@ -508,14 +508,14 @@ def get_assign_features_5(path, x_coordinate, y_coordinate):
 	if location_slice_index == 0:
 		target_space_list = [location_slice_index, location_slice_index+1, location_slice_index+2, location_slice_index+3, location_slice_index+4]
 	elif location_slice_index == 1:
-		target_space_list = [location_slice_index, location_slice_index-1, location_slice_index+1, location_slice_index+2, location_slice_index+3]
+		target_space_list = [location_slice_index-1, location_slice_index, location_slice_index+1, location_slice_index+2, location_slice_index+3]
 	elif location_slice_index == 1246:
-		target_space_list = [location_slice_index, location_slice_index-3, location_slice_index-2, location_slice_index-1, location_slice_index+1]
+		target_space_list = [location_slice_index-3, location_slice_index-2, location_slice_index-1, location_slice_index, location_slice_index+1]
 	elif location_slice_index == 1247:
 		# totally there are 1248 slices, this is a magic number
-		target_space_list = [location_slice_index, location_slice_index-4, location_slice_index-3, location_slice_index-2, location_slice_index-1]
+		target_space_list = [location_slice_index-4, location_slice_index-3, location_slice_index-2, location_slice_index-1, location_slice_index]
 	else:
-		target_space_list = [location_slice_index, location_slice_index-2, location_slice_index-1, location_slice_index+1, location_slice_index+2]
+		target_space_list = [location_slice_index-2, location_slice_index-1, location_slice_index, location_slice_index+1, location_slice_index+2]
 	# this 'if' argument find the 3D space for given slice
 
 	img_1 = cv2.imread(current_all_tif[target_space_list[0]], -1)
@@ -561,6 +561,30 @@ def get_assign_features_5(path, x_coordinate, y_coordinate):
 								 feature_img_11, feature_img_12, feature_img_13, feature_img_14, feature_img_15))
 
 	return feature_4D, feature_3D
+
+
+def get_3D_structure(path_timestamp, begin_slice, end_slice):
+	print('Current timestamp:', path_timestamp)
+	# get all the tif content
+	current_all_tif = content.get_allslice(path_timestamp)
+
+	# get the image shape
+	img = cv2.imread(current_all_tif[0], -1)
+	height, width = img.shape
+
+	print('Creating image batch...')
+	image_batch = np.zeros((end_slice-begin_slice+1, height, width), np.float32)
+
+	for index, i in enumerate(current_all_tif[begin_slice:(end_slice+1)]): 
+		image_batch[index] = cv2.imread(i, -1)
+
+	# reshape the image structure to fit the tensorflow
+	image_batch = np.reshape(image_batch, (1, end_slice-begin_slice+1, height, width, 1))	
+	print('Finished!')
+	
+	return image_batch, height, width
+
+
 
 
 

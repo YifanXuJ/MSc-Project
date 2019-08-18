@@ -25,17 +25,17 @@ end_timestamp_index = 5
 begin_slice = 600
 end_slice = 800
 # set the number of slices
-num_slices = 100
+num_slices = 20
 # set the number of points for each slice
 num_points = 1
+# set the filename
+filename = 'labeled_data_test'
+
+
 
 # set the mask centre and radius for each slice
 mask_centre = (700, 810)
 radius = 550
-
-# set the filename
-filename = 'labeled_data_test.txt'
-
 
 def add_mask(centre, radius, source_image):
 	height, width = source_image.shape
@@ -74,7 +74,7 @@ sample_timestamp = all_folder[begin_timestamp_index:(end_timestamp_index+1)]
 save_folder = os.path.join(current_path, 'validation_data')
 if not os.path.exists(save_folder):
 	os.mkdir(save_folder)
-file_path = os.path.join(save_folder, filename)
+file_path = os.path.join(save_folder, filename+'.txt')
 
 # before labeling the data, delete the old file
 if os.path.exists(file_path):
