@@ -575,7 +575,9 @@ def get_3D_structure(path_timestamp, begin_slice, end_slice):
 	print('Creating image batch...')
 	image_batch = np.zeros((end_slice-begin_slice+1, height, width), np.float32)
 
-	for index, i in enumerate(current_all_tif[begin_slice-1:end_slice]): 
+	for index, i in enumerate(current_all_tif[begin_slice-1:end_slice]):
+		if (index+1) % 100 == 0:
+			print(index+1)
 		image_batch[index] = cv2.imread(i, -1)
 
 	# reshape the image structure to fit the tensorflow

@@ -33,9 +33,7 @@ python validate.py --model_4D mini_kmeans_4D_3_3x3 --model_3D mini_kmeans_3D_3_3
 python segment.py --model_4D mini_kmeans_4D_2_3x3 --model_3D mini_kmeans_3D_2_3x3 --size 3 --timestamp 5 --pore_4D 1 --pore_3D 1
 python segment.py --model_4D mini_kmeans_4D_3_3x3 --model_3D mini_kmeans_3D_3_3x3 --size 3 --timestamp 5 --pore_4D 1 --pore_3D 2
 
-python segment.py --model_4D mini_kmeans_4D_3_3x3_6 --model_3D mini_kmeans_3D_3_3x3_6 --size 3 --timestamp 6 --pore_4D 1 --pore_3D 2
-
-
+python segment_tensor.py --model_4D mini_kmeans_4D_3_3x3 --model_3D mini_kmeans_3D_3_3x3 --timestamp 0 --pore_4D 1 --pore_3D 2
 
 
 # visualisation centre
