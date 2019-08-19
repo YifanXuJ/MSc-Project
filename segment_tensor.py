@@ -1,10 +1,10 @@
 '''
-This file try to segment based on GPU
+This file will select one time stamp, and apply segmentation algorithm to all the slices
+This file will run on the GPU
 
 Author: Yan Gao
 email: gaoy4477@gmail.com
 '''
-
 import cv2
 import os
 import numpy as np 
@@ -28,10 +28,6 @@ def get_args():
 	# 					help='Size of features, should be 1, 3 or 5')
 	parser.add_argument('--timestamp', nargs="?", type=int,
 						help='Target timestamp')
-	parser.add_argument('--begin_slice', nargs="?", type=int,
-						help='Begin slice')
-	parser.add_argument('--end_slice', nargs="?", type=int,
-						help='End slice')
 	parser.add_argument('--pore_4D', nargs="?", type=int,
 						help='Label for pore in 4D model')
 	parser.add_argument('--pore_3D', nargs="?", type=int,
@@ -40,6 +36,16 @@ def get_args():
 	print(args)
 	return args
 
+# function for saving the .png file
+def save_png(raw_img_path, save_folder, img_data, height, width):
+	plt.figure(figsize=(height/1000, width/1000), dpi=100)
+	plt.imshow(img_data, 'gray')
+	plt.axis('off')
+	save_path = os.path.join(save_folder, os.path.basename(raw_img_path)+'.png')
+	plt.savefig(save_path, dpi=1000)
+	plt.close()
+
+start = time.time()
 
 args = get_args()
 
@@ -54,9 +60,10 @@ all_timestamp = content.get_folder(current_path)
 sub_path = os.path.join(current_path, all_timestamp[args.timestamp])
 sub_all_tif = content.get_allslice(sub_path)
 
+num_slice = len(sub_all_tif)
+
 sub_path_previous = os.path.join(current_path, all_timestamp[args.timestamp-1])
 sub_path_next = os.path.join(current_path, all_timestamp[args.timestamp+1])
-
 
 # load the model from 'model' folder
 model_4D_path = os.path.join(current_path, 'model', args.model_4D+'.model')
@@ -72,9 +79,9 @@ num_centre_4D = centre_4D.shape[0]
 
 # we need to prepare the data for graph
 # load image for 3D segmentation
-image_batch, height, width = features.get_3D_structure(sub_path, args.begin_slice, args.end_slice)
-image_batch_previous, _, _ = features.get_3D_structure(sub_path_previous, args.begin_slice, args.end_slice)
-image_batch_next, _, _ = features.get_3D_structure(sub_path_next, args.begin_slice, args.end_slice)
+image_batch, height, width = features.get_3D_structure(sub_path, 1, num_slice)
+image_batch_previous, _, _ = features.get_3D_structure(sub_path_previous, 1, num_slice)
+image_batch_next, _, _ = features.get_3D_structure(sub_path_next, 1, num_slice)
 
 print('Creat tensorflow graph...')
 # create filter based on centre
@@ -143,24 +150,36 @@ for i in compare_4D:
 segment_inv_3D = cv2.bitwise_not(segment_3D)
 segment_inv_4D = cv2.bitwise_not(segment_4D)
 
-print('Plotting...')
-# plot the picture
-for index, i in enumerate(range(args.begin_slice+1, args.end_slice)):
-	print(index)
+
+# now these two 3D volume save all segmentation result
+# save them as .png file
+save_path_3D = os.path.join(sub_path, 'segmentation_3D')
+save_path_4D = os.path.join(sub_path, 'segmentation_4D')
+if not os.path.exists(save_path_3D):
+	os.mkdir(save_path_3D)
+if not os.path.exists(save_path_4D):
+	os.mkdir(save_path_4D)
+
+for i in range(num_slice):
 	print(i)
-	fig = plt.figure()
-	fig.suptitle('Segment for image \n {string}'.format(string=os.path.basename(sub_all_tif[i])))
-	ax = plt.subplot(131)
-	ax.imshow(segment_inv_3D[index+1], 'gray')
-	ax.set_title('3D segmentation result')
+	save_png(sub_all_tif[i], save_path_3D, segment_inv_3D[i], height, width)
+	save_png(sub_all_tif[i], save_path_4D, segment_inv_4D[i], height, width)
 
-	ax = plt.subplot(132)
-	ax.imshow(segment_inv_4D[index+1], 'gray')
-	ax.set_title('4D segmentation result')
 
-	ax = plt.subplot(133)
-	img = cv2.imread(sub_all_tif[i], -1)
-	ax.imshow(img, 'gray')
-	ax.set_title('Original image')
+end = time.time()
+print(end-start)
 
-plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+

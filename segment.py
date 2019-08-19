@@ -1,7 +1,6 @@
 '''
 This file will select one time stamp, and apply segmentation algorithm to all the slices
 
-
 Author: Yan Gao
 email: gaoy4477@gmail.com
 '''

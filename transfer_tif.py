@@ -7,7 +7,7 @@ email: gaoy4477@gmail.com
 from PIL import Image
 import os
 
-path = '/Users/gavin/MSc-Project/SHP15_T113_0025/segmentation_4D'
+path = '/Users/gavin/MSc-Project/SHP15_T113_0025/segmentation_3D'
 
 # find all .png file
 all_files = os.listdir(path)
@@ -23,3 +23,4 @@ for index, i in enumerate(all_png):
 		print(index+1)
 	png = Image.open(os.path.join(path, i))
 	png.save(os.path.join(save_path, i[:-4]))
+	png.close()

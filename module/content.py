@@ -18,7 +18,6 @@ def get_folder(path):
 	# 	if 'SHP' in i:
 	# 	# the filter condition
 	# 		all_folder.append(i)
-
 	return all_folder
 
 def get_allslice(path):
