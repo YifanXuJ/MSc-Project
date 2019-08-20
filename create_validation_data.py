@@ -1,8 +1,8 @@
 '''
 This file return the feature for all annotated points
-Before running this file, we need to create 'labeled_data.txt' in 'validation_data' folder
-This file will return two dataset in 'validation_data' folder. We can assign the name for these two files
-
+Before running this file, we need to run annotation.py, which will create a text file in './validation_data' folder
+This file will return two dataset in './validation_data' folder, for 3D data and 4D data. The format will be 'filename.npy', and we need to give 'filename'
+It can return the features with 1x1x1(x3), 3x3x3(x3), 5x5x5(x3) 
 
 Author: Yan Gao
 email: gaoy4477@gmail.com
@@ -10,7 +10,6 @@ email: gaoy4477@gmail.com
 import re
 import numpy as np 
 import os
-
 import module.features as features
 
 # use this function to save the obtained validation features (features with label)
@@ -21,21 +20,24 @@ def save_data(filename, data):
 		os.remove(file_path)
 	np.save(file_path, data)
 
-
-
-# here, need to assign the path for label text 
+# here, need to give the full name of target text file (with the '.txt')
+# change it for different labeled data
 filename = 'labeled_data.txt'
+# give the name for feature file
+file_name_4D = 'validation_data_4D_3'
+file_name_3D = 'validation_data_3D_3'
+# set the feature size, can be 1, 3 or 5
+feature_size = 3
+
+
+print('Loading text file...')
 filepath = os.path.join(os.getcwd(), 'validation_data', filename)
 
 with open(filepath, 'r') as f:
 	data = f.readlines()
 
-# validation_data_4D_1 = []
-# validation_data_3D_1 = []
-validation_data_4D_3 = []
-validation_data_3D_3 = []
-# validation_data_4D_5 = []
-# validation_data_3D_5 = []
+validation_data_4D = []
+validation_data_3D = []
 
 for element in data:
 	target_str = element.split()
@@ -48,36 +50,27 @@ for element in data:
 	total_points = len(result) // 2
 	for i in range(total_points):
 		print('Current picture: ', target_path)
-		# feature_4D_1, feature_3D_1 = features.get_assign_features_1(target_path, int(float(result[2*i])), int(float(result[2*i+1])))
-		feature_4D_3, feature_3D_3 = features.get_assign_features_3(target_path, int(float(result[2*i])), int(float(result[2*i+1])))
-		# feature_4D_5, feature_3D_5 = features.get_assign_features_5(target_path, int(float(result[2*i])), int(float(result[2*i+1])))
+		# get features
+		if feature_size == 3:
+			feature_4D, feature_3D = features.get_assign_features_3(target_path, int(float(result[2*i])), int(float(result[2*i+1])))
+		elif feature_size == 1:
+			feature_4D, feature_3D = features.get_assign_features_1(target_path, int(float(result[2*i])), int(float(result[2*i+1])))
+		elif feature_size == 5:
+			feature_4D, feature_3D = features.get_assign_features_5(target_path, int(float(result[2*i])), int(float(result[2*i+1])))
+		else:
+			raise ValueError('Please give the correct size!')
 
-		# feature_4D_1_class = [feature_4D_1, target_class]
-		# feature_3D_1_class = [feature_3D_1, target_class]
-		# validation_data_4D_1.append(feature_4D_1_class)
-		# validation_data_3D_1.append(feature_3D_1_class)
+		feature_4D_class = [feature_4D, target_class]
+		feature_3D_class = [feature_3D, target_class]
+		validation_data_4D.append(feature_4D_class)
+		validation_data_3D.append(feature_3D_class)
 
-		feature_4D_3_class = [feature_4D_3, target_class]
-		feature_3D_3_class = [feature_3D_3, target_class]
-		validation_data_4D_3.append(feature_4D_3_class)
-		validation_data_3D_3.append(feature_3D_3_class)
-
-		# feature_4D_5_class = [feature_4D_5, target_class]
-		# feature_3D_5_class = [feature_3D_5, target_class]
-		# validation_data_4D_5.append(feature_4D_5_class)
-		# validation_data_3D_5.append(feature_3D_5_class)
-
-# validation_data_4D_1 = np.array(validation_data_4D_1)
-# validation_data_3D_1 = np.array(validation_data_3D_1)
-
-validation_data_4D_3 = np.array(validation_data_4D_3)
-validation_data_3D_3 = np.array(validation_data_3D_3)
-
-# validation_data_4D_5 = np.array(validation_data_4D_5)
-# validation_data_3D_5 = np.array(validation_data_3D_5)
-
-save_data('validation_data_4D_3.npy', validation_data_4D_3)
-save_data('validation_data_3D_3.npy', validation_data_3D_3)
+# transfer its format
+validation_data_4D = np.array(validation_data_4D)
+validation_data_3D = np.array(validation_data_3D)
+# save the data
+save_data(file_name_4D+'.npy', validation_data_4D)
+save_data(file_name_3D+'.npy', validation_data_3D)
 
 
 

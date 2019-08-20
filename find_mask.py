@@ -3,7 +3,6 @@ This file is used to find the appropriate mask centre and radius
 Assign different centre and radius to see whether we get the appropriate area
 Put this file in the main directory, and assign the timestamp manually
 
-
 Author: Yan Gao
 email: gaoy4477@gmail.com
 '''
@@ -21,16 +20,20 @@ centre = (700, 810)
 radius = 550
 # assign the target timestamp manually
 # will automatically pick the first slice
-timestamp_index = 6
+timestamp = '0025'
+
 
 current_path = os.getcwd()
 all_timestamp = content.get_folder(current_path)
-target_timestamp = all_timestamp[timestamp_index]
+timestamp_index = [all_timestamp.index(i) for i in all_timestamp if timestamp in i]
+target_timestamp = all_timestamp[timestamp_index[0]]
 sub_path = os.path.join(current_path, target_timestamp)
 sub_all_tif = content.get_allslice(sub_path)
+# choose the first image to find the centre and radius
 img_path = sub_all_tif[0]
-print('Test image:', img_path)
+print('Image:', img_path)
 
+# pick one image, and let user click the two centre to help finding the centre and radius
 img = cv2.imread(img_path, -1)
 plt.imshow(img, 'gray')
 plt.title('Click the centre and the edge successively \n to get recommendation value for centre and radius.')
@@ -41,10 +44,8 @@ print('Centre:', labeled_centre)
 print('Radius:', labeled_radius)
 plt.close()
 
-# Here will show two different image
-# First one is under previous centre and radius
-# Second one is under labeled centre and radius
-# just for choosing centre and radius more easier
+# Here will show two different image, first one is under previous centre and radius, and second one is under labeled centre and radius
+# just for easier choosing centre and radius
 height, width= img.shape
 circle_img = np.zeros((height, width), np.uint8)
 circle_img_labeled = np.zeros((height, width), np.uint8)
