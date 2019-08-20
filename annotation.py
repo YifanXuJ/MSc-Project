@@ -70,10 +70,10 @@ def transform(coordinate, x_coordinate, y_coordinate):
 print('Prepare annotation')
 current_path = os.getcwd()
 # get all data folder
-all_folder = content.get_folder(current_path)
-# get the index from begin to end
-begin_timestamp_index = [all_folder.index(i) for i in all_folder if begin_timestamp in i]
-end_timestamp_index = [all_folder.index(i) for i in all_folder if end_timestamp in i]
+all_timestamp = content.get_folder(current_path, 'SHP')
+# get the index for begin and end
+begin_timestamp_index = [all_timestamp.index(i) for i in all_timestamp if begin_timestamp in i]
+end_timestamp_index = [all_timestamp.index(i) for i in all_timestamp if end_timestamp in i]
 # create the target data
 sample_timestamp = all_folder[begin_timestamp_index[0]:(end_timestamp_index[0]+1)]
 
@@ -100,7 +100,7 @@ for sub_timestamp in sample_timestamp:
 
 	# First, we label all pore
 	print('Please label {:d} points for pore in each picture!'.format(num_points))
-	random_slice_pore = np.random.randint(begin_slice, end_slice+1, num_slices)
+	random_slice_pore = np.random.randint(begin_slice-1, end_slice, num_slices)
 	for index, i in enumerate(random_slice_pore):
 		slice_path = sub_all_tif[i-1]
 		slice_img = cv2.imread(slice_path, -1)
@@ -122,7 +122,7 @@ for sub_timestamp in sample_timestamp:
 
 	print('Please label {:d} points for non-pore in each picture!'.format(num_points))
 	# Then we label all non-pore
-	random_slice_nonpore = np.random.randint(begin_slice, end_slice+1, num_slices)
+	random_slice_nonpore = np.random.randint(begin_slice-1, end_slice, num_slices)
 	for index, i in enumerate(random_slice_nonpore):
 		slice_path = sub_all_tif[i-1]
 		slice_img = cv2.imread(slice_path, -1)
