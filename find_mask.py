@@ -24,7 +24,7 @@ timestamp = '0025'
 
 
 current_path = os.getcwd()
-all_timestamp = content.get_folder(current_path)
+all_timestamp = content.get_folder(current_path, 'SHP')
 timestamp_index = [all_timestamp.index(i) for i in all_timestamp if timestamp in i]
 target_timestamp = all_timestamp[timestamp_index[0]]
 sub_path = os.path.join(current_path, target_timestamp)
