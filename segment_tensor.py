@@ -46,7 +46,7 @@ def save_png(raw_img_path, save_folder, img_data, height, width):
 	plt.close()
 
 
-def segment(begin_slice, end_slice, layer_list_3D, layer_list_4D_1, layer_list_4D_2, layer_list_4D_3, pore_3D, pore_4D, mask):
+def segment(begin_slice, end_slice, kernel_3D_list, kernel_4D_list_1, kernel_4D_list_2, kernel_4D_list_3, constant_3D_list, constant_4D_list, pore_3D, pore_4D, mask):
 	print('Segment from slice {:d} to {:d}'.format(begin_slice, end_slice))
 	image_batch, height, width = features.get_3D_structure(sub_path, begin_slice, end_slice)
 	image_batch_previous, _, _ = features.get_3D_structure(sub_path_previous, begin_slice, end_slice)
@@ -55,6 +55,12 @@ def segment(begin_slice, end_slice, layer_list_3D, layer_list_4D_1, layer_list_4
 
 	# create graph for tensorflow -> share the same size for input
 	x_3D = tf.compat.v1.placeholder(tf.float32, shape=(1, end_slice-begin_slice+1, height, width, 1))
+	# layer for 3D data
+	layer_list_3D = [tf.nn.conv3d(x_3D, filter=i, strides = conv_stride, padding='SAME') for i in kernel_3D_list]
+	# layer for 4D data
+	layer_list_4D_1 = [tf.nn.conv3d(x_3D, filter=i, strides = conv_stride, padding='SAME') for i in kernel_4D_list_1]
+	layer_list_4D_2 = [tf.nn.conv3d(x_3D, filter=i, strides = conv_stride, padding='SAME') for i in kernel_4D_list_2]
+	layer_list_4D_3 = [tf.nn.conv3d(x_3D, filter=i, strides = conv_stride, padding='SAME') for i in kernel_4D_list_3]
 
 	print('Convolution...')
 	# run the graph
@@ -128,7 +134,6 @@ centre_3D = model_3D_type.cluster_centers_
 num_centre_3D = centre_3D.shape[0]
 num_centre_4D = centre_4D.shape[0]
 
-print('Creat stride, kernel and layer...')
 conv_stride = [1,1,1,1,1]
 
 # create filter based on centre
@@ -141,14 +146,6 @@ kernel_4D_list_1 = [tf.reshape(tf.constant(i[:27], tf.float32), (3,3,3,1,1)) for
 kernel_4D_list_2 = [tf.reshape(tf.constant(i[27:54], tf.float32), (3,3,3,1,1)) for i in centre_4D]
 kernel_4D_list_3 = [tf.reshape(tf.constant(i[54:81], tf.float32), (3,3,3,1,1)) for i in centre_4D]
 constant_4D_list = [np.sum(i**2) for i in centre_4D]
-
-# layer for 3D data
-layer_list_3D = [tf.nn.conv3d(x_3D, filter=i, strides = conv_stride, padding='SAME') for i in kernel_3D_list]
-# layer for 4D data
-layer_list_4D_1 = [tf.nn.conv3d(x_3D, filter=i, strides = conv_stride, padding='SAME') for i in kernel_4D_list_1]
-layer_list_4D_2 = [tf.nn.conv3d(x_3D, filter=i, strides = conv_stride, padding='SAME') for i in kernel_4D_list_2]
-layer_list_4D_3 = [tf.nn.conv3d(x_3D, filter=i, strides = conv_stride, padding='SAME') for i in kernel_4D_list_3]
-print('Finished!')
 
 # we only care the mask, so create mask here
 
@@ -168,7 +165,7 @@ if not os.path.exists(save_path_4D):
 slice_list = [[1, 313], [312, 625], [624, 937], [936, 1248]]
 
 for i in slice_list:
-	segment_inv_4D, segment_inv_3D = segment(i[0], i[1], layer_list_3D, layer_list_4D_1, layer_list_4D_2, layer_list_4D_3, args.pore_3D, args.pore_4D, mask)
+	segment_inv_4D, segment_inv_3D = segment(i[0], i[1], kernel_3D_list, kernel_4D_list_1, kernel_4D_list_2, kernel_4D_list_3, constant_3D_list, constant_4D_list, args.pore_3D, args.pore_4D, mask)
 	for index, j in enumerate(range(i[0]+1,i[1])):
 		save_png(sub_all_tif[j-1], save_path_3D, segment_inv_3D[index+1], height, width)
 		save_png(sub_all_tif[j-1], save_path_4D, segment_inv_4D[index+1], height, width)
