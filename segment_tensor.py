@@ -161,8 +161,7 @@ if not os.path.exists(save_path_3D):
 if not os.path.exists(save_path_4D):
 	os.mkdir(save_path_4D)
 
-
-slice_list = [[1, 313], [312, 625], [624, 937], [936, 1248]]
+slice_list = [[1, 157], [156, 313], [312, 469], [468, 625], [624, 781], [780, 937], [936, 1093], [1092, 1248]]
 
 for i in slice_list:
 	segment_inv_4D, segment_inv_3D = segment(i[0], i[1], kernel_3D_list, kernel_4D_list_1, kernel_4D_list_2, kernel_4D_list_3, constant_3D_list, constant_4D_list, args.pore_3D, args.pore_4D, mask)
