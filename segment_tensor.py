@@ -170,8 +170,8 @@ slice_list = [[1, 313], [312, 625], [624, 937], [936, 1248]]
 for i in slice_list:
 	segment_inv_4D, segment_inv_3D = segment(i[0], i[1], layer_list_3D, layer_list_4D_1, layer_list_4D_2, layer_list_4D_3, args.pore_3D, args.pore_4D, mask)
 	for index, j in enumerate(range(i[0]+1,i[1])):
-		save_png(sub_all_tif[j-1], save_path_3D, segment_inv_3D[index], height, width)
-		save_png(sub_all_tif[j-1], save_path_4D, segment_inv_4D[index], height, width)
+		save_png(sub_all_tif[j-1], save_path_3D, segment_inv_3D[index+1], height, width)
+		save_png(sub_all_tif[j-1], save_path_4D, segment_inv_4D[index+1], height, width)
 
 
 end = time.time()

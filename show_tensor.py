@@ -146,10 +146,8 @@ segment_inv_4D = cv2.bitwise_not(segment_4D)
 print('Plotting...')
 # plot the picture
 for index, i in enumerate(range(args.begin_slice+1, args.end_slice)):
-	print(index)
-	print(i)
 	fig = plt.figure()
-	fig.suptitle('Segment for image \n {string}'.format(string=os.path.basename(sub_all_tif[i])))
+	fig.suptitle('Segment for image \n {string}'.format(string=os.path.basename(sub_all_tif[i-1])))
 	ax = plt.subplot(131)
 	ax.imshow(segment_inv_3D[index+1], 'gray')
 	ax.set_title('3D segmentation result')
@@ -159,7 +157,7 @@ for index, i in enumerate(range(args.begin_slice+1, args.end_slice)):
 	ax.set_title('4D segmentation result')
 
 	ax = plt.subplot(133)
-	img = cv2.imread(sub_all_tif[i], -1)
+	img = cv2.imread(sub_all_tif[i-1], -1)
 	ax.imshow(img, 'gray')
 	ax.set_title('Original image')
 
