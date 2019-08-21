@@ -7,6 +7,7 @@ email: gaoy4477@gmail.com
 from PIL import Image
 import os
 
+# give the path for .png image
 path = '/Users/gavin/MSc-Project/SHP15_T113_0025/segmentation_3D'
 
 # find all .png file

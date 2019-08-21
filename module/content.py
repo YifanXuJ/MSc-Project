@@ -9,15 +9,11 @@ email: gaoy4477@gmail.com
 import os
 import glob
 
-def get_folder(path):
+def get_folder(path, keyword):
 	# assigin the path, and return all the target folder (SHP...) as a sorted list
 	all_files = os.listdir(path)
 	all_files.sort()
-	all_folder = [i for i in all_files if 'SHP' in i]
-	# for i in all_files:
-	# 	if 'SHP' in i:
-	# 	# the filter condition
-	# 		all_folder.append(i)
+	all_folder = [i for i in all_files if keyword in i]
 	return all_folder
 
 def get_allslice(path):

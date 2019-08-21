@@ -30,21 +30,12 @@ def get_mask(path, mask_centre, radius, size):
 		feature_index = [[i-2, i+3, j-2, j+3] for i, j in zip(coordinate[0], coordinate[1])]
 	else:
 		raise ValueError('Have not input the correct size!')
-	# feature_index = []
-	# for i, j in zip(coordinate[0], coordinate[1]):
-	# 	if size == 3:
-	# 		feature_index.append([i-1, i+2, j-1, j+2])
-	# 	elif size == 1:
-	# 		feature_index.append([i, j])
-	# 	elif size == 5:
-	# 		feature_index.append([i-2, i+3, j-2, j+3])
-	# 	else:
-	# 		raise ValueError('Have not input the correct size!')
+
 	return mask, feature_index
 	
 
 # This function is used to get all the features for one slice
-def get_all_features_3(path, feature_index):
+def get_all_features_3(path, feature_index, keyword):
 	# it will return 3x3x3(x3) data
 	print('Current slice:', path)
 
@@ -52,7 +43,7 @@ def get_all_features_3(path, feature_index):
 	# get the time stamp for this slice -> to locate its time stamp
 	root_path = os.path.dirname(os.path.dirname(path))
 	# get the root path
-	all_timestamp = content.get_folder(root_path)
+	all_timestamp = content.get_folder(root_path, keyword)
 
 	time_slice_index = all_timestamp.index(time_slice)
 	if time_slice_index == 0:
@@ -99,17 +90,6 @@ def get_all_features_3(path, feature_index):
 	# nine images for space + time
 
 	print('Getting features...')
-	# creat 9 list to store the result
-	# feature_img_1 = []
-	# feature_img_2 = []
-	# feature_img_3 = []
-	# feature_img_4 = []
-	# feature_img_5 = []
-	# feature_img_6 = []
-	# feature_img_7 = []
-	# feature_img_8 = []
-	# feature_img_9 = []
-
 	# feature index has been inputted
 	feature_img_1 = [img_1[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
 	feature_img_2 = [img_2[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
@@ -120,17 +100,6 @@ def get_all_features_3(path, feature_index):
 	feature_img_7 = [img_7[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
 	feature_img_8 = [img_8[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
 	feature_img_9 = [img_9[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
-
-	# for i in feature_index:
-	# 	feature_img_1.append(img_1[i[0]:i[1], i[2]:i[3]].ravel())
-	# 	feature_img_2.append(img_2[i[0]:i[1], i[2]:i[3]].ravel())
-	# 	feature_img_3.append(img_3[i[0]:i[1], i[2]:i[3]].ravel())
-	# 	feature_img_4.append(img_4[i[0]:i[1], i[2]:i[3]].ravel())
-	# 	feature_img_5.append(img_5[i[0]:i[1], i[2]:i[3]].ravel())
-	# 	feature_img_6.append(img_6[i[0]:i[1], i[2]:i[3]].ravel())
-	# 	feature_img_7.append(img_7[i[0]:i[1], i[2]:i[3]].ravel())
-	# 	feature_img_8.append(img_8[i[0]:i[1], i[2]:i[3]].ravel())
-	# 	feature_img_9.append(img_9[i[0]:i[1], i[2]:i[3]].ravel())
 
 	# transform to the numpy array
 	feature_img_1 = np.array(feature_img_1)
@@ -155,7 +124,7 @@ def get_all_features_3(path, feature_index):
 	return feature_4D, feature_3D
 
 # This function is used to get features from known point -> for evaluation
-def get_assign_features_3(path, x_coordinate, y_coordinate):
+def get_assign_features_3(path, x_coordinate, y_coordinate, keyword):
 	# print('Get 3x3 features')
 	# name_slice = os.path.basename(path)
 	# # get the name for this slice -> to locate its location
@@ -163,7 +132,7 @@ def get_assign_features_3(path, x_coordinate, y_coordinate):
 	# get the time stamp for this slice -> to licate its time stamp
 	root_path = os.path.dirname(os.path.dirname(path))
 	# get the root path
-	all_timestamp = content.get_folder(root_path)
+	all_timestamp = content.get_folder(root_path, keyword)
 
 	time_slice_index = all_timestamp.index(time_slice)
 	if time_slice_index == 0:
@@ -224,7 +193,7 @@ def get_assign_features_3(path, x_coordinate, y_coordinate):
 	return feature_4D, feature_3D
 
 
-def get_all_features_1(path, feature_index):
+def get_all_features_1(path, feature_index, keyword):
 	# it will return 1x1x1(x3) data
 	print('Current slice:', path)
 
@@ -232,7 +201,7 @@ def get_all_features_1(path, feature_index):
 	# get the time stamp for this slice -> to licate its time stamp
 	root_path = os.path.dirname(os.path.dirname(path))
 	# get the root path
-	all_timestamp = content.get_folder(root_path)
+	all_timestamp = content.get_folder(root_path, keyword)
 
 	time_slice_index = all_timestamp.index(time_slice)
 	if time_slice_index == 0:
@@ -271,11 +240,6 @@ def get_all_features_1(path, feature_index):
 	feature_img_1 = [img_1[i[0], i[1]] for i in feature_index]
 	feature_img_2 = [img_2[i[0], i[1]] for i in feature_index]
 	feature_img_3 = [img_3[i[0], i[1]] for i in feature_index]
-
-	# for i in feature_index:
-	# 	feature_img_1.append(img_1[i[0], i[1]])
-	# 	feature_img_2.append(img_2[i[0], i[1]])
-	# 	feature_img_3.append(img_3[i[0], i[1]])
 	
 	feature_img_1 = np.array(feature_img_1)
 	feature_img_2 = np.array(feature_img_2)
@@ -290,7 +254,7 @@ def get_all_features_1(path, feature_index):
 
 	return feature_4D, feature_3D
 
-def get_assign_features_1(path, x_coordinate, y_coordinate):
+def get_assign_features_1(path, x_coordinate, y_coordinate, keyword):
 	# print('Get 1x1 features')
 	# name_slice = os.path.basename(path)
 	# # get the name for this slice -> to locate its location
@@ -298,7 +262,7 @@ def get_assign_features_1(path, x_coordinate, y_coordinate):
 	# get the time stamp for this slice -> to licate its time stamp
 	root_path = os.path.dirname(os.path.dirname(path))
 	# get the root path
-	all_timestamp = content.get_folder(root_path)
+	all_timestamp = content.get_folder(root_path, keyword)
 
 	time_slice_index = all_timestamp.index(time_slice)
 	if time_slice_index == 0:
@@ -343,7 +307,7 @@ def get_assign_features_1(path, x_coordinate, y_coordinate):
 	return feature_4D, feature_3D
 
 
-def get_all_features_5(path, feature_index):
+def get_all_features_5(path, feature_index, keyword):
 	# it will return 5x5x5(x3) data
 	print('Current slice:', path)
 
@@ -351,7 +315,7 @@ def get_all_features_5(path, feature_index):
 	# get the time stamp for this slice -> to licate its time stamp
 	root_path = os.path.dirname(os.path.dirname(path))
 	# get the root path
-	all_timestamp = content.get_folder(root_path)
+	all_timestamp = content.get_folder(root_path, keyword)
 
 	time_slice_index = all_timestamp.index(time_slice)
 	if time_slice_index == 0:
@@ -427,24 +391,6 @@ def get_all_features_5(path, feature_index):
 	feature_img_14 = [img_14[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
 	feature_img_15 = [img_15[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
 
-	# # feature index has been inputted
-	# for i in feature_index:
-	# 	feature_img_1.append(img_1[i[0]:i[1], i[2]:i[3]].ravel())
-	# 	feature_img_2.append(img_2[i[0]:i[1], i[2]:i[3]].ravel())
-	# 	feature_img_3.append(img_3[i[0]:i[1], i[2]:i[3]].ravel())
-	# 	feature_img_4.append(img_4[i[0]:i[1], i[2]:i[3]].ravel())
-	# 	feature_img_5.append(img_5[i[0]:i[1], i[2]:i[3]].ravel())
-	# 	feature_img_6.append(img_6[i[0]:i[1], i[2]:i[3]].ravel())
-	# 	feature_img_7.append(img_7[i[0]:i[1], i[2]:i[3]].ravel())
-	# 	feature_img_8.append(img_8[i[0]:i[1], i[2]:i[3]].ravel())
-	# 	feature_img_9.append(img_9[i[0]:i[1], i[2]:i[3]].ravel())
-	# 	feature_img_10.append(img_10[i[0]:i[1], i[2]:i[3]].ravel())
-	# 	feature_img_11.append(img_11[i[0]:i[1], i[2]:i[3]].ravel())
-	# 	feature_img_12.append(img_12[i[0]:i[1], i[2]:i[3]].ravel())
-	# 	feature_img_13.append(img_13[i[0]:i[1], i[2]:i[3]].ravel())
-	# 	feature_img_14.append(img_14[i[0]:i[1], i[2]:i[3]].ravel())
-	# 	feature_img_15.append(img_15[i[0]:i[1], i[2]:i[3]].ravel())
-
 	# transform to the numpy array
 	feature_img_1 = np.array(feature_img_1)
 	feature_img_2 = np.array(feature_img_2)
@@ -475,7 +421,7 @@ def get_all_features_5(path, feature_index):
 
 
 
-def get_assign_features_5(path, x_coordinate, y_coordinate):
+def get_assign_features_5(path, x_coordinate, y_coordinate, keyword):
 	# name_slice = os.path.basename(path)
 	# # get the name for this slice -> to locate its location
 	# print('Get 5x5 features')
@@ -483,7 +429,7 @@ def get_assign_features_5(path, x_coordinate, y_coordinate):
 	# get the time stamp for this slice -> to licate its time stamp
 	root_path = os.path.dirname(os.path.dirname(path))
 	# get the root path
-	all_timestamp = content.get_folder(root_path)
+	all_timestamp = content.get_folder(root_path, keyword)
 
 	time_slice_index = all_timestamp.index(time_slice)
 	if time_slice_index == 0:

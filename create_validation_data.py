@@ -28,6 +28,8 @@ file_name_4D = 'validation_data_4D_3'
 file_name_3D = 'validation_data_3D_3'
 # set the feature size, can be 1, 3 or 5
 feature_size = 3
+# assign the keyword for target data folder
+keyword = 'SHP'
 
 
 print('Loading text file...')
@@ -52,11 +54,11 @@ for element in data:
 		print('Current picture: ', target_path)
 		# get features
 		if feature_size == 3:
-			feature_4D, feature_3D = features.get_assign_features_3(target_path, int(float(result[2*i])), int(float(result[2*i+1])))
+			feature_4D, feature_3D = features.get_assign_features_3(target_path, int(float(result[2*i])), int(float(result[2*i+1])), keyword)
 		elif feature_size == 1:
-			feature_4D, feature_3D = features.get_assign_features_1(target_path, int(float(result[2*i])), int(float(result[2*i+1])))
+			feature_4D, feature_3D = features.get_assign_features_1(target_path, int(float(result[2*i])), int(float(result[2*i+1])), keyword)
 		elif feature_size == 5:
-			feature_4D, feature_3D = features.get_assign_features_5(target_path, int(float(result[2*i])), int(float(result[2*i+1])))
+			feature_4D, feature_3D = features.get_assign_features_5(target_path, int(float(result[2*i])), int(float(result[2*i+1])), keyword)
 		else:
 			raise ValueError('Please give the correct size!')
 

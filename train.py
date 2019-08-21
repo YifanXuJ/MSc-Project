@@ -23,7 +23,7 @@ def get_args():
                         help='Type of model, shoulde be kmeans, mini_batch_kmeans or gmm')
 	parser.add_argument('--num_cluster', nargs="?", type=int, default=2,
     					help='Number of clusters')
-	parser.add_argument('--covariance_type', nargs="?", type=str, default='full',
+	parser.add_argument('--covariance_type', nargs="?", type=str, default='None',
     					help='Type of covariance for gmm model, if not use gmm, do not need to assign it')
 	parser.add_argument('--name_4D', nargs="?", type=str, 
                         help='File name of saved model for 4D data')

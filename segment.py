@@ -25,7 +25,7 @@ def get_args():
                         help='File name of saved model for 3D data')
 	parser.add_argument('--size', nargs="?", type=int,
 						help='Size of features, should be 1, 3 or 5')
-	parser.add_argument('--timestamp', nargs="?", type=int,
+	parser.add_argument('--timestamp', nargs="?", type=str,
 						help='Target timestamp')
 	parser.add_argument('--pore_4D', nargs="?", type=int,
 						help='Label for pore in 4D model')
@@ -45,7 +45,8 @@ def save_png(raw_img_path, save_folder, img_data, height, width):
 	plt.close()
 
 
-def segment(path_img, save_path_4D, save_path_3D, model_4D, model_3D, z_index, mask, feature_index, size, pore_4D, pore_3D):
+def segment(path_img, save_path_4D, save_path_3D, model_4D, model_3D,
+			z_index, mask, feature_index, size, pore_4D, pore_3D, keyword):
 	'''
 	path_img: the absolute path for specific slice
 	save_path_4D: target folder to save the 4D-based segmentation result
@@ -59,11 +60,11 @@ def segment(path_img, save_path_4D, save_path_3D, model_4D, model_3D, z_index, m
 	start = time.time()
 	# record the time
 	if size == 1:
-		feature_4D, feature_3D = features.get_all_features_1(path_img, feature_index)
+		feature_4D, feature_3D = features.get_all_features_1(path_img, feature_index, keyword)
 	elif size == 3:
-		feature_4D, feature_3D = features.get_all_features_3(path_img, feature_index)
+		feature_4D, feature_3D = features.get_all_features_3(path_img, feature_index, keyword)
 	elif size == 5:
-		feature_4D, feature_3D = features.get_all_features_5(path_img, feature_index)
+		feature_4D, feature_3D = features.get_all_features_5(path_img, feature_index, keyword)
 	else:
 		raise ValueError('Please input the right size, should be 1, 3 or 5.')
 
@@ -132,11 +133,13 @@ args = get_args()
 # Here we set the paramater
 mask_centre = (700, 810)
 radius = 550
+keyword = 'SHP'
 
 current_path = os.getcwd()
 print(current_path)
-all_timestamp = content.get_folder(current_path)
-sub_path = os.path.join(current_path, all_timestamp[args.timestamp])
+all_timestamp = content.get_folder(current_path, keyword)
+timestamp_index = [all_timestamp.index(i) for i in all_timestamp if args.timestamp in i]
+sub_path = os.path.join(current_path, all_timestamp[timestamp_index[0]])
 sub_all_tif = content.get_allslice(sub_path)
 
 # assign the target document
@@ -161,13 +164,14 @@ group_num = 312
 begin_flag = 1
 
 print('Will segment', len(sub_all_tif), 'slices')
-for index, i in enumerate(sub_all_tif):
+for index, i in enumerate(sub_all_tif[:3]):
 	if begin_flag:
-												 # segment(path_img, save_path_4D, save_path_3D, model_4D, model_3D, z_index, mask, feature_index, size, pore_4D, pore_3D)
-		point_coordinate_4D, point_coordinate_3D = segment(i, document_path_4D, document_path_3D, model_4D_type, model_3D_type, index, mask, feature_index, args.size, args.pore_4D, args.pore_3D)
+		point_coordinate_4D, point_coordinate_3D = segment(i, document_path_4D, document_path_3D, model_4D_type, model_3D_type, 
+													       index, mask, feature_index, args.size, args.pore_4D, args.pore_3D, keyword)
 		begin_flag = 0
 	else:
-		add_point_4D, add_point_3D = segment(i, document_path_4D, document_path_3D, model_4D_type, model_3D_type, index, mask, feature_index, args.size, args.pore_4D, args.pore_3D)
+		add_point_4D, add_point_3D = segment(i, document_path_4D, document_path_3D, model_4D_type, model_3D_type, 
+											 index, mask, feature_index, args.size, args.pore_4D, args.pore_3D, keyword)
 		point_coordinate_4D = np.concatenate((point_coordinate_4D, add_point_4D), axis=0)
 		point_coordinate_3D = np.concatenate((point_coordinate_3D, add_point_3D), axis=0)
 	if (index+1) % group_num == 0:

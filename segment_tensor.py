@@ -14,7 +14,6 @@ import module.features as features
 from joblib import load
 import argparse
 import time
-
 import tensorflow as tf 
 
 def get_args():
@@ -26,7 +25,7 @@ def get_args():
                         help='File name of saved model for 3D data')
 	# parser.add_argument('--size', nargs="?", type=int,
 	# 					help='Size of features, should be 1, 3 or 5')
-	parser.add_argument('--timestamp', nargs="?", type=int,
+	parser.add_argument('--timestamp', nargs="?", type=str,
 						help='Target timestamp')
 	parser.add_argument('--pore_4D', nargs="?", type=int,
 						help='Label for pore in 4D model')
@@ -46,8 +45,10 @@ def save_png(raw_img_path, save_folder, img_data, height, width):
 	plt.close()
 
 
-def segment(begin_slice, end_slice, kernel_3D_list, kernel_4D_list_1, kernel_4D_list_2, kernel_4D_list_3, constant_3D_list, constant_4D_list, pore_3D, pore_4D, mask):
+def segment(begin_slice, end_slice, kernel_3D_list, kernel_4D_list_1, kernel_4D_list_2, kernel_4D_list_3, 
+			constant_3D_list, constant_4D_list, pore_3D, pore_4D, mask, sub_path, sub_path_previous, sub_path_next):
 	print('Segment from slice {:d} to {:d}'.format(begin_slice, end_slice))
+	start = time.time()
 	image_batch, height, width = features.get_3D_structure(sub_path, begin_slice, end_slice)
 	image_batch_previous, _, _ = features.get_3D_structure(sub_path_previous, begin_slice, end_slice)
 	image_batch_next, _, _ = features.get_3D_structure(sub_path_next, begin_slice, end_slice)
@@ -99,28 +100,29 @@ def segment(begin_slice, end_slice, kernel_3D_list, kernel_4D_list_1, kernel_4D_
 	segment_inv_3D = cv2.bitwise_not(segment_3D)
 	segment_inv_4D = cv2.bitwise_not(segment_4D)
 
+	end = time.time()
+	print(end-start)
+
 	return segment_inv_4D, segment_inv_3D
 
 
-
-
-start = time.time()
 
 args = get_args()
 
 # Here we set the paramater
 mask_centre = (700, 810)
 radius = 550
+keyword = 'SHP'
 
 # get the path for target slice
 current_path = os.getcwd()
-print(current_path)
-all_timestamp = content.get_folder(current_path)
-sub_path = os.path.join(current_path, all_timestamp[args.timestamp])
+all_timestamp = content.get_folder(current_path, keyword)
+timestamp_index = [all_timestamp.index(i) for i in all_timestamp if args.timestamp in i]
 
+sub_path = os.path.join(current_path, all_timestamp[timestamp_index[0]])
+sub_path_previous = os.path.join(current_path, all_timestamp[timestamp_index[0]-1])
+sub_path_next = os.path.join(current_path, all_timestamp[timestamp_index[0]+1])
 sub_all_tif = content.get_allslice(sub_path)
-sub_path_previous = os.path.join(current_path, all_timestamp[args.timestamp-1])
-sub_path_next = os.path.join(current_path, all_timestamp[args.timestamp+1])
 
 # load the model from 'model' folder
 model_4D_path = os.path.join(current_path, 'model', args.model_4D+'.model')
@@ -161,17 +163,31 @@ if not os.path.exists(save_path_3D):
 if not os.path.exists(save_path_4D):
 	os.mkdir(save_path_4D)
 
-slice_list = [[1, 51], [50, 101], [100, 151], [150, 201], [200, 251], [250, 301], [300, 351], [350, 401], [400, 451], [450, 501], [500, 551], [550, 601], [600, 651], [650, 701], [700, 751], [750, 801], [800, 851], [850, 901], [900, 951], [950, 1001], [1000, 1051], [1050, 1101], [1100, 1151], [1150, 1201], [1200, 1248]]
+# creat group to train
+total_number = len(sub_all_tif)
+group = 10
 
-for i in slice_list:
-	segment_inv_4D, segment_inv_3D = segment(i[0], i[1], kernel_3D_list, kernel_4D_list_1, kernel_4D_list_2, kernel_4D_list_3, constant_3D_list, constant_4D_list, args.pore_3D, args.pore_4D, mask)
+first = [1, group+1]
+remain_num = total_number % group
+if remain_num != 0:
+	last = [total_number-remain_num, total_number]
+	slice_list = [[i, i+group+1] for i in range(group, total_number-remain_num, group)]
+	slice_list.append(last)
+	slice_list.insert(0, first)
+else:
+	last = [total_number-group, total_number]
+	slice_list = [[i, i+group+1] for i in range(group, total_number-group-1, group)]
+	slice_list.append(last)
+
+
+for i in slice_list[:1]:
+	segment_inv_4D, segment_inv_3D = segment(i[0], i[1], kernel_3D_list, kernel_4D_list_1, kernel_4D_list_2, kernel_4D_list_3, 
+											 constant_3D_list, constant_4D_list, args.pore_3D, args.pore_4D, mask, sub_path, sub_path_previous, sub_path_next)
+	print('Saving image...')
 	for index, j in enumerate(range(i[0]+1,i[1])):
 		save_png(sub_all_tif[j-1], save_path_3D, segment_inv_3D[index+1], height, width)
 		save_png(sub_all_tif[j-1], save_path_4D, segment_inv_4D[index+1], height, width)
-
-
-end = time.time()
-print(end-start)
+	print('Finished!')
 
 
 
