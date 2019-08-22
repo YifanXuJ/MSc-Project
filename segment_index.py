@@ -40,20 +40,19 @@ def save_png(raw_img_path, save_folder, img_data, height, width):
 	plt.figure(figsize=(height/1000, width/1000), dpi=100)
 	plt.imshow(img_data, 'gray')
 	plt.axis('off')
-	save_path = os.path.join(save_folder, os.path.basename(raw_img_path)+'.png')
+	save_path = os.path.join(save_folder, os.path.basename(raw_img_path[:-9])+'8bit.png')
 	plt.savefig(save_path, dpi=1000)
 	plt.close()
 
 
 def segment(path_img, save_path_4D, save_path_3D, model_4D, model_3D,
-			z_index, mask, feature_index, size, pore_4D, pore_3D, keyword):
+			mask, feature_index, size, pore_4D, pore_3D, keyword):
 	'''
 	path_img: the absolute path for specific slice
 	save_path_4D: target folder to save the 4D-based segmentation result
 	save_path_3D: target folder to save the 3D-based segmentation result
 	model_4D: 4D-based model to cluster
 	model_3D: 3D-based model to cluster
-	z_index: the index for z-axis, used for plot point cloud
 	feature_index: save the index for features
 	size: size of used features
 	'''
@@ -86,10 +85,10 @@ def segment(path_img, save_path_4D, save_path_3D, model_4D, model_3D,
 	final_img_4D = np.ones((height,width), np.uint8)
 	final_img_3D = np.ones((height,width), np.uint8)
 	
-	# point_4D_co = []
-	# point_3D_co = []
-	point_4D_co = [[int(coordinate[0][i]), int(coordinate[1][i])] for i in zero_point_4D_co]
-	point_3D_co = [[int(coordinate[0][i]), int(coordinate[1][i])] for i in zero_point_3D_co]
+	# # point_4D_co = []
+	# # point_3D_co = []
+	# point_4D_co = [[int(coordinate[0][i]), int(coordinate[1][i])] for i in zero_point_4D_co]
+	# point_3D_co = [[int(coordinate[0][i]), int(coordinate[1][i])] for i in zero_point_3D_co]
 	
 	for i in zero_point_4D_co:
 		final_img_4D[coordinate[0][i], coordinate[1][i]] = 0
@@ -102,17 +101,21 @@ def segment(path_img, save_path_4D, save_path_3D, model_4D, model_3D,
 	print('Saving results...')
 	# will return the coordinate for pore, and finally will return 
 	# zero_location_4D = np.argwhere(final_img_4D==0)
-	zero_location_4D = np.array(point_4D_co)
-	z_4D_index = np.array([z_index] * len(zero_location_4D)).reshape((len(zero_location_4D),1))
-	point_coordinate_4D = np.concatenate((zero_location_4D, z_4D_index), axis=1)
+
+	# zero_location_4D = np.array(point_4D_co)
+	# z_4D_index = np.array([z_index] * len(zero_location_4D)).reshape((len(zero_location_4D),1))
+	# point_coordinate_4D = np.concatenate((zero_location_4D, z_4D_index), axis=1)
+
 	# 3D coordiante: x: point_coordinate_4D[:,0]
 	#				 y: point_coordinate_4D[:,1]
 	#				 z: point_coordinate_4D[:,2]
 
 	# zero_location_3D = np.argwhere(final_img_3D==0)
-	zero_location_3D = np.array(point_3D_co)
-	z_3D_index = np.array([z_index] * len(zero_location_3D)).reshape((len(zero_location_3D),1))
-	point_coordinate_3D = np.concatenate((zero_location_3D, z_3D_index), axis=1)
+
+	# zero_location_3D = np.array(point_3D_co)
+	# z_3D_index = np.array([z_index] * len(zero_location_3D)).reshape((len(zero_location_3D),1))
+	# point_coordinate_3D = np.concatenate((zero_location_3D, z_3D_index), axis=1)
+
 	# 3D coordiante: x: point_coordinate_3D[:,0]
 	#				 y: point_coordinate_3D[:,1]
 	#				 z: point_coordinate_3D[:,2]
@@ -125,7 +128,7 @@ def segment(path_img, save_path_4D, save_path_3D, model_4D, model_3D,
 	end = time.time()
 	print(end-start)
 
-	return point_coordinate_4D, point_coordinate_3D
+	# return point_coordinate_4D, point_coordinate_3D
 
 
 args = get_args()
@@ -136,7 +139,6 @@ radius = 550
 keyword = 'SHP'
 
 current_path = os.getcwd()
-print(current_path)
 all_timestamp = content.get_folder(current_path, keyword)
 timestamp_index = [all_timestamp.index(i) for i in all_timestamp if args.timestamp in i]
 sub_path = os.path.join(current_path, all_timestamp[timestamp_index[0]])
@@ -160,11 +162,12 @@ model_3D_type = load(model_3D_path)
 mask, feature_index = features.get_mask(sub_all_tif[0], mask_centre, radius, args.size)
 
 # save point result every 100 slices
-group_num = 312
-begin_flag = 1
+# group_num = 312
+# begin_flag = 1
 
+''' do not need save point information
 print('Will segment', len(sub_all_tif), 'slices')
-for index, i in enumerate(sub_all_tif[:3]):
+for index, i in enumerate(sub_all_tif[:5]):
 	if begin_flag:
 		point_coordinate_4D, point_coordinate_3D = segment(i, document_path_4D, document_path_3D, model_4D_type, model_3D_type, 
 													       index, mask, feature_index, args.size, args.pore_4D, args.pore_3D, keyword)
@@ -186,7 +189,11 @@ path_4D = os.path.join(document_path_4D, 'point_data_4D_'+str(index//group_num).
 path_3D = os.path.join(document_path_3D, 'point_data_3D_'+str(index//group_num).rjust(len(str(len(sub_all_tif)//group_num)), '0')+'.csv')
 np.savetxt(path_4D, point_coordinate_4D, delimiter=',')
 np.savetxt(path_3D, point_coordinate_3D, delimiter=',')
-
+'''
+print('Will segment', len(sub_all_tif), 'slices')
+for i in sub_all_tif[:5]:
+	segment(i, document_path_4D, document_path_3D, model_4D_type, model_3D_type, 
+			mask, feature_index, args.size, args.pore_4D, args.pore_3D, keyword)
 
 
 

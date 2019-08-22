@@ -8,7 +8,7 @@ from PIL import Image
 import os
 
 # give the path for .png image
-path = '/Users/gavin/MSc-Project/results/segmentation_3D'
+path = '/Users/gavin/MSc-Project/SHP15_T113_0025/segmentation_4D'
 print('Current path:', path)
 
 # find all .png file
@@ -24,9 +24,7 @@ print('Transfering...')
 for index, i in enumerate(all_png):
 	if (index+1) % 100 == 0:
 		print(index+1, 'images')
-	png = Image.open(os.path.join(path, i))
-	png_gray = png.convert('L')
-	png_gray.save(os.path.join(save_path, i[:-13]+'8bit.tif'))
+	png = Image.open(os.path.join(path, i)).convert('L')
+	png.save(os.path.join(save_path, i[:-3]+'tif'))
 	png.close()
-	png_gray.close()
 print('Finished!')

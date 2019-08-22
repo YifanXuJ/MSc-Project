@@ -40,7 +40,7 @@ def save_png(raw_img_path, save_folder, img_data, height, width):
 	plt.figure(figsize=(height/1000, width/1000), dpi=100)
 	plt.imshow(img_data, 'gray')
 	plt.axis('off')
-	save_path = os.path.join(save_folder, os.path.basename(raw_img_path)+'.png')
+	save_path = os.path.join(save_folder, os.path.basename(raw_img_path[:-9])+'8bit.png')
 	plt.savefig(save_path, dpi=1000)
 	plt.close()
 
@@ -69,8 +69,8 @@ def segment(begin_slice, end_slice, kernel_3D_list, kernel_4D_list_1, kernel_4D_
 		print('3D segmentation...')
 		result = [sess.run(i, feed_dict={x_3D:image_batch}) for i in layer_list_3D]
 		print('4D segmentation...')
-		result_4D_1 = [sess.run(i, feed_dict={x_3D:image_batch}) for i in layer_list_4D_1]
-		result_4D_2 = [sess.run(i, feed_dict={x_3D:image_batch_previous}) for i in layer_list_4D_2]
+		result_4D_1 = [sess.run(i, feed_dict={x_3D:image_batch_previous}) for i in layer_list_4D_1]
+		result_4D_2 = [sess.run(i, feed_dict={x_3D:image_batch}) for i in layer_list_4D_2]
 		result_4D_3 = [sess.run(i, feed_dict={x_3D:image_batch_next}) for i in layer_list_4D_3]
 
 	print('Calculating distance...')
