@@ -115,8 +115,8 @@ def get_all_features_3(path, feature_index, keyword):
 	# get all features
 	print('Finished!')
 	print('Concatenating features...')
-	feature_4D = np.concatenate((feature_img_1, feature_img_2, feature_img_3,
-                                 feature_img_4, feature_img_5, feature_img_6,
+	feature_4D = np.concatenate((feature_img_4, feature_img_5, feature_img_6,
+                                 feature_img_1, feature_img_2, feature_img_3,
                                  feature_img_7, feature_img_8, feature_img_9), axis=1)
 	feature_3D = np.concatenate((feature_img_1, feature_img_2, feature_img_3), axis=1)
 	print('Finished!')
@@ -186,8 +186,8 @@ def get_assign_features_3(path, x_coordinate, y_coordinate, keyword):
 	# get all features
 
 	feature_3D = np.concatenate((feature_img_1, feature_img_2, feature_img_3))
-	feature_4D = np.concatenate((feature_img_1, feature_img_2, feature_img_3,
-								 feature_img_4, feature_img_5, feature_img_6,
+	feature_4D = np.concatenate((feature_img_4, feature_img_5, feature_img_6,
+								 feature_img_1, feature_img_2, feature_img_3,
 								 feature_img_7, feature_img_8, feature_img_9))
 
 	return feature_4D, feature_3D
@@ -248,7 +248,7 @@ def get_all_features_1(path, feature_index, keyword):
 	print('Finished!')
 
 	print('Concatenating features...')
-	feature_4D = np.concatenate((feature_img_1, feature_img_2, feature_img_3), axis=1)
+	feature_4D = np.concatenate((feature_img_2, feature_img_1, feature_img_3))
 	feature_3D = np.array(feature_img_1)
 	print('Finished!')
 
@@ -302,7 +302,7 @@ def get_assign_features_1(path, x_coordinate, y_coordinate, keyword):
 	# get all features
 
 	feature_3D = np.array([feature_img_1], np.uint16)
-	feature_4D = np.array([feature_img_1, feature_img_2, feature_img_3], np.uint16)
+	feature_4D = np.array([feature_img_2, feature_img_1, feature_img_3], np.uint16)
 
 	return feature_4D, feature_3D
 
@@ -411,8 +411,8 @@ def get_all_features_5(path, feature_index, keyword):
 	print('Finished!')
 
 	print('Concatenating features...')
-	feature_4D = np.concatenate((feature_img_1,  feature_img_2,  feature_img_3,  feature_img_4,  feature_img_5,
-								 feature_img_6,  feature_img_7,  feature_img_8,  feature_img_9,  feature_img_10,
+	feature_4D = np.concatenate((feature_img_6,  feature_img_7,  feature_img_8,  feature_img_9,  feature_img_10,
+								 feature_img_1,  feature_img_2,  feature_img_3,  feature_img_4,  feature_img_5,
 								 feature_img_11, feature_img_12, feature_img_13, feature_img_14, feature_img_15), axis=1)
 	feature_3D = np.concatenate((feature_img_1,  feature_img_2,  feature_img_3,  feature_img_4,  feature_img_5), axis=1)
 	print('Finished!')
@@ -502,8 +502,8 @@ def get_assign_features_5(path, x_coordinate, y_coordinate, keyword):
 	# get all features
 
 	feature_3D = np.concatenate((feature_img_1, feature_img_2, feature_img_3, feature_img_4, feature_img_5))
-	feature_4D = np.concatenate((feature_img_1, feature_img_2, feature_img_3, feature_img_4, feature_img_5,
-								 feature_img_6, feature_img_7, feature_img_8, feature_img_9, feature_img_10,
+	feature_4D = np.concatenate((feature_img_6, feature_img_7, feature_img_8, feature_img_9, feature_img_10,
+								 feature_img_1, feature_img_2, feature_img_3, feature_img_4, feature_img_5, 
 								 feature_img_11, feature_img_12, feature_img_13, feature_img_14, feature_img_15))
 
 	return feature_4D, feature_3D
