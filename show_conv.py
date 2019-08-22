@@ -26,12 +26,10 @@ def get_args():
                         help='File name of saved model for 3D data')
 	# parser.add_argument('--size', nargs="?", type=int,
 	# 					help='Size of features, should be 1, 3 or 5')
-	parser.add_argument('--timestamp', nargs="?", type=int,
+	parser.add_argument('--timestamp', nargs="?", type=str,
 						help='Target timestamp')
-	parser.add_argument('--begin_slice', nargs="?", type=int,
-						help='Begin slice')
-	parser.add_argument('--end_slice', nargs="?", type=int,
-						help='End slice')
+	parser.add_argument('--slice', nargs="?", type=int,
+						help='Target slice')
 	parser.add_argument('--pore_4D', nargs="?", type=int,
 						help='Label for pore in 4D model')
 	parser.add_argument('--pore_3D', nargs="?", type=int,
@@ -46,16 +44,19 @@ args = get_args()
 # Here we set the paramater
 mask_centre = (700, 810)
 radius = 550
+keyword = 'SHP'
 
 # get the path for target slice
 current_path = os.getcwd()
-print(current_path)
-all_timestamp = content.get_folder(current_path)
-sub_path = os.path.join(current_path, all_timestamp[args.timestamp])
+all_timestamp = content.get_folder(current_path, keyword)
+timestamp_index = [all_timestamp.index(i) for i in all_timestamp if args.timestamp in i]
+sub_path = os.path.join(current_path, all_timestamp[timestamp_index[0]])
 sub_all_tif = content.get_allslice(sub_path)
 
-sub_path_previous = os.path.join(current_path, all_timestamp[args.timestamp-1])
-sub_path_next = os.path.join(current_path, all_timestamp[args.timestamp+1])
+sub_path_previous = os.path.join(current_path, all_timestamp[timestamp_index[0]-1])
+sub_path_next = os.path.join(current_path, all_timestamp[timestamp_index[0]+1])
+begin_slice = args.slice - 1
+end_slice = args.slice + 1
 
 
 # load the model from 'model' folder
@@ -72,9 +73,9 @@ num_centre_4D = centre_4D.shape[0]
 
 # we need to prepare the data for graph
 # load image for 3D segmentation
-image_batch, height, width = features.get_3D_structure(sub_path, args.begin_slice, args.end_slice)
-image_batch_previous, _, _ = features.get_3D_structure(sub_path_previous, args.begin_slice, args.end_slice)
-image_batch_next, _, _ = features.get_3D_structure(sub_path_next, args.begin_slice, args.end_slice)
+image_batch, height, width = features.get_3D_structure(sub_path, begin_slice, end_slice)
+image_batch_previous, _, _ = features.get_3D_structure(sub_path_previous, begin_slice, end_slice)
+image_batch_next, _, _ = features.get_3D_structure(sub_path_next, begin_slice, end_slice)
 
 print('Creat tensorflow graph...')
 # create filter based on centre
@@ -91,7 +92,7 @@ kernel_4D_list_3 = [tf.reshape(tf.constant(i[54:81], tf.float32), (3,3,3,1,1)) f
 constant_4D_list = [np.sum(i**2) for i in centre_4D]
 
 # create graph for tensorflow -> share the same size for input
-x_3D = tf.compat.v1.placeholder(tf.float32, shape=(1, args.end_slice-args.begin_slice+1, height, width, 1))
+x_3D = tf.compat.v1.placeholder(tf.float32, shape=(1, end_slice-begin_slice+1, height, width, 1))
 
 # layer for 3D data
 layer_list_3D = [tf.nn.conv3d(x_3D, filter=i, strides = conv_stride, padding='SAME') for i in kernel_3D_list]
@@ -107,17 +108,17 @@ with tf.compat.v1.Session() as sess:
 	print('3D segmentation...')
 	result = [sess.run(i, feed_dict={x_3D:image_batch}) for i in layer_list_3D]
 	print('4D segmentation...')
-	result_4D_1 = [sess.run(i, feed_dict={x_3D:image_batch}) for i in layer_list_4D_1]
-	result_4D_2 = [sess.run(i, feed_dict={x_3D:image_batch_previous}) for i in layer_list_4D_2]
+	result_4D_1 = [sess.run(i, feed_dict={x_3D:image_batch_previous}) for i in layer_list_4D_1]
+	result_4D_2 = [sess.run(i, feed_dict={x_3D:image_batch}) for i in layer_list_4D_2]
 	result_4D_3 = [sess.run(i, feed_dict={x_3D:image_batch_next}) for i in layer_list_4D_3]
 
 print('Calculating distance...')
 # reshape and calculate the distance
-result_reshape = [i.reshape(args.end_slice-args.begin_slice+1, height, width) for i in result]
+result_reshape = [i.reshape(end_slice-begin_slice+1, height, width) for i in result]
 
-result_4D_1_reshape = [i.reshape(args.end_slice-args.begin_slice+1, height, width) for i in result_4D_1]
-result_4D_2_reshape = [i.reshape(args.end_slice-args.begin_slice+1, height, width) for i in result_4D_2]
-result_4D_3_reshape = [i.reshape(args.end_slice-args.begin_slice+1, height, width) for i in result_4D_3]
+result_4D_1_reshape = [i.reshape(end_slice-begin_slice+1, height, width) for i in result_4D_1]
+result_4D_2_reshape = [i.reshape(end_slice-begin_slice+1, height, width) for i in result_4D_2]
+result_4D_3_reshape = [i.reshape(end_slice-begin_slice+1, height, width) for i in result_4D_3]
 
 distance_list = [constant_3D_list[i]-2*result_reshape[i] for i in range(num_centre_3D)]
 distance_list_4D = [constant_4D_list[i]-2*result_4D_1_reshape[i]-2*result_4D_2_reshape[i]-2*result_4D_3_reshape[i] for i in range(num_centre_4D)]
@@ -143,22 +144,20 @@ for i in compare_4D:
 segment_inv_3D = cv2.bitwise_not(segment_3D)
 segment_inv_4D = cv2.bitwise_not(segment_4D)
 
-print('Plotting...')
 # plot the picture
-for index, i in enumerate(range(args.begin_slice+1, args.end_slice)):
-	fig = plt.figure()
-	fig.suptitle('Segment for image \n {string}'.format(string=os.path.basename(sub_all_tif[i-1])))
-	ax = plt.subplot(131)
-	ax.imshow(segment_inv_3D[index+1], 'gray')
-	ax.set_title('3D segmentation result')
+plt.figure()
+plt.imshow(segment_inv_4D[1], 'gray')
+plt.axis('off')
+plt.title('Segment for 4D data')
 
-	ax = plt.subplot(132)
-	ax.imshow(segment_inv_4D[index+1], 'gray')
-	ax.set_title('4D segmentation result')
+plt.figure()
+plt.imshow(segment_inv_3D[1], 'gray')
+plt.axis('off')
+plt.title('Segment for 3D data')
 
-	ax = plt.subplot(133)
-	img = cv2.imread(sub_all_tif[i-1], -1)
-	ax.imshow(img, 'gray')
-	ax.set_title('Original image')
+plt.figure()
+img = cv2.imread(sub_all_tif[args.slice-1], -1)
+plt.imshow(img, 'gray')
+plt.title('Original slice \n {string}'.format(string=os.path.basename(sub_all_tif[args.slice-1])))
 
 plt.show()
