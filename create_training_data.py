@@ -50,11 +50,12 @@ radius = 550
 # set the subsampling rate here
 # means, for each slice, we just randomly pick 1% points as training data
 subsampling_rate = 0.01
+# for locate target folder
 keyword = 'SHP'
 
 
 current_path = os.getcwd()
-all_timestamp = content.get_folder(current_path, 'SHP')
+all_timestamp = content.get_folder(current_path, keyword)
 # get the index for begin and end
 begin_timestamp_index = [all_timestamp.index(i) for i in all_timestamp if args.begin_timestamp in i]
 end_timestamp_index = [all_timestamp.index(i) for i in all_timestamp if args.end_timestamp in i]

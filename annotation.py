@@ -19,6 +19,8 @@ import module.content as content
 # choose specific time stamp
 begin_timestamp= '0025'
 end_timestamp = '0026'
+# keyword for target folder
+keyword = 'SHP'
 # set the range for randomly choosing slice
 begin_slice = 600
 end_slice = 800
@@ -70,7 +72,7 @@ def transform(coordinate, x_coordinate, y_coordinate):
 print('Prepare annotation')
 current_path = os.getcwd()
 # get all data folder
-all_timestamp = content.get_folder(current_path, 'SHP')
+all_timestamp = content.get_folder(current_path, keyword)
 # get the index for begin and end
 begin_timestamp_index = [all_timestamp.index(i) for i in all_timestamp if begin_timestamp in i]
 end_timestamp_index = [all_timestamp.index(i) for i in all_timestamp if end_timestamp in i]

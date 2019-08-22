@@ -24,7 +24,7 @@ def get_args():
                         help='File name of saved model for 3D data')
 	parser.add_argument('--size', nargs="?", type=int,
 						help='Size of features, should be 1, 3 or 5')
-	parser.add_argument('--timestamp', nargs="?", type=int,
+	parser.add_argument('--timestamp', nargs="?", type=str,
 						help='Target timestamp')
 	parser.add_argument('--slice', nargs="?", type=int,
 						help='Target slice')
@@ -42,12 +42,13 @@ args = get_args()
 # Here we set the paramater
 mask_centre = (700, 810)
 radius = 550
+keyword = 'SHP'
 
 # get the path for target slice
 current_path = os.getcwd()
-print(current_path)
-all_timestamp = content.get_folder(current_path)
-sub_path = os.path.join(current_path, all_timestamp[args.timestamp])
+all_timestamp = content.get_folder(current_path, keyword)
+timestamp_index = [all_timestamp.index(i) for i in all_timestamp if args.timestamp in i]
+sub_path = os.path.join(current_path, all_timestamp[timestamp_index[0]])
 sub_all_tif = content.get_allslice(sub_path)
 target_slice = sub_all_tif[args.slice]
 
@@ -60,11 +61,11 @@ model_3D_type = load(model_3D_path)
 # get features
 mask, feature_index = features.get_mask(sub_all_tif[0], mask_centre, radius, args.size)
 if args.size == 1:
-	feature_4D, feature_3D = features.get_all_features_1(target_slice, feature_index)
+	feature_4D, feature_3D = features.get_all_features_1(target_slice, feature_index, keyword)
 elif args.size == 3:
-	feature_4D, feature_3D = features.get_all_features_3(target_slice, feature_index)
+	feature_4D, feature_3D = features.get_all_features_3(target_slice, feature_index, keyword)
 elif args.size == 5:
-	feature_4D, feature_3D = features.get_all_features_5(target_slice, feature_index)
+	feature_4D, feature_3D = features.get_all_features_5(target_slice, feature_index, keyword)
 else:
 	raise ValueError('Please input the right size, should be 1, 3 or 5.')
 
