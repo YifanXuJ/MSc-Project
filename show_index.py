@@ -28,9 +28,9 @@ def get_args():
 						help='Target timestamp')
 	parser.add_argument('--slice', nargs="?", type=int,
 						help='Target slice')
-	parser.add_argument('--pore_4D', nargs="?", type=int,
+	parser.add_argument('--pore_4D', nargs="?", type=str,
 						help='Label for pore in 4D model')
-	parser.add_argument('--pore_3D', nargs="?", type=int,
+	parser.add_argument('--pore_3D', nargs="?", type=str,
 						help='Label for pore in 3D model')
 	args = parser.parse_args()
 	print(args)
@@ -43,6 +43,11 @@ args = get_args()
 mask_centre = (700, 810)
 radius = 550
 keyword = 'SHP'
+# transfer the pore from string to list
+pore_4D = args.pore_4D.split(',')
+pore_4D = [int(i) for i in pore_4D]
+pore_3D = args.pore_3D.split(',')
+pore_3D = [int(i) for i in pore_3D]
 
 # get the path for target slice
 current_path = os.getcwd()
@@ -50,7 +55,7 @@ all_timestamp = content.get_folder(current_path, keyword)
 timestamp_index = [all_timestamp.index(i) for i in all_timestamp if args.timestamp in i]
 sub_path = os.path.join(current_path, all_timestamp[timestamp_index[0]])
 sub_all_tif = content.get_allslice(sub_path)
-target_slice = sub_all_tif[args.slice]
+target_slice = sub_all_tif[args.slice-1]
 
 # load the model from 'model' folder
 model_4D_path = os.path.join(current_path, 'model', args.model_4D+'.model')
@@ -76,21 +81,22 @@ prediction_3D = model_3D_type.predict(feature_3D)
 # write the image
 
 coordinate = mask.nonzero()
-# here need to assign the pore label manually. 
-# Since the classfier will return the label randomly
-zero_point_4D_co = np.argwhere(prediction_4D==args.pore_4D)
-# class "1" in 4D model means pore
-zero_point_3D_co = np.argwhere(prediction_3D==args.pore_3D)
-# class "1" in 3D model means pore
 
 height, width = mask.shape
 final_img_4D = np.ones((height,width), np.uint8)
 final_img_3D = np.ones((height,width), np.uint8)
 
-for i in zero_point_4D_co:
-	final_img_4D[coordinate[0][i], coordinate[1][i]] = 0
-for j in zero_point_3D_co:
-	final_img_3D[coordinate[0][j], coordinate[1][j]] = 0
+# here need to assign the pore label manually. 
+# Since the classfier will return the label randomly
+for element in pore_4D:
+	zero_point_4D_co = np.argwhere(prediction_4D==element)
+	for i in zero_point_4D_co:
+		final_img_4D[coordinate[0][i], coordinate[1][i]] = 0
+
+for element in pore_3D:
+	zero_point_3D_co = np.argwhere(prediction_3D==element)
+	for j in zero_point_3D_co:
+		final_img_3D[coordinate[0][j], coordinate[1][j]] = 0
 
 
 # plot the picture

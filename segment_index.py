@@ -74,28 +74,21 @@ def segment(path_img, save_path_4D, save_path_3D, model_4D, model_3D,
 	print('Finished!')
 
 	coordinate = mask.nonzero()
-	# here need to assign the value manually. 
-	# Since the classfier will return 0 and 1 randomly
-	zero_point_4D_co = np.argwhere(prediction_4D==pore_4D)
-	# class "1" in 4D model means pore
-	zero_point_3D_co = np.argwhere(prediction_3D==pore_3D)
-	# class "1" in 3D model means pore
 
 	height, width = mask.shape
 	final_img_4D = np.ones((height,width), np.uint8)
 	final_img_3D = np.ones((height,width), np.uint8)
+
+	for element in pore_4D:
+		zero_point_4D_co = np.argwhere(prediction_4D==element)
+		for i in zero_point_4D_co:
+			final_img_4D[coordinate[0][i], coordinate[1][i]] = 0
+
+	for element in pore_3D:
+		zero_point_3D_co = np.argwhere(prediction_3D==element)
+		for j in zero_point_3D_co:
+			final_img_3D[coordinate[0][j], coordinate[1][j]] = 0
 	
-	# # point_4D_co = []
-	# # point_3D_co = []
-	# point_4D_co = [[int(coordinate[0][i]), int(coordinate[1][i])] for i in zero_point_4D_co]
-	# point_3D_co = [[int(coordinate[0][i]), int(coordinate[1][i])] for i in zero_point_3D_co]
-	
-	for i in zero_point_4D_co:
-		final_img_4D[coordinate[0][i], coordinate[1][i]] = 0
-		# point_4D_co.append([int(coordinate[0][i]), int(coordinate[1][i])])
-	for j in zero_point_3D_co:
-		final_img_3D[coordinate[0][j], coordinate[1][j]] = 0
-		# point_3D_co.append([int(coordinate[0][j]), int(coordinate[1][j])])
 	# write the image data
 
 	print('Saving results...')
@@ -137,6 +130,11 @@ args = get_args()
 mask_centre = (700, 810)
 radius = 550
 keyword = 'SHP'
+# transfer the pore from string to list
+pore_4D = args.pore_4D.split(',')
+pore_4D = [int(i) for i in pore_4D]
+pore_3D = args.pore_3D.split(',')
+pore_3D = [int(i) for i in pore_3D]
 
 current_path = os.getcwd()
 all_timestamp = content.get_folder(current_path, keyword)
@@ -193,7 +191,7 @@ np.savetxt(path_3D, point_coordinate_3D, delimiter=',')
 print('Will segment', len(sub_all_tif), 'slices')
 for i in sub_all_tif[:5]:
 	segment(i, document_path_4D, document_path_3D, model_4D_type, model_3D_type, 
-			mask, feature_index, args.size, args.pore_4D, args.pore_3D, keyword)
+			mask, feature_index, args.size, pore_4D, pore_3D, keyword)
 
 
 

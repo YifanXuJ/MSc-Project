@@ -30,9 +30,9 @@ def get_args():
 						help='Target timestamp')
 	parser.add_argument('--slice', nargs="?", type=int,
 						help='Target slice')
-	parser.add_argument('--pore_4D', nargs="?", type=int,
+	parser.add_argument('--pore_4D', nargs="?", type=str,
 						help='Label for pore in 4D model')
-	parser.add_argument('--pore_3D', nargs="?", type=int,
+	parser.add_argument('--pore_3D', nargs="?", type=str,
 						help='Label for pore in 3D model')
 	args = parser.parse_args()
 	print(args)
@@ -45,6 +45,11 @@ args = get_args()
 mask_centre = (700, 810)
 radius = 550
 keyword = 'SHP'
+# transfer the pore from string to list
+pore_4D = args.pore_4D.split(',')
+pore_4D = [int(i) for i in pore_4D]
+pore_3D = args.pore_3D.split(',')
+pore_3D = [int(i) for i in pore_3D]
 
 # get the path for target slice
 current_path = os.getcwd()
@@ -129,8 +134,18 @@ print('Segmenting...')
 mask = np.zeros((height, width), np.uint8)
 cv2.circle(mask, mask_centre, radius, 1, thickness=-1)
 
-compare_3D = [distance_list[args.pore_3D] < distance_list[j] for j in range(num_centre_3D) if j != args.pore_3D]
-compare_4D = [distance_list_4D[args.pore_4D] < distance_list_4D[j] for j in range(num_centre_4D) if j != args.pore_4D]
+compare_3D = [distance_list[pore_3D[0]] < distance_list[j] for j in range(num_centre_3D) if j != pore_3D[0]]
+for element in pore_3D[1:]:
+	compare_3D_ = [distance_list[element] < distance_list[j] for j in range(num_centre_3D) if j != element]
+	for i in range(len(compare_3D)):
+		compare_3D[i] += compare_3D_[i]
+
+compare_4D = [distance_list_4D[pore_4D[0]] < distance_list_4D[j] for j in range(num_centre_4D) if j != pore_4D[0]]
+for element in pore_4D[1:]:
+	compare_4D_ = [distance_list_4D[element] < distance_list_4D[j] for j in range(num_centre_4D) if j != element]
+	for i in range(len(compare_4D)):
+		compare_4D[i] += compare_4D_[i]
+
 
 segment_3D = mask
 for i in compare_3D:
