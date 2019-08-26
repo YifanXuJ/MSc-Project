@@ -241,15 +241,15 @@ def get_all_features_1(path, feature_index, keyword):
 	feature_img_2 = [img_2[i[0], i[1]] for i in feature_index]
 	feature_img_3 = [img_3[i[0], i[1]] for i in feature_index]
 	
-	feature_img_1 = np.array(feature_img_1)
-	feature_img_2 = np.array(feature_img_2)
-	feature_img_3 = np.array(feature_img_3)
+	feature_img_1 = np.array(feature_img_1).reshape((len(feature_img_1),1))
+	feature_img_2 = np.array(feature_img_2).reshape((len(feature_img_2),1))
+	feature_img_3 = np.array(feature_img_3).reshape((len(feature_img_3),1))
 	# get all features
 	print('Finished!')
 
 	print('Concatenating features...')
-	feature_4D = np.concatenate((feature_img_2, feature_img_1, feature_img_3))
-	feature_3D = np.array(feature_img_1)
+	feature_4D = np.concatenate((feature_img_2, feature_img_1, feature_img_3), axis=1)
+	feature_3D = feature_img_1
 	print('Finished!')
 
 	return feature_4D, feature_3D

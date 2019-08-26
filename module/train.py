@@ -17,6 +17,7 @@ from sklearn.cluster import KMeans
 from sklearn.cluster import MiniBatchKMeans
 from sklearn.mixture import GaussianMixture
 from sklearn.cluster import MeanShift
+from sklearn.cluster import DBSCAN
 
 from joblib import dump, load
 
@@ -81,6 +82,38 @@ def gmm(num_components, covariance_type, training_data, filename):
 	if os.path.exists(filename):
 		os.remove(filename)
 	dump(gmm, filename)
+
+	print('Finished!')
+
+def mean_shift(training_data, filename):
+	if not isinstance(filename, str):
+		raise ValueError('filename should be a string!')
+	print('Running...')
+	start = time.time()
+	meanshift = MeanShift(badnwidth=2).fit(training_data)
+	end = time.time()
+	print('Run time:', end-start)
+
+	print('Saving model, please wait...')
+	if os.path.exists(filename):
+		os.remove(filename)
+	dump(dbscan, filename)
+
+	print('Finished!')
+
+
+def dbscan(training_data, filename):
+	if not isinstance(filename, str):
+		raise ValueError('filename should be a string!')
+	start = time.time()
+	dbscan = DBSCAN(eps=3, min_samples=2).fit(X)
+	end = time.time()
+	print('Run time:', end-start)
+
+	print('Saving model, please wait...')
+	if os.path.exists(filename):
+		os.remove(filename)
+	dump(dbscan, filename)
 
 	print('Finished!')
 
