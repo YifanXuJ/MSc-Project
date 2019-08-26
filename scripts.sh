@@ -192,7 +192,7 @@ python show_conv.py --model_4D mini_kmeans_4D_3_3x3 --model_3D mini_kmeans_3D_3_
 
 # Validate data
 python validate.py --model_4D mini_kmeans_4D_3_3x3 --model_3D mini_kmeans_3D_3_3x3 --filename_4D validation_data_4D_3 --filename_3D validation_data_3D_3 --pore_4D 1,2 --pore_3D 2
-python validate.py --model_4D mini_kmeans_4D_3_3x3_0025 --model_3D mini_kmeans_3D_3_3x3_0025 --filename_4D validation_data_4D_3 --filename_3D validation_data_3D_3 --pore_4D 0 --pore_3D 1
+python validate.py --model_4D mini_kmeans_4D_3_3x3_0025 --model_3D mini_kmeans_3D_3_3x3_0025 --filename_4D validation_data_4D_3_test --filename_3D validation_data_3D_3_test --pore_4D 0 --pore_3D 1
 
 
 # visualisation centre
