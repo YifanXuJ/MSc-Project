@@ -75,6 +75,16 @@ elif args.model_type == 'gmm':
 	train.gmm(args.num_cluster, args.covariance_type, training_data_4D, model_4D_path)
 	print('GMM for 3D data')
 	train.gmm(args.num_cluster, args.covariance_type, training_data_3D, model_3D_path)
+elif args.model_type == 'mean_shift':
+	print('Mean shift for 4D data')
+	train.mean_shift(training_data_4D, model_4D_path)
+	print('Mean shift for 3D data')
+	train.mean_shift(training_data_3D, model_3D_path)
+elif args.model_type == 'dbscan':
+	print('DBSCAN for 4D data')
+	train.dbscan(training_data_4D, model_4D_path)
+	print('DBSCAN for 3D data')
+	train.dbscan(training_data_3D, model_3D_path)
 else:
 	raise ValueError('Please input the correct type name!')
 
