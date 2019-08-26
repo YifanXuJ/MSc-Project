@@ -49,7 +49,7 @@ def get_all_features_3(path, feature_index, keyword):
 	if time_slice_index == 0:
 		target_t_list = [time_slice_index + 1, time_slice_index + 2]
 	elif time_slice_index == (len(all_timestamp) - 1):
-		target_t_list = [time_slice_index - 1, time_slice_index - 2]
+		target_t_list = [time_slice_index - 2, time_slice_index - 1]
 	else:
 		target_t_list = [time_slice_index -1, time_slice_index + 1]
 	# this 'if' argument find the previous time stamp and next time stamp for current t
@@ -68,7 +68,7 @@ def get_all_features_3(path, feature_index, keyword):
 	location_slice_index = current_all_tif.index(path)
 	if location_slice_index == 0:
 		target_space_list = [location_slice_index, location_slice_index+1, location_slice_index+2]
-	elif location_slice_index == 1247:
+	elif location_slice_index == (len(current_all_tif)-1):
 		# totally there are 1248 slices, this is a magic number
 		target_space_list = [location_slice_index-2, location_slice_index-1, location_slice_index]
 	else:
@@ -138,7 +138,7 @@ def get_assign_features_3(path, x_coordinate, y_coordinate, keyword):
 	if time_slice_index == 0:
 		target_t_list = [time_slice_index + 1, time_slice_index + 2]
 	elif time_slice_index == (len(all_timestamp) - 1):
-		target_t_list = [time_slice_index - 1, time_slice_index - 2]
+		target_t_list = [time_slice_index - 2, time_slice_index - 1]
 	else:
 		target_t_list = [time_slice_index -1, time_slice_index + 1]
 	# this 'if' argument find the previous time stamp and next time stamp for current t
@@ -155,7 +155,7 @@ def get_assign_features_3(path, x_coordinate, y_coordinate, keyword):
 	location_slice_index = current_all_tif.index(path)
 	if location_slice_index == 0:
 		target_space_list = [location_slice_index, location_slice_index+1, location_slice_index+2]
-	elif location_slice_index == 1247:
+	elif location_slice_index == (len(current_all_tif)-1):
 		# totally there are 1248 slices, this is a magic number
 		target_space_list = [location_slice_index-2, location_slice_index-1, location_slice_index]
 	else:
@@ -207,7 +207,7 @@ def get_all_features_1(path, feature_index, keyword):
 	if time_slice_index == 0:
 		target_t_list = [time_slice_index + 1, time_slice_index + 2]
 	elif time_slice_index == (len(all_timestamp) - 1):
-		target_t_list = [time_slice_index - 1, time_slice_index - 2]
+		target_t_list = [time_slice_index - 2, time_slice_index - 1]
 	else:
 		target_t_list = [time_slice_index -1, time_slice_index + 1]
 	# this 'if' argument find the previous time stamp and next time stamp for current t
@@ -268,7 +268,7 @@ def get_assign_features_1(path, x_coordinate, y_coordinate, keyword):
 	if time_slice_index == 0:
 		target_t_list = [time_slice_index + 1, time_slice_index + 2]
 	elif time_slice_index == (len(all_timestamp) - 1):
-		target_t_list = [time_slice_index - 1, time_slice_index - 2]
+		target_t_list = [time_slice_index - 2, time_slice_index - 1]
 	else:
 		target_t_list = [time_slice_index -1, time_slice_index + 1]
 	# this 'if' argument find the previous time stamp and next time stamp for current t
@@ -321,7 +321,7 @@ def get_all_features_5(path, feature_index, keyword):
 	if time_slice_index == 0:
 		target_t_list = [time_slice_index + 1, time_slice_index + 2]
 	elif time_slice_index == (len(all_timestamp) - 1):
-		target_t_list = [time_slice_index - 1, time_slice_index - 2]
+		target_t_list = [time_slice_index - 2, time_slice_index - 1]
 	else:
 		target_t_list = [time_slice_index -1, time_slice_index + 1]
 	# this 'if' argument find the previous time stamp and next time stamp for current t
@@ -341,9 +341,9 @@ def get_all_features_5(path, feature_index, keyword):
 		target_space_list = [location_slice_index, location_slice_index+1, location_slice_index+2, location_slice_index+3, location_slice_index+4]
 	elif location_slice_index == 1:
 		target_space_list = [location_slice_index-1, location_slice_index, location_slice_index+1, location_slice_index+2, location_slice_index+3]
-	elif location_slice_index == 1246:
+	elif location_slice_index == (len(current_all_tif)-2):
 		target_space_list = [location_slice_index-3, location_slice_index-2, location_slice_index-1, location_slice_index, location_slice_index+1]
-	elif location_slice_index == 1247:
+	elif location_slice_index == (len(current_all_tif)-1):
 		# totally there are 1248 slices, this is a magic number
 		target_space_list = [location_slice_index-4, location_slice_index-3, location_slice_index-2, location_slice_index-1, location_slice_index]
 	else:
@@ -435,7 +435,7 @@ def get_assign_features_5(path, x_coordinate, y_coordinate, keyword):
 	if time_slice_index == 0:
 		target_t_list = [time_slice_index + 1, time_slice_index + 2]
 	elif time_slice_index == (len(all_timestamp) - 1):
-		target_t_list = [time_slice_index - 1, time_slice_index - 2]
+		target_t_list = [time_slice_index - 2, time_slice_index - 1]
 	else:
 		target_t_list = [time_slice_index -1, time_slice_index + 1]
 	# this 'if' argument find the previous time stamp and next time stamp for current t
@@ -455,9 +455,9 @@ def get_assign_features_5(path, x_coordinate, y_coordinate, keyword):
 		target_space_list = [location_slice_index, location_slice_index+1, location_slice_index+2, location_slice_index+3, location_slice_index+4]
 	elif location_slice_index == 1:
 		target_space_list = [location_slice_index-1, location_slice_index, location_slice_index+1, location_slice_index+2, location_slice_index+3]
-	elif location_slice_index == 1246:
+	elif location_slice_index == (len(current_all_tif)-2):
 		target_space_list = [location_slice_index-3, location_slice_index-2, location_slice_index-1, location_slice_index, location_slice_index+1]
-	elif location_slice_index == 1247:
+	elif location_slice_index == (len(current_all_tif)-1):
 		# totally there are 1248 slices, this is a magic number
 		target_space_list = [location_slice_index-4, location_slice_index-3, location_slice_index-2, location_slice_index-1, location_slice_index]
 	else:
