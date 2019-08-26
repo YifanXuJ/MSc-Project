@@ -22,10 +22,10 @@ def save_data(filename, data):
 
 # here, need to give the full name of target text file (with the '.txt')
 # change it for different labeled data
-filename = 'labeled_data.txt'
+filename = 'labeled_data_test.txt'
 # give the name for feature file
-file_name_4D = 'validation_data_4D_3'
-file_name_3D = 'validation_data_3D_3'
+file_name_4D = 'validation_data_4D_3_test'
+file_name_3D = 'validation_data_3D_3_test'
 # set the feature size, can be 1, 3 or 5
 feature_size = 3
 # assign the keyword for target data folder
@@ -62,8 +62,9 @@ for element in data:
 		else:
 			raise ValueError('Please give the correct size!')
 
-		feature_4D_class = [feature_4D, target_class]
-		feature_3D_class = [feature_3D, target_class]
+		feature_4D_class = np.append(feature_4D, target_class)
+		feature_3D_class = np.append(feature_3D, target_class)
+		
 		validation_data_4D.append(feature_4D_class)
 		validation_data_3D.append(feature_3D_class)
 
