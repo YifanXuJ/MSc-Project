@@ -22,9 +22,9 @@ def get_args():
                         help='File name of saved 4D data')
 	parser.add_argument('--filename_3D', nargs="?", type=str, 
                         help='File name of saved 3D data')
-	parser.add_argument('--pore_4D', nargs="?", type=int,
+	parser.add_argument('--pore_4D', nargs="?", type=str,
 						help='Label for pore in 4D model')
-	parser.add_argument('--pore_3D', nargs="?", type=int,
+	parser.add_argument('--pore_3D', nargs="?", type=str,
 						help='Label for pore in 3D model')
 
 	args = parser.parse_args()
@@ -32,9 +32,12 @@ def get_args():
 	return args
 
 def transfer(prediction, target_label):
+	# transfer the pore from string to list
+	target_label = target_label.split(',')
+	target_label = [int(i) for i in target_label]
 	transfer_result = np.zeros(len(prediction))
 	for i, label in enumerate(prediction):
-		if label == target_label:
+		if label in target_label:
 			transfer_result[i] = 0
 		else:
 			transfer_result[i] = 1
@@ -43,17 +46,18 @@ def transfer(prediction, target_label):
 # get args
 args = get_args()
 
+
 # This part we load validation data
 filepath_4D = os.path.join(os.getcwd(), 'validation_data', args.filename_4D+'.npy')
 filepath_3D = os.path.join(os.getcwd(), 'validation_data', args.filename_3D+'.npy')
 
-validation_data_4D = np.load(filepath_4D, allow_pickle=True)
-validation_data_3D = np.load(filepath_3D, allow_pickle=True)
+validation_data_4D = np.load(filepath_4D)
+validation_data_3D = np.load(filepath_3D)
 
-data_feature_4D = np.array(list(validation_data_4D[:, 0]))
-data_feature_3D = np.array(list(validation_data_3D[:, 0]))
+data_feature_4D = validation_data_4D[:,:-1]
+data_feature_3D = validation_data_3D[:,:-1]
 # they share the same label
-data_label = validation_data_3D[:, 1]
+data_label = validation_data_3D[:, -1]
 
 # This part we load model
 model_4D_path = os.path.join(os.getcwd(), 'model', args.model_4D+'.model')
