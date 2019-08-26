@@ -25,12 +25,9 @@ keyword = 'SHP'
 begin_slice = 600
 end_slice = 800
 # set the number of slices
-num_slices = 5
-# set the number of points for each slice, both for pore and non-pore
-# -1 means point any points you want, until you press 'Enter'
-num_points = -1
+num_slices = 100
 # set the filename
-filename = 'labeled_data_test'
+filename = 'labeled_data_0025'
 # area for show the lable image
 # set 100 will show the 200x200 area
 show_length = 75
@@ -38,7 +35,9 @@ show_length = 75
 # we need to know it before annotation, use find_mask.py to determine the centre and radius
 mask_centre = (700, 810)
 radius = 550
-
+# set the number of points for each slice, both for pore and non-pore
+# -1 means point any points you want, until you press 'Enter'
+num_points = -1
 
 # add mask for original image and return the masked image
 def add_mask(centre, radius, source_image):
