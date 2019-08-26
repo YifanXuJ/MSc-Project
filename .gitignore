@@ -1,9 +1,12 @@
 # ignore all the data
-/other_files/
-/SHP15_*/
-*.model
-*.npy
 .DS_Store
 .ipynb_checkpoints/
+/SHP15_*/
+training_data/
 validation_data/
+model/
 results/
+dissertation/
+
+Untitled.ipynb
+Write dissertation.ipynb
