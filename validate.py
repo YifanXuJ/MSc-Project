@@ -43,6 +43,20 @@ def transfer(prediction, target_label):
 			transfer_result[i] = 1
 	return transfer_result
 
+# sensitivity & specificity
+def sen_spec_acc(prediction, true_label):
+	pore_index = np.argwhere(true_label==0)
+	non_pore_index = np.argwhere(true_label==1)
+
+	true_positive = [prediction[i]==true_label[i] for i in pore_index]
+	true_negative = [prediction[i]==true_label[i] for i in non_pore_index]
+
+	sensitivity = np.sum(true_positive) / len(pore_index)
+	specificity = np.sum(true_negative) / len(non_pore_index)
+	acc = (np.sum(true_positive) + np.sum(true_negative)) / (len(pore_index) + len(non_pore_index))
+	return sensitivity, specificity, acc
+
+
 # get args
 args = get_args()
 
@@ -73,11 +87,12 @@ prediction_3D = model_3D_type.predict(data_feature_3D)
 transfer_prediction_4D = transfer(prediction_4D, args.pore_4D)
 transfer_prediction_3D = transfer(prediction_3D, args.pore_3D)
 
-accuracy_4D = np.sum(transfer_prediction_4D==data_label) / len(data_label)
-accuracy_3D = np.sum(transfer_prediction_3D==data_label) / len(data_label)
+sen_4D, spe_4D, acc_4D = sen_spec_acc(transfer_prediction_4D, data_label)
+sen_3D, spe_3D, acc_3D = sen_spec_acc(transfer_prediction_3D, data_label)
 
-print('Accuracy for 4D model:', accuracy_4D)
-print('Accuracy for 3D model:', accuracy_3D)
+print('Sensitivity for 4D model: {:f} \n Specificity for 4D model: {:f} \n Accuracy for 4D model: {:f}'.format(sen_4D, spe_4D, acc_4D))
+print('Sensitivity for 3D model: {:f} \n Specificity for 3D model: {:f} \n Accuracy for 3D model: {:f}'.format(sen_3D, spe_3D, acc_3D))
+
 
 
 
