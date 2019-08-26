@@ -24,15 +24,15 @@ def get_args():
 
     parser.add_argument('--begin_timestamp', nargs="?", type=str, default='0025',
                         help='Sample begin from this timestamp')
-    parser.add_argument('--end_timestamp', nargs="?", type=str, default='0026',
+    parser.add_argument('--end_timestamp', nargs="?", type=str, default='0025',
                         help='Sample end at this timestamp')
     parser.add_argument('--begin_slice', nargs="?", type=int, default=600, 
                         help='Sample begin from this timestamp')
-    parser.add_argument('--end_slice', nargs="?", type=int, default=749, 
+    parser.add_argument('--end_slice', nargs="?", type=int, default=800, 
                         help='Sample end at this timestamp')
-    parser.add_argument('--filename_3D', nargs="?", type=str, default="training_data_3D_3x3",
+    parser.add_argument('--filename_3D', nargs="?", type=str, default="training_data_3D_3x3_0025",
                         help='File name of saved 3D feature')
-    parser.add_argument('--filename_4D', nargs="?", type=str, default="training_data_4D_3x3",
+    parser.add_argument('--filename_4D', nargs="?", type=str, default="training_data_4D_3x3_0025",
                         help='File name of saved 4D feature')
     parser.add_argument('--size', nargs="?", type=int, default=3,
                         help='Type of different size of the area')
