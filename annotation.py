@@ -18,21 +18,22 @@ import module.content as content
 # setting the parameter here
 # choose specific time stamp
 begin_timestamp= '0025'
-end_timestamp = '0026'
+end_timestamp = '0025'
 # keyword for target folder
 keyword = 'SHP'
 # set the range for randomly choosing slice
 begin_slice = 600
 end_slice = 800
 # set the number of slices
-num_slices = 20
+num_slices = 5
 # set the number of points for each slice, both for pore and non-pore
-num_points = 1
+# -1 means point any points you want, until you press 'Enter'
+num_points = -1
 # set the filename
 filename = 'labeled_data_test'
 # area for show the lable image
 # set 100 will show the 200x200 area
-show_length = 100
+show_length = 75
 # set the mask centre and radius for each slice
 # we need to know it before annotation, use find_mask.py to determine the centre and radius
 mask_centre = (700, 810)
@@ -59,8 +60,8 @@ def random_effective_area(masked_image):
 	return x_co, y_co
 
 # transform the coordinate 
-def transform(coordinate, x_coordinate, y_coordinate):
-	transformed_coordinate = [(element[1]+x_coordinate-100, element[0]+y_coordinate-100) for element in coordinate]
+def transform(coordinate, x_coordinate, y_coordinate, length):
+	transformed_coordinate = [(element[1]+x_coordinate-length, element[0]+y_coordinate-length) for element in coordinate]
 	# transformed_coordinate = []
 	# for element in coordinate:
 	# 	location = (element[1]+x_coordinate-100, element[0]+y_coordinate-100)
@@ -77,7 +78,7 @@ all_timestamp = content.get_folder(current_path, keyword)
 begin_timestamp_index = [all_timestamp.index(i) for i in all_timestamp if begin_timestamp in i]
 end_timestamp_index = [all_timestamp.index(i) for i in all_timestamp if end_timestamp in i]
 # create the target data
-sample_timestamp = all_folder[begin_timestamp_index[0]:(end_timestamp_index[0]+1)]
+sample_timestamp = all_timestamp[begin_timestamp_index[0]:(end_timestamp_index[0]+1)]
 
 # check if it exists the directory to save data
 # data will save in ./validation_data as filename.txt
@@ -92,16 +93,16 @@ if os.path.exists(file_path):
 print('Finished!')
 
 # begin annotation
-print('Will choose timestamp from {begin} to {end}'.format(begin=all_folder[begin_timestamp_index[0]], end=all_folder[end_timestamp_index[0]]))
+print('Will choose timestamp from {begin} to {end}'.format(begin=all_timestamp[begin_timestamp_index[0]], end=all_timestamp[end_timestamp_index[0]]))
 print('Will randomly choose {:d} slices from slice {:d} to {:d}'.format(num_slices, begin_slice, end_slice))
-print('Left click to add points, and right click to remove the mose recently added points. Note that cannot redo the last point for each slice.')
+print('Left click to add points, and right click to remove the mose recently added points. Press enter to label next slice.')
 
 for sub_timestamp in sample_timestamp:
 	sub_path = os.path.join(current_path, sub_timestamp)
 	sub_all_tif = content.get_allslice(sub_path)
 
 	# First, we label all pore
-	print('Please label {:d} points for pore in each picture!'.format(num_points))
+	print('Please label any points for pore in each picture!')
 	random_slice_pore = np.random.randint(begin_slice-1, end_slice, num_slices)
 	for index, i in enumerate(random_slice_pore):
 		slice_path = sub_all_tif[i-1]
@@ -111,18 +112,19 @@ for sub_timestamp in sample_timestamp:
 		x_coordinate, y_coordinate = random_effective_area(masked_image)
 
 		plt.imshow(masked_image[x_coordinate-show_length:x_coordinate+show_length, y_coordinate-show_length:y_coordinate+show_length], 'gray')
-		plt.title('Please label {:d} points for pore! ({:d}/{:d}) \n Current slice: {str}'.format(num_points, (index+1), num_slices, str=os.path.basename(slice_path)), color='red')
+		plt.title('Please label any points for pore! ({:d}/{:d}) \n Current slice: {str}'.format((index+1), num_slices, str=os.path.basename(slice_path)), color='red')
 
 		coordinate = plt.ginput(n=num_points, timeout=0)
 
 		# note that x, y from the ginput function is oppisite to our x and y, we need to transfer it
-		transformed_coordinate = transform(coordinate, x_coordinate, y_coordinate)
+		transformed_coordinate = transform(coordinate, x_coordinate, y_coordinate, show_length)
+		print(transformed_coordinate)
 		
 		with open(file_path, 'a') as f:
 			f.writelines([slice_path, ' ', str(transformed_coordinate), ' ', '0', '\n'])
 			# '0' means pore
 
-	print('Please label {:d} points for non-pore in each picture!'.format(num_points))
+	print('Please label any points for non-pore in each picture!')
 	# Then we label all non-pore
 	random_slice_nonpore = np.random.randint(begin_slice-1, end_slice, num_slices)
 	for index, i in enumerate(random_slice_nonpore):
@@ -132,11 +134,12 @@ for sub_timestamp in sample_timestamp:
 		x_coordinate, y_coordinate = random_effective_area(masked_image)
 
 		plt.imshow(masked_image[x_coordinate-show_length:x_coordinate+show_length, y_coordinate-show_length:y_coordinate+show_length], 'gray')
-		plt.title('Please label {:d} points for non-pore! ({:d}/{:d}) \n Current slice: {str}'.format(num_points, (index+1), num_slices, str=os.path.basename(slice_path)), color='red')
+		plt.title('Please label any points for non-pore! ({:d}/{:d}) \n Current slice: {str}'.format((index+1), num_slices, str=os.path.basename(slice_path)), color='red')
 
 		coordinate = plt.ginput(n=num_points, timeout=0)
 
-		transformed_coordinate = transform(coordinate, x_coordinate, y_coordinate)
+		transformed_coordinate = transform(coordinate, x_coordinate, y_coordinate, show_length)
+		print(transformed_coordinate)
 
 		with open(file_path,'a') as f:
 			f.writelines([slice_path, ' ', str(transformed_coordinate), ' ', '1', '\n'])
