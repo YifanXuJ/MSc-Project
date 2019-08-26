@@ -21,12 +21,16 @@ warnings.filterwarnings('ignore')
 # if dont want to show the centre, just assign flag_show_centre = False
 # show centre only for kmeans or mini_batch_kmeans algorithm
 flag_show_centre = True
-model_4D = 'mini_kmeans_4D_3_3x3'
-model_3D = 'mini_kmeans_3D_3_3x3'
-
+model_4D = 'mini_kmeans_4D_3_3x3_0025'
+model_3D = 'mini_kmeans_3D_3_3x3_0025'
 # Load the data
-data_3D = 'training_3D_5_3x3'
-data_4D = 'training_4D_5_3x3'
+data_3D = 'training_data_3D_3x3_0025'
+data_4D = 'training_data_4D_3x3_0025'
+# assign the pore, this should match the model
+pore_4D = 2
+pore_3D = 2
+
+
 
 data_4D_path = os.path.join(os.getcwd(), 'training_data', data_4D+'.npy')
 data_3D_path = os.path.join(os.getcwd(), 'training_data', data_3D+'.npy')
@@ -35,18 +39,22 @@ print('Loading data...')
 training_data_4D = train.load_training_data(data_4D_path)
 training_data_3D = train.load_training_data(data_3D_path)
 
-begin_num = 20000
-end_num = 40000
+print('Shuffling the data...')
+np.random.shuffle(training_data_4D)
+np.random.shuffle(training_data_3D)
+
+begin_num = 0
+end_num = 20000
 print('Using subset of the data, {:d} points'.format(end_num-begin_num))
 subset_training_data_4D = training_data_4D[begin_num:end_num]
 subset_training_data_3D = training_data_3D[begin_num:end_num]
 
 print('Embedding for 4D data...')
-embedding_4D_2_model = umap.UMAP(n_components=2).fit(subset_training_data_4D)
+# embedding_4D_2_model = umap.UMAP(n_components=2).fit(subset_training_data_4D)
 embedding_4D_3_model = umap.UMAP(n_components=3).fit(subset_training_data_4D)
 print('Finished!')
 print('Embedding for 3D data...')
-embedding_3D_2_model = umap.UMAP(n_components=2).fit(subset_training_data_3D)
+# embedding_3D_2_model = umap.UMAP(n_components=2).fit(subset_training_data_3D)
 embedding_3D_3_model = umap.UMAP(n_components=3).fit(subset_training_data_3D)
 print('Finished!')
 
@@ -67,23 +75,16 @@ if flag_show_centre:
 	# Assume we have known just 2 centres, we can change this assumption
 	# project 4D centre
 	centre_4D_list_3D = [embedding_4D_3_model.transform(centre_4D[i].reshape(1,-1)) for i in range(num_centre_4D)]
-	centre_4D_list_2D = [embedding_4D_2_model.transform(centre_4D[i].reshape(1,-1)) for i in range(num_centre_4D)]
+	# centre_4D_list_2D = [embedding_4D_2_model.transform(centre_4D[i].reshape(1,-1)) for i in range(num_centre_4D)]
 
 	centre_3D_list_3D = [embedding_3D_3_model.transform(centre_3D[i].reshape(1,-1)) for i in range(num_centre_3D)]
-	centre_3D_list_2D = [embedding_3D_2_model.transform(centre_3D[i].reshape(1,-1)) for i in range(num_centre_3D)]
-	# for i in range(num_centre_4D):
-	# 	centre_4D_list_3D.append(embedding_4D_3_model.transform(centre_4D[i].reshape(1,-1)))
-	# 	centre_4D_list_2D.append(embedding_4D_2_model.transform(centre_4D[i].reshape(1,-1)))
-
-	# for i in range(num_centre_3D):
-	# 	centre_3D_list_3D.append(embedding_3D_3_model.transform(centre_3D[i].reshape(1,-1)))
-	# 	centre_3D_list_2D.append(embedding_3D_2_model.transform(centre_3D[i].reshape(1,-1)))
+	# centre_3D_list_2D = [embedding_3D_2_model.transform(centre_3D[i].reshape(1,-1)) for i in range(num_centre_3D)]
 
 
 # transform the data
-embedding_4D_2 = embedding_4D_2_model.transform(subset_training_data_4D)
+# embedding_4D_2 = embedding_4D_2_model.transform(subset_training_data_4D)
 embedding_4D_3 = embedding_4D_3_model.transform(subset_training_data_4D)
-embedding_3D_2 = embedding_3D_2_model.transform(subset_training_data_3D)
+# embedding_3D_2 = embedding_3D_2_model.transform(subset_training_data_3D)
 embedding_3D_3 = embedding_3D_3_model.transform(subset_training_data_3D)
 
 
@@ -93,8 +94,8 @@ ax = plt.subplot(projection='3d')
 ax.scatter(embedding_4D_3[:,0], embedding_4D_3[:,1], embedding_4D_3[:,2], alpha=0.01)
 if flag_show_centre:
 	for i in range(num_centre_4D):
-		if i == 1:
-			ax.scatter(centre_4D_list_3D[i][:,0], centre_4D_list_3D[i][:,1], centre_4D_list_3D[i][:,2], color='yellow')
+		if i == pore_4D:
+			ax.scatter(centre_4D_list_3D[i][:,0], centre_4D_list_3D[i][:,1], centre_4D_list_3D[i][:,2], color='orange')
 		else:
 			ax.scatter(centre_4D_list_3D[i][:,0], centre_4D_list_3D[i][:,1], centre_4D_list_3D[i][:,2], color='red')
 ax.set_title('3D projection for 4D data',fontsize=12,color='r')
@@ -104,26 +105,26 @@ ax = plt.subplot(projection='3d')
 ax.scatter(embedding_3D_3[:,0], embedding_3D_3[:,1], embedding_3D_3[:,2], alpha=0.01)
 if flag_show_centre:
 	for i in range(num_centre_3D):
-		if i == 2:
-			ax.scatter(centre_3D_list_3D[i][:,0], centre_3D_list_3D[i][:,1], centre_3D_list_3D[i][:,2], color='yellow')
+		if i == pore_3D:
+			ax.scatter(centre_3D_list_3D[i][:,0], centre_3D_list_3D[i][:,1], centre_3D_list_3D[i][:,2], color='orange')
 		else:
 			ax.scatter(centre_3D_list_3D[i][:,0], centre_3D_list_3D[i][:,1], centre_3D_list_3D[i][:,2], color='red')
 ax.set_title('3D projection for 3D data',fontsize=12,color='r')
 
 
-plt.figure()
-ax = plt.subplot(211)
-ax.scatter(embedding_4D_2[:,0],embedding_4D_2[:,1])
-if flag_show_centre:
-	for i in range(num_centre_4D):
-		ax.scatter(centre_4D_list_2D[i][:,0], centre_4D_list_2D[i][:,1], color='red')
-ax.set_title('2D projection for 4D data',fontsize=12,color='r')
-ax = plt.subplot(212)
-ax.scatter(embedding_3D_2[:,0],embedding_3D_2[:,1])
-if flag_show_centre:
-	for i in range(num_centre_3D):
-		ax.scatter(centre_3D_list_2D[i][:,0], centre_3D_list_2D[i][:,1], color='red')
-ax.set_title('2D projection for 3D data',fontsize=12,color='r')
+# plt.figure()
+# ax = plt.subplot(211)
+# ax.scatter(embedding_4D_2[:,0],embedding_4D_2[:,1])
+# if flag_show_centre:
+# 	for i in range(num_centre_4D):
+# 		ax.scatter(centre_4D_list_2D[i][:,0], centre_4D_list_2D[i][:,1], color='red')
+# ax.set_title('2D projection for 4D data',fontsize=12,color='r')
+# ax = plt.subplot(212)
+# ax.scatter(embedding_3D_2[:,0],embedding_3D_2[:,1])
+# if flag_show_centre:
+# 	for i in range(num_centre_3D):
+# 		ax.scatter(centre_3D_list_2D[i][:,0], centre_3D_list_2D[i][:,1], color='red')
+# ax.set_title('2D projection for 3D data',fontsize=12,color='r')
 
 
 plt.show()
