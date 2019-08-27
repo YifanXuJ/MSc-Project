@@ -36,13 +36,14 @@ def get_args():
 	return args
 
 # function for saving the .png file
-def save_png(raw_img_path, save_folder, img_data, height, width):
-	plt.figure(figsize=(height/1000, width/1000), dpi=100)
-	plt.imshow(img_data, 'gray')
-	plt.axis('off')
+def save_png(raw_img_path, save_folder, img_data):
+	# plt.figure(figsize=(height/1000, width/1000), dpi=100)
+	# plt.imshow(img_data, 'gray')
+	# plt.axis('off')
 	save_path = os.path.join(save_folder, os.path.basename(raw_img_path[:-9])+'8bit.png')
-	plt.savefig(save_path, dpi=1000)
-	plt.close()
+	# plt.savefig(save_path, dpi=1000)
+	# plt.close()
+	cv2.imwrite(save_path, img_data)
 
 
 def segment(begin_slice, end_slice, kernel_3D_list, kernel_4D_list_1, kernel_4D_list_2, kernel_4D_list_3, 
@@ -106,8 +107,8 @@ def segment(begin_slice, end_slice, kernel_3D_list, kernel_4D_list_1, kernel_4D_
 		segment_4D = segment_4D * i
 
 	# inverse color for plotting
-	segment_inv_3D = cv2.bitwise_not(segment_3D)
-	segment_inv_4D = cv2.bitwise_not(segment_4D)
+	segment_inv_3D = cv2.bitwise_not(255*segment_3D)
+	segment_inv_4D = cv2.bitwise_not(255*segment_4D)
 
 	end = time.time()
 	print(end-start)
@@ -164,7 +165,6 @@ kernel_4D_list_3 = [tf.reshape(tf.constant(i[54:81], tf.float32), (3,3,3,1,1)) f
 constant_4D_list = [np.sum(i**2) for i in centre_4D]
 
 # we only care the mask, so create mask here
-
 height, width = cv2.imread(sub_all_tif[0], -1).shape
 mask = np.zeros((height, width), np.uint8)
 cv2.circle(mask, mask_centre, radius, 1, thickness=-1)
@@ -199,8 +199,8 @@ for i in slice_list:
 											 constant_3D_list, constant_4D_list, pore_3D, pore_4D, mask, sub_path, sub_path_previous, sub_path_next)
 	print('Saving image...')
 	for index, j in enumerate(range(i[0]+1,i[1])):
-		save_png(sub_all_tif[j-1], save_path_3D, segment_inv_3D[index+1], height, width)
-		save_png(sub_all_tif[j-1], save_path_4D, segment_inv_4D[index+1], height, width)
+		save_png(sub_all_tif[j-1], save_path_3D, segment_inv_3D[index+1])
+		save_png(sub_all_tif[j-1], save_path_4D, segment_inv_4D[index+1])
 	print('Finished!')
 
 

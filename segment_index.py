@@ -36,13 +36,15 @@ def get_args():
 	return args
 
 # function for saving the .png file
-def save_png(raw_img_path, save_folder, img_data, height, width):
-	plt.figure(figsize=(height/1000, width/1000), dpi=100)
-	plt.imshow(img_data, 'gray')
-	plt.axis('off')
+def save_png(raw_img_path, save_folder, img_data):
+	# plt.figure(figsize=(height/1000, width/1000), dpi=100)
+	# plt.imshow(img_data, 'gray')
+	# plt.axis('off')
+	img_data = img_data * 255
 	save_path = os.path.join(save_folder, os.path.basename(raw_img_path[:-9])+'8bit.png')
-	plt.savefig(save_path, dpi=1000)
-	plt.close()
+	# plt.savefig(save_path, dpi=1000)
+	# plt.close()
+	cv2.imwrite(save_path, img_data)
 
 
 def segment(path_img, save_path_4D, save_path_3D, model_4D, model_3D,
@@ -116,8 +118,8 @@ def segment(path_img, save_path_4D, save_path_3D, model_4D, model_3D,
 	# Save the picture
 	# Such process will lost information, just for visualization
 	# call the function defined above
-	save_png(path_img, save_path_4D, final_img_4D, height, width)
-	save_png(path_img, save_path_3D, final_img_3D, height, width)
+	save_png(path_img, save_path_4D, final_img_4D)
+	save_png(path_img, save_path_3D, final_img_3D)
 	end = time.time()
 	print(end-start)
 
