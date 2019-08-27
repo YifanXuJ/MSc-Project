@@ -14,6 +14,8 @@ import module.features as features
 from joblib import load
 import argparse
 import time
+import matplotlib
+matplotlib.use('MacOSX')
 
 def get_args():
 	parser = argparse.ArgumentParser(description='Show single results')
@@ -74,6 +76,7 @@ elif args.size == 5:
 else:
 	raise ValueError('Please input the right size, should be 1, 3 or 5.')
 
+print('Segmenting...')
 # segment
 prediction_4D = model_4D_type.predict(feature_4D)
 prediction_3D = model_3D_type.predict(feature_3D)
@@ -97,7 +100,6 @@ for element in pore_3D:
 	zero_point_3D_co = np.argwhere(prediction_3D==element)
 	for j in zero_point_3D_co:
 		final_img_3D[coordinate[0][j], coordinate[1][j]] = 0
-
 
 # plot the picture
 plt.figure()

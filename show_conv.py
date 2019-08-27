@@ -14,8 +14,9 @@ import module.features as features
 from joblib import load
 import argparse
 import time
-
 import tensorflow as tf 
+import matplotlib
+matplotlib.use('MacOSX')
 
 def get_args():
 	parser = argparse.ArgumentParser(description='Show single results')
@@ -156,14 +157,16 @@ for i in compare_4D:
 	segment_4D = segment_4D * i
 
 # inverse color for plotting
-segment_inv_3D = cv2.bitwise_not(segment_3D)
-segment_inv_4D = cv2.bitwise_not(segment_4D)
+segment_inv_3D = cv2.bitwise_not(255*segment_3D)
+segment_inv_4D = cv2.bitwise_not(255*segment_4D)
+
 
 # plot the picture
 plt.figure()
 plt.imshow(segment_inv_4D[1], 'gray')
 plt.axis('off')
 plt.title('Segment for 4D data')
+
 
 plt.figure()
 plt.imshow(segment_inv_3D[1], 'gray')
@@ -176,3 +179,24 @@ plt.imshow(img, 'gray')
 plt.title('Original slice \n {string}'.format(string=os.path.basename(sub_all_tif[args.slice-1])))
 
 plt.show()
+
+# cv2.namedWindow("Image1", cv2.WINDOW_NORMAL)
+# cv2.resizeWindow("Image1", 500,500)
+# cv2.imshow("Image1", segment_inv_4D[1])
+
+# cv2.namedWindow("Image2", cv2.WINDOW_NORMAL)
+# cv2.resizeWindow("Image2", 500,500)
+# cv2.imshow("Image2", segment_inv_3D[1])
+
+# cv2.namedWindow("Image3", cv2.WINDOW_NORMAL)
+# cv2.resizeWindow("Image3", 500,500)
+# img = cv2.imread(sub_all_tif[args.slice-1], -1)
+# cv2.imshow("Image3", img)
+
+# cv2.waitKey(0)
+
+
+
+
+
+

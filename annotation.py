@@ -14,6 +14,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import random
 import module.content as content
+import matplotlib
+matplotlib.use('MacOSX')
 
 # setting the parameter here
 # choose specific time stamp
