@@ -27,9 +27,9 @@ def get_args():
 						help='Size of features, should be 1, 3 or 5')
 	parser.add_argument('--timestamp', nargs="?", type=str,
 						help='Target timestamp')
-	parser.add_argument('--pore_4D', nargs="?", type=int,
+	parser.add_argument('--pore_4D', nargs="?", type=str,
 						help='Label for pore in 4D model')
-	parser.add_argument('--pore_3D', nargs="?", type=int,
+	parser.add_argument('--pore_3D', nargs="?", type=str,
 						help='Label for pore in 3D model')
 	args = parser.parse_args()
 	print(args)
