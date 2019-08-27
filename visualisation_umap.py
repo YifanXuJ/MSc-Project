@@ -14,6 +14,8 @@ import module.train as train
 from joblib import load
 
 import warnings
+import matplotlib
+matplotlib.use('MacOSX')
 
 # will ignore some warnings
 warnings.filterwarnings('ignore')

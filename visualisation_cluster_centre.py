@@ -9,6 +9,8 @@ import numpy as np
 from joblib import load
 import argparse
 import matplotlib.pyplot as plt 
+import matplotlib
+matplotlib.use('MacOSX')
 
 def get_args():
 	parser = argparse.ArgumentParser(description='visualise model centre')
