@@ -113,14 +113,14 @@ python visualisation_umap.py
 
 
 # Segment slices
-python segment_index.py --model_4D mini_kmeans_4D_3_3x3 --model_3D mini_kmeans_3D_3_3x3 --size 3 --timestamp 0025 --pore_4D 2 --pore_3D 2
+python segment_index.py --model_4D gmmfull_4D_3_3x3_0025 --model_3D gmmfull_3D_3_3x3_0025 --size 3 --timestamp 0025 --pore_4D 2 --pore_3D 1
 python segment_conv.py --model_4D mini_kmeans_4D_3_3x3 --model_3D mini_kmeans_3D_3_3x3 --timestamp 0025 --pore_4D 2 --pore_3D 2
 python segment_conv.py --model_4D mini_kmeans_4D_4_3x3 --model_3D mini_kmeans_3D_4_3x3 --timestamp 0030 --pore_4D 2 --pore_3D 3
 
 
 
 # show single slice
-python show_index.py --model_4D mini_kmeans_4D_3_3x3 --model_3D mini_kmeans_3D_3_3x3 --size 3 --timestamp 0025 --slice 601 --pore_4D 1,2 --pore_3D 2
+python show_index.py --model_4D gmmfull_4D_3_3x3_0025 --model_3D gmmfull_3D_3_3x3_0025 --size 3 --timestamp 0025 --slice 756 --pore_4D 2 --pore_3D 1
 python show_index.py --model_4D mini_kmeans_4D_3_3x3_0025 --model_3D mini_kmeans_3D_3_3x3_0025 --size 3 --timestamp 0025 --slice 601 --pore_4D 0 --pore_3D 1
 python show_index.py --model_4D mini_kmeans_4D_3_1x1 --model_3D mini_kmeans_3D_3_1x1 --size 1 --timestamp 0025 --slice 601 --pore_4D 0 --pore_3D 1
 python show_index.py --model_4D mini_kmeans_4D_3_5x5 --model_3D mini_kmeans_3D_3_5x5 --size 5 --timestamp 0025 --slice 601 --pore_4D 2 --pore_3D 2
