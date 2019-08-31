@@ -29,8 +29,8 @@ model_3D = 'mini_kmeans_3D_3_3x3_0025'
 data_3D = 'training_data_3D_3x3_0025'
 data_4D = 'training_data_4D_3x3_0025'
 # assign the pore, this should match the model
-pore_4D = 2
-pore_3D = 2
+pore_4D = 0
+pore_3D = 0
 
 
 
@@ -46,7 +46,7 @@ np.random.shuffle(training_data_4D)
 np.random.shuffle(training_data_3D)
 
 begin_num = 0
-end_num = 20000
+end_num = 30000
 print('Using subset of the data, {:d} points'.format(end_num-begin_num))
 subset_training_data_4D = training_data_4D[begin_num:end_num]
 subset_training_data_3D = training_data_3D[begin_num:end_num]
@@ -97,9 +97,9 @@ ax.scatter(embedding_4D_3[:,0], embedding_4D_3[:,1], embedding_4D_3[:,2], alpha=
 if flag_show_centre:
 	for i in range(num_centre_4D):
 		if i == pore_4D:
-			ax.scatter(centre_4D_list_3D[i][:,0], centre_4D_list_3D[i][:,1], centre_4D_list_3D[i][:,2], color='orange')
-		else:
 			ax.scatter(centre_4D_list_3D[i][:,0], centre_4D_list_3D[i][:,1], centre_4D_list_3D[i][:,2], color='red')
+		else:
+			ax.scatter(centre_4D_list_3D[i][:,0], centre_4D_list_3D[i][:,1], centre_4D_list_3D[i][:,2], color='black')
 ax.set_title('3D projection for 4D data',fontsize=12,color='r')
 
 plt.figure()
@@ -108,9 +108,9 @@ ax.scatter(embedding_3D_3[:,0], embedding_3D_3[:,1], embedding_3D_3[:,2], alpha=
 if flag_show_centre:
 	for i in range(num_centre_3D):
 		if i == pore_3D:
-			ax.scatter(centre_3D_list_3D[i][:,0], centre_3D_list_3D[i][:,1], centre_3D_list_3D[i][:,2], color='orange')
-		else:
 			ax.scatter(centre_3D_list_3D[i][:,0], centre_3D_list_3D[i][:,1], centre_3D_list_3D[i][:,2], color='red')
+		else:
+			ax.scatter(centre_3D_list_3D[i][:,0], centre_3D_list_3D[i][:,1], centre_3D_list_3D[i][:,2], color='black')
 ax.set_title('3D projection for 3D data',fontsize=12,color='r')
 
 
