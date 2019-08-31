@@ -76,15 +76,28 @@ elif args.model_type == 'gmm':
 	print('GMM for 3D data')
 	train.gmm(args.num_cluster, args.covariance_type, training_data_3D, model_3D_path)
 elif args.model_type == 'mean_shift':
-	print('Mean shift for 4D data')
-	train.mean_shift(training_data_4D, model_4D_path)
+	# all data is too large for mean shift, just use first 20,000 samples
+	num_subsample = 10000
+
+	# print('Mean shift for 4D data')
+	# print('Shuffle data and use first {:d}'.format(num_subsample))
+	# bandwidth_4D = 30000
+	# np.random.shuffle(training_data_4D)
+	# training_data_4D = training_data_4D[:num_subsample]
+	# train.mean_shift(training_data_4D, model_4D_path, bandwidth_4D)
+
 	print('Mean shift for 3D data')
-	train.mean_shift(training_data_3D, model_3D_path)
-elif args.model_type == 'dbscan':
-	print('DBSCAN for 4D data')
-	train.dbscan(training_data_4D, model_4D_path)
-	print('DBSCAN for 3D data')
-	train.dbscan(training_data_3D, model_3D_path)
+	print('Shuffle data and use first {:d}'.format(num_subsample))
+	bandwidth_3D = 10000
+	np.random.shuffle(training_data_3D)
+	training_data_3D = training_data_3D[:num_subsample]
+	train.mean_shift(training_data_3D, model_3D_path, bandwidth_3D)
+# drop DBSCAN: cannot generalize to other data
+# elif args.model_type == 'dbscan':
+# 	print('DBSCAN for 4D data')
+# 	train.dbscan(training_data_4D, model_4D_path)
+# 	print('DBSCAN for 3D data')
+# 	train.dbscan(training_data_3D, model_3D_path)
 else:
 	raise ValueError('Please input the correct type name!')
 

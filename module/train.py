@@ -12,6 +12,7 @@ import os
 import matplotlib.pyplot as plt 
 import numpy as np 
 import time
+import sklearn
 
 from sklearn.cluster import KMeans
 from sklearn.cluster import MiniBatchKMeans
@@ -85,37 +86,38 @@ def gmm(num_components, covariance_type, training_data, filename):
 
 	print('Finished!')
 
-def mean_shift(training_data, filename):
+def mean_shift(training_data, filename, input_bandwidth):
 	if not isinstance(filename, str):
 		raise ValueError('filename should be a string!')
 	print('Running...')
 	start = time.time()
-	meanshift = MeanShift(badnwidth=2).fit(training_data)
+	meanshift = MeanShift(bandwidth=input_bandwidth).fit(training_data)
 	end = time.time()
 	print('Run time:', end-start)
+	print(meanshift.cluster_centers_.shape)
 
 	print('Saving model, please wait...')
 	if os.path.exists(filename):
 		os.remove(filename)
-	dump(dbscan, filename)
+	dump(meanshift, filename)
 
 	print('Finished!')
 
 
-def dbscan(training_data, filename):
-	if not isinstance(filename, str):
-		raise ValueError('filename should be a string!')
-	start = time.time()
-	dbscan = DBSCAN(eps=3, min_samples=2).fit(X)
-	end = time.time()
-	print('Run time:', end-start)
+# def dbscan(training_data, filename):
+# 	if not ßisinstance(filename, str):
+# 		raise ValueError('filename should be a string!')
+# 	start = time.time()
+# 	dbscan = DBSCAN(eps=3, min_samples=2).fit(training_data)
+# 	end = time.time()
+# 	print('Run time:', end-start)
 
-	print('Saving model, please wait...')
-	if os.path.exists(filename):
-		os.remove(filename)
-	dump(dbscan, filename)
+# 	print('Saving model, please wait...')
+# 	if os.path.exists(filename):
+# 		os.remove(filename)
+# 	dump(dbscan, filename)
 
-	print('Finished!')
+# 	print('Finished!')
 
 
 
