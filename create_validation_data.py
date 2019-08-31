@@ -22,12 +22,12 @@ def save_data(filename, data):
 
 # here, need to give the full name of target text file (with the '.txt')
 # change it for different labeled data
-filename = 'labeled_data_test.txt'
+filename = 'labeled_data_0025.txt'
 # give the name for feature file
-file_name_4D = 'validation_data_4D_3_test'
-file_name_3D = 'validation_data_3D_3_test'
+file_name_4D = 'validation_data_4D_1x1'
+file_name_3D = 'validation_data_3D_1x1'
 # set the feature size, can be 1, 3 or 5
-feature_size = 3
+feature_size = 1
 # assign the keyword for target data folder
 keyword = 'SHP'
 
@@ -43,7 +43,7 @@ validation_data_3D = []
 
 for element in data:
 	target_str = element.split()
-	target_path = target_str[0]
+	target_path = os.path.join(os.getcwd(), os.path.basename(os.path.dirname(target_str[0])), os.path.basename(target_str[0]))
 	# extract the path
 	target_class = int(target_str[-1])
 	# extract the class
