@@ -130,6 +130,8 @@ python show_index.py --model_4D mini_kmeans_4D_4_3x3 --model_3D mini_kmeans_3D_4
 
 
 # upload data
+gcloud compute scp ./gmmfull_3D_3_3x3_0025.model msc:~/MSc-Project/model
+gcloud compute scp ./gmmfull_4D_3_3x3_0025.model msc:~/MSc-Project/model
 gcloud compute scp --recurse ./SHP15_T113_0028 msc:~/MSc-Project/
 # download data
 gcloud compute scp --recurse msc:~/MSc-Project/SHP15_T113_0025/segmentation_3D ./results/

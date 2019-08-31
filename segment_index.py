@@ -191,7 +191,7 @@ np.savetxt(path_4D, point_coordinate_4D, delimiter=',')
 np.savetxt(path_3D, point_coordinate_3D, delimiter=',')
 '''
 print('Will segment', len(sub_all_tif), 'slices')
-for i in sub_all_tif[:5]:
+for i in sub_all_tif:
 	segment(i, document_path_4D, document_path_3D, model_4D_type, model_3D_type, 
 			mask, feature_index, args.size, pore_4D, pore_3D, keyword)
 
