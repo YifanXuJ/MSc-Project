@@ -94,8 +94,9 @@ transfer_prediction_3D = transfer(prediction_3D, args.pore_3D)
 acc_4D, sen_4D, spe_4D, pre_4D = metrics(transfer_prediction_4D, data_label)
 acc_3D, sen_3D, spe_3D, pre_3D = metrics(transfer_prediction_3D, data_label)
 
-print('Accuracy for 4D model: {:f} \n Sensitivity for 4D model: {:f} \n Specificity for 4D model: {:f} \n Precision for 4D model: {:f}'.format(acc_4D, sen_4D, spe_4D, pre_4D))
-print('Accuracy for 3D model: {:f} \n Sensitivity for 3D model: {:f} \n Specificity for 3D model: {:f} \n Precision for 3D model: {:f}'.format(acc_3D, sen_3D, spe_3D, pre_3D))
+print('Precision for 3D model: {:f} \n Recall for 3D model: {:f}'.format(pre_3D, sen_3D))
+print('Precision for 4D model: {:f} \n Recall for 4D model: {:f}'.format(pre_4D, sen_4D))
+
 
 
 

@@ -82,8 +82,9 @@ transfer_prediction_3D = transfer(prediction_3D, args.pore_3D)
 acc_4D = metrics(transfer_prediction_4D, data_label)
 acc_3D = metrics(transfer_prediction_3D, data_label)
 
-print('Accuracy for 4D model: {:f}'.format(acc_4D))
 print('Accuracy for 3D model: {:f}'.format(acc_3D))
+print('Accuracy for 4D model: {:f}'.format(acc_4D))
+
 
 
 
