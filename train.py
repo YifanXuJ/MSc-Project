@@ -79,12 +79,12 @@ elif args.model_type == 'mean_shift':
 	# all data is too large for mean shift, just use first 20,000 samples
 	num_subsample = 10000
 
-	# print('Mean shift for 4D data')
-	# print('Shuffle data and use first {:d}'.format(num_subsample))
-	# bandwidth_4D = 30000
-	# np.random.shuffle(training_data_4D)
-	# training_data_4D = training_data_4D[:num_subsample]
-	# train.mean_shift(training_data_4D, model_4D_path, bandwidth_4D)
+	print('Mean shift for 4D data')
+	print('Shuffle data and use first {:d}'.format(num_subsample))
+	bandwidth_4D = 30000
+	np.random.shuffle(training_data_4D)
+	training_data_4D = training_data_4D[:num_subsample]
+	train.mean_shift(training_data_4D, model_4D_path, bandwidth_4D)
 
 	print('Mean shift for 3D data')
 	print('Shuffle data and use first {:d}'.format(num_subsample))
