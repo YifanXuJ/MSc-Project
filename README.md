@@ -29,6 +29,7 @@ $ conda install -c anaconda jupyter
 $ conda install -c anaconda scikit-learn
 $ conda install -c conda-forge opencv
 $ conda install -c conda-forge pbzip2 pydrive
+$ conda install -c anaconda pillow
 $ conda install -c conda-forge umap-learn (if you do not need to visualise in umap, do not need to install this package)
 ```
 If you only want to run the code on CPU, you need to install tensorflow cpu version:
