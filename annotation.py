@@ -54,8 +54,8 @@ def random_effective_area(masked_image):
 	height, width = masked_image.shape
 	flag = 1
 	while(flag):
-		x_co = random.randint(0, height)
-		y_co = random.randint(0, width)
+		x_co = random.randint(0, height-1)
+		y_co = random.randint(0, width-1)
 		if masked_image[x_co, y_co] != 0:
 			flag = 0
 	return x_co, y_co
