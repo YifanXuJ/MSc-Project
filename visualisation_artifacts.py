@@ -31,51 +31,15 @@ def transfer_image(array):
 	return img_bot, img_mid, img_top
 
 
-# here, need to give the full name of target text file (with the '.txt')
-# change it for different labeled data
-filename = 'artifact_0025.txt'
-keyword = 'SHP'
-feature_size = 3
+filename_4D = 'artifact_4D_3x3'
+filename_3D = 'artifact_3D_3x3'
 
-print('Loading text file...')
-filepath = os.path.join(os.getcwd(), 'validation_data', filename)
+# This part we load validation data
+filepath_4D = os.path.join(os.getcwd(), 'validation_data', filename_4D+'.npy')
+filepath_3D = os.path.join(os.getcwd(), 'validation_data', filename_3D+'.npy')
 
-with open(filepath, 'r') as f:
-	data = f.readlines()
-
-validation_data_4D = []
-validation_data_3D = []
-
-for element in data:
-	target_str = element.split()
-	target_path = os.path.join(os.getcwd(), os.path.basename(os.path.dirname(target_str[0])), os.path.basename(target_str[0]))
-	# extract the path
-	target_class = int(target_str[-1])
-	# extract the class
-	co_string = str(target_str[1:-1])
-	result = re.findall(r"\d+\.?\d*", co_string)
-	total_points = len(result) // 2
-	for i in range(total_points):
-		print('Current picture: ', target_path)
-		# get features
-		if feature_size == 3:
-			feature_4D, feature_3D = features.get_assign_features_3(target_path, int(float(result[2*i])), int(float(result[2*i+1])), keyword)
-		elif feature_size == 1:
-			feature_4D, feature_3D = features.get_assign_features_1(target_path, int(float(result[2*i])), int(float(result[2*i+1])), keyword)
-		elif feature_size == 5:
-			feature_4D, feature_3D = features.get_assign_features_5(target_path, int(float(result[2*i])), int(float(result[2*i+1])), keyword)
-		else:
-			raise ValueError('Please give the correct size!')
-
-		feature_4D_class = np.append(feature_4D, target_class)
-		feature_3D_class = np.append(feature_3D, target_class)
-		
-		validation_data_4D.append(feature_4D_class)
-		validation_data_3D.append(feature_3D_class)
-
-# transfer its format
-validation_data_4D = np.array(validation_data_4D)
-validation_data_3D = np.array(validation_data_3D)
+validation_data_4D = np.load(filepath_4D)
+validation_data_3D = np.load(filepath_3D)
 
 
 # all are artifact
