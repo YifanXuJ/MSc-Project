@@ -134,5 +134,5 @@ gcloud compute scp ./gmmfull_3D_3_3x3_0025.model msc:~/MSc-Project/model
 gcloud compute scp ./gmmfull_4D_3_3x3_0025.model msc:~/MSc-Project/model
 gcloud compute scp --recurse ./SHP15_T113_0028 msc:~/MSc-Project/
 # download data
-gcloud compute scp --recurse msc:~/MSc-Project/SHP15_T113_0025/segmentation_3D ./results/
-gcloud compute scp --recurse msc:~/MSc-Project/SHP15_T113_0025/segmentation_4D ./results/
+gcloud compute scp --recurse msc:~/MSc-Project/SHP15_T113_0025/segmentation_3D ./results/25_gmmfull
+gcloud compute scp --recurse msc:~/MSc-Project/SHP15_T113_0025/segmentation_4D ./results/25_gmmfull
