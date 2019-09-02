@@ -1,4 +1,5 @@
 # Create training data
+# you need to give time stamp, slice range, feature size, and file name you want..
 python create_training_data.py --begin_time 0021 --end_time 0049 --begin_slice 600 --end_slice 800 --filename_3D training_data_3D_3x3 --filename_4D training_data_4D_3x3 --size 3
 python create_training_data.py --begin_time 0021 --end_time 0049 --begin_slice 600 --end_slice 800 --filename_3D training_data_3D_5x5 --filename_4D training_data_4D_5x5 --size 5
 python create_training_data.py --begin_time 0021 --end_time 0049 --begin_slice 600 --end_slice 800 --filename_3D training_data_3D_1x1 --filename_4D training_data_4D_1x1 --size 1
@@ -18,6 +19,7 @@ python create_validation_data.py
 
 
 # Training command
+# we need to give the target training data, target algorithm, and number of clusters and covariance type (if needed)
 # Different number of clusters
 python train.py --data_3D training_data_3D_3x3_0025 --data_4D training_data_4D_3x3_0025 --model_type mini_batch_kmeans --num_cluster 2 --name_4D mini_kmeans_4D_2_3x3_0025 --name_3D mini_kmeans_3D_2_3x3_0025
 python train.py --data_3D training_data_3D_3x3_0025 --data_4D training_data_4D_3x3_0025 --model_type mini_batch_kmeans --num_cluster 3 --name_4D mini_kmeans_4D_3_3x3_0025 --name_3D mini_kmeans_3D_3_3x3_0025
