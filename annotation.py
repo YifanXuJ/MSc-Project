@@ -29,10 +29,10 @@ end_slice = 800
 # set the number of slices
 num_slices = 50
 # set the filename
-filename = 'labeled_data_0025'
+filename = 'labeled_data_0025_3classes'
 # area for show the lable image
 # set 100 will show the 200x200 area
-show_length = 75
+show_length = 100
 # set the mask centre and radius for each slice
 # we need to know it before annotation, use find_mask.py to determine the centre and radius
 mask_centre = (700, 810)
@@ -135,7 +135,7 @@ for sub_timestamp in sample_timestamp:
 		x_coordinate, y_coordinate = random_effective_area(masked_image)
 
 		plt.imshow(masked_image[x_coordinate-show_length:x_coordinate+show_length, y_coordinate-show_length:y_coordinate+show_length], 'gray')
-		plt.title('Please label any points for non-pore! ({:d}/{:d}) \n Current slice: {str}'.format((index+1), num_slices, str=os.path.basename(slice_path)), color='red')
+		plt.title('Please label any points for non-pore (non-artifact)! ({:d}/{:d}) \n Current slice: {str}'.format((index+1), num_slices, str=os.path.basename(slice_path)), color='red')
 
 		coordinate = plt.ginput(n=num_points, timeout=0)
 
@@ -158,7 +158,7 @@ for sub_timestamp in sample_timestamp:
 		y_coordinate = 820
 
 		plt.imshow(masked_image[x_coordinate-show_length:x_coordinate+show_length, y_coordinate-show_length:y_coordinate+show_length], 'gray')
-		plt.title('Please label any points for non-pore! ({:d}/{:d}) \n Current slice: {str}'.format((index+1), num_slices, str=os.path.basename(slice_path)), color='red')
+		plt.title('Please label any points for non-pore (artifact)! ({:d}/{:d}) \n Current slice: {str}'.format((index+1), num_slices, str=os.path.basename(slice_path)), color='red')
 
 		coordinate = plt.ginput(n=num_points, timeout=0)
 
