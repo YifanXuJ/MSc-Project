@@ -22,12 +22,12 @@ def save_data(filename, data):
 
 # here, need to give the full name of target text file (with the '.txt')
 # change it for different labeled data
-filename = 'artifact_0025.txt'
+filename = 'labeled_data_0025_Sina.txt'
 # give the name for feature file
-file_name_4D = 'artifact_4D_5x5'
-file_name_3D = 'artifact_3D_5x5'
+file_name_4D = 'test_4D_3x3'
+file_name_3D = 'test_3D_3x3'
 # set the feature size, can be 1, 3 or 5
-feature_size = 5
+feature_size = 3
 # assign the keyword for target data folder
 keyword = 'SHP'
 
