@@ -47,6 +47,9 @@ python train.py --data_3D training_data_3D_3x3 --data_4D training_data_4D_3x3 --
 python train.py --data_3D training_data_3D_3x3 --data_4D training_data_4D_3x3 --model_type mini_batch_kmeans --num_cluster 6 --name_4D mini_kmeans_4D_6_3x3 --name_3D mini_kmeans_3D_6_3x3
 
 
+python validate.py --model_4D mini_kmeans_4D_3_3x3_0025 --model_3D mini_kmeans_3D_3_3x3_0025 --filename_4D test_4D_3x3 --filename_3D test_3D_3x3 --pore_4D 0 --pore_3D 0
+
+
 
 # Validate data
 # validate data trained on 0025
@@ -112,6 +115,10 @@ python visualisation_umap.py
 
 
 
+# Analyse the label
+python analyse_label.py --model_4D gmmfull_4D_3_3x3_0025 --model_3D gmmfull_3D_3_3x3_0025 --size 3 --timestamp 0025 --slice 650
+python analyse_label.py --model_4D mini_kmeans_4D_3_3x3_0025 --model_3D mini_kmeans_3D_3_3x3_0025 --size 3 --timestamp 0025 --slice 650
+python analyse_label.py --model_4D mini_kmeans_4D_3_1x1_0025 --model_3D mini_kmeans_3D_3_1x1_0025 --size 1 --timestamp 0025 --slice 650
 
 
 
@@ -140,7 +147,7 @@ python segment_conv.py --model_4D mini_kmeans_4D_4_3x3 --model_3D mini_kmeans_3D
 python show_index.py --model_4D gmmfull_4D_3_3x3_0025 --model_3D gmmfull_3D_3_3x3_0025 --size 3 --timestamp 0025 --slice 756 --pore_4D 2 --pore_3D 1
 python show_index.py --model_4D mini_kmeans_4D_3_3x3_0025 --model_3D mini_kmeans_3D_3_3x3_0025 --size 3 --timestamp 0025 --slice 601 --pore_4D 0 --pore_3D 0
 
-python show_index.py --model_4D mini_kmeans_4D_3_1x1_0025 --model_3D mini_kmeans_3D_3_1x1_0025 --size 1 --timestamp 0025 --slice 601 --pore_4D 2 --pore_3D 0
+python show_index.py --model_4D mini_kmeans_4D_3_1x1_0025 --model_3D mini_kmeans_3D_3_1x1_0025 --size 1 --timestamp 0025 --slice 650 --pore_4D 2 --pore_3D 0
 
 python show_index.py --model_4D mini_kmeans_4D_3_5x5 --model_3D mini_kmeans_3D_3_5x5 --size 5 --timestamp 0025 --slice 601 --pore_4D 2 --pore_3D 2
 python show_conv.py --model_4D mini_kmeans_4D_3_3x3 --model_3D mini_kmeans_3D_3_3x3 --timestamp 0025 --slice 601 --pore_4D 1,2 --pore_3D 2
