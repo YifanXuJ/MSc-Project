@@ -114,6 +114,21 @@ python visualisation_umap.py
 
 
 
+
+
+# training 1x1x1 model
+python train.py --data_3D training_data_3D_1x1_0025 --data_4D training_data_4D_1x1_0025 --model_type mini_batch_kmeans --num_cluster 4 --name_4D mini_kmeans_4D_4_1x1_0025 --name_3D mini_kmeans_3D_4_1x1_0025
+
+python train.py --data_3D training_data_3D_1x1_0025 --data_4D training_data_4D_1x1_0025 --model_type gmm --num_cluster 3 --name_4D gmmfull_4D_3_1x1_0025 --name_3D gmmfull_3D_3_1x1_0025 --covariance_type full
+# evaluate 1x1x1 model
+python validate.py --model_4D mini_kmeans_4D_4_1x1_0025 --model_3D mini_kmeans_3D_4_1x1_0025 --filename_4D validation_data_4D_1x1 --filename_3D validation_data_3D_1x1 --pore_4D 1,2 --pore_3D 1
+python validate_artifact.py --model_4D mini_kmeans_4D_4_1x1_0025 --model_3D mini_kmeans_3D_4_1x1_0025 --filename_4D artifact_4D_1x1 --filename_3D artifact_3D_1x1 --pore_4D 1,2 --pore_3D 1
+
+python validate.py --model_4D gmmfull_4D_3_1x1_0025 --model_3D gmmfull_3D_3_1x1_0025 --filename_4D validation_data_4D_1x1 --filename_3D validation_data_3D_1x1 --pore_4D 2 --pore_3D 0
+python validate_artifact.py --model_4D gmmfull_4D_3_1x1_0025 --model_3D gmmfull_3D_3_1x1_0025 --filename_4D artifact_4D_1x1 --filename_3D artifact_3D_1x1 --pore_4D 2 --pore_3D 0
+
+
+
 # Segment slices
 python segment_index.py --model_4D gmmfull_4D_3_3x3_0025 --model_3D gmmfull_3D_3_3x3_0025 --size 3 --timestamp 0025 --pore_4D 2 --pore_3D 1
 python segment_conv.py --model_4D mini_kmeans_4D_3_3x3 --model_3D mini_kmeans_3D_3_3x3 --timestamp 0025 --pore_4D 2 --pore_3D 2
@@ -123,13 +138,16 @@ python segment_conv.py --model_4D mini_kmeans_4D_4_3x3 --model_3D mini_kmeans_3D
 
 # show single slice
 python show_index.py --model_4D gmmfull_4D_3_3x3_0025 --model_3D gmmfull_3D_3_3x3_0025 --size 3 --timestamp 0025 --slice 756 --pore_4D 2 --pore_3D 1
-python show_index.py --model_4D mini_kmeans_4D_3_3x3_0025 --model_3D mini_kmeans_3D_3_3x3_0025 --size 3 --timestamp 0025 --slice 601 --pore_4D 0 --pore_3D 1
-python show_index.py --model_4D mini_kmeans_4D_3_1x1 --model_3D mini_kmeans_3D_3_1x1 --size 1 --timestamp 0025 --slice 601 --pore_4D 0 --pore_3D 1
+python show_index.py --model_4D mini_kmeans_4D_3_3x3_0025 --model_3D mini_kmeans_3D_3_3x3_0025 --size 3 --timestamp 0025 --slice 601 --pore_4D 0 --pore_3D 0
+
+python show_index.py --model_4D mini_kmeans_4D_3_1x1_0025 --model_3D mini_kmeans_3D_3_1x1_0025 --size 1 --timestamp 0025 --slice 601 --pore_4D 2 --pore_3D 0
+
 python show_index.py --model_4D mini_kmeans_4D_3_5x5 --model_3D mini_kmeans_3D_3_5x5 --size 5 --timestamp 0025 --slice 601 --pore_4D 2 --pore_3D 2
 python show_conv.py --model_4D mini_kmeans_4D_3_3x3 --model_3D mini_kmeans_3D_3_3x3 --timestamp 0025 --slice 601 --pore_4D 1,2 --pore_3D 2
 python show_index.py --model_4D mini_kmeans_4D_4_3x3 --model_3D mini_kmeans_3D_4_3x3 --size 3 --timestamp 0030 --slice 300 --pore_4D 2 --pore_3D 2
 
-
+python show_index.py --model_4D mini_kmeans_4D_4_1x1_0025 --model_3D mini_kmeans_3D_4_1x1_0025 --size 1 --timestamp 0025 --slice 650 --pore_4D 1,2 --pore_3D 1
+python show_index.py --model_4D gmmfull_4D_3_1x1_0025 --model_3D gmmfull_3D_3_1x1_0025 --size 1 --timestamp 0025 --slice 650 --pore_4D 2 --pore_3D 0
 
 # upload data
 gcloud compute scp ./gmmfull_3D_3_3x3_0025.model msc:~/MSc-Project/model

@@ -27,7 +27,7 @@ keyword = 'SHP'
 begin_slice = 600
 end_slice = 800
 # set the number of slices
-num_slices = 100
+num_slices = 50
 # set the filename
 filename = 'labeled_data_0025'
 # area for show the lable image
@@ -125,7 +125,7 @@ for sub_timestamp in sample_timestamp:
 			f.writelines([slice_path, ' ', str(transformed_coordinate), ' ', '0', '\n'])
 			# '0' means pore
 
-	print('Please label any points for non-pore in each picture!')
+	print('Please label any points for non-pore (not artifact) in each picture!')
 	# Then we label all non-pore
 	random_slice_nonpore = np.random.randint(begin_slice-1, end_slice, num_slices)
 	for index, i in enumerate(random_slice_nonpore):
@@ -144,7 +144,30 @@ for sub_timestamp in sample_timestamp:
 
 		with open(file_path,'a') as f:
 			f.writelines([slice_path, ' ', str(transformed_coordinate), ' ', '1', '\n'])
-			# '1' means non-pore
+			# '1' means non-pore (not artifact)
+
+	print('Please label any points for non-pore (artifact) in each picture!')
+	# Then we label all non-pore
+	random_slice_nonpore = np.random.randint(begin_slice-1, end_slice, num_slices)
+	for index, i in enumerate(random_slice_nonpore):
+		slice_path = sub_all_tif[i-1]
+		slice_img = cv2.imread(slice_path, -1)
+		masked_image = add_mask(mask_centre, radius, slice_img)
+		# assign the centre for specific area
+		x_coordinate = 820
+		y_coordinate = 820
+
+		plt.imshow(masked_image[x_coordinate-show_length:x_coordinate+show_length, y_coordinate-show_length:y_coordinate+show_length], 'gray')
+		plt.title('Please label any points for non-pore! ({:d}/{:d}) \n Current slice: {str}'.format((index+1), num_slices, str=os.path.basename(slice_path)), color='red')
+
+		coordinate = plt.ginput(n=num_points, timeout=0)
+
+		transformed_coordinate = transform(coordinate, x_coordinate, y_coordinate, show_length)
+		print(transformed_coordinate)
+
+		with open(file_path,'a') as f:
+			f.writelines([slice_path, ' ', str(transformed_coordinate), ' ', '2', '\n'])
+			# '2' means non-pore (artifact)
 			
 print('Finished!')
 
