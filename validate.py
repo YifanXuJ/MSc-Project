@@ -43,22 +43,24 @@ def transfer(prediction, target_label):
 			transfer_result[i] = 1
 	return transfer_result
 
-# sensitivity & specificity
+# metrics
 def metrics(prediction, true_label):
 	pore_index = np.argwhere(true_label==0)
-	non_pore_index = np.argwhere(true_label==1)
+	non_pore_index = np.argwhere(true_label!=0)
+	non_pore_na_index = np.argwhere(true_label==1)
+	non_pore_a_index = np.argwhere(true_label==2)
 
-	true_positive = [prediction[i]==true_label[i] for i in pore_index]
-	true_negative = [prediction[i]==true_label[i] for i in non_pore_index]
-	false_positive = [prediction[i]!=true_label[i] for i in non_pore_index]
+	true_positive = [prediction[i]==0 for i in pore_index]
+	true_negative = [prediction[i]==1 for i in non_pore_index]
+	false_positive = [prediction[i]==0 for i in non_pore_index]
+	true_artifact = [prediction[i]==1 for i in non_pore_a_index]
 
-	sensitivity = np.sum(true_positive) / len(pore_index)
-	print(len(pore_index))
-	specificity = np.sum(true_negative) / len(non_pore_index)
-	print(len(non_pore_index))
 	precision = np.sum(true_positive) / (np.sum(true_positive) + np.sum(false_positive))
-	acc = (np.sum(true_positive) + np.sum(true_negative)) / (len(pore_index) + len(non_pore_index))
-	return acc, sensitivity, specificity, precision
+	sensitivity = np.sum(true_positive) / len(pore_index)
+	specificity = np.sum(true_negative) / len(non_pore_index)
+	acc_artifact = np.sum(true_artifact) / len(non_pore_a_index)
+
+	return precision, sensitivity, specificity, acc_artifact
 
 
 # get args
@@ -91,11 +93,11 @@ prediction_3D = model_3D_type.predict(data_feature_3D)
 transfer_prediction_4D = transfer(prediction_4D, args.pore_4D)
 transfer_prediction_3D = transfer(prediction_3D, args.pore_3D)
 
-acc_4D, sen_4D, spe_4D, pre_4D = metrics(transfer_prediction_4D, data_label)
-acc_3D, sen_3D, spe_3D, pre_3D = metrics(transfer_prediction_3D, data_label)
+pre_4D, sen_4D, spe_4D, acc_a_4D = metrics(transfer_prediction_4D, data_label)
+pre_3D, sen_3D, spe_3D, acc_a_3D = metrics(transfer_prediction_3D, data_label)
 
-print('Precision for 3D model: {:f} \n Recall for 3D model: {:f}'.format(pre_3D, sen_3D))
-print('Precision for 4D model: {:f} \n Recall for 4D model: {:f}'.format(pre_4D, sen_4D))
+print('Precision for 3D model: {:f} \n Recall for 3D model: {:f} \n Specificity for 3D model: {:f} \n Accuracy of artifact for 3D model {:f}'.format(pre_3D, sen_3D, spe_3D, acc_a_3D))
+print('Precision for 4D model: {:f} \n Recall for 4D model: {:f} \n Specificity for 4D model: {:f} \n Accuracy of artifact for 4D model {:f}'.format(pre_4D, sen_4D, spe_4D, acc_a_4D))
 
 
 
