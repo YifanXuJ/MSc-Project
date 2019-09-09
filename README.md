@@ -60,7 +60,7 @@ $ conda deactivate
 ```
 
 ## Instructions - How to use these files?
-I will give detailed instructions for using my program to segment the data. You should open the scripts.sh to refer the command in it.
+I will give detailed instructions for using my program to segment the data. You should open the scripts.sh to refer the command in it since we need to add some arguments for using these files.
 
 ### 0. Prepare the folder and environment
 First, move the data which need to be segmented in the same directory with these files. Then, activate the conda virtual environment. Note that, each time, we only work on one cylinder with different time stamps.
@@ -84,7 +84,7 @@ We need to prepare training data for different time stamp. Refer the command in 
 In training process, we can set different parameter to train our model. See scripts - Training command.
 
 ### 3. Find label
-This part needs us open the jupyer notebook, then open analyse_label.ipynb, input the parameter in the cell, and find the corresponding label for pore.
+Run analyse label.py with arguments, which will load one image, and show the segmentation results with different single labels. Then we choose the label(s) representing pores according to these images.
 
 ### 4. Segment
 There are two files can be used to segment. segment_index.py will segment the image one by one, and it is slow.
