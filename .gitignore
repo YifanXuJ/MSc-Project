@@ -6,7 +6,5 @@ training_data/
 validation_data/*.npy
 model/
 results/
-dissertation/
 
-Untitled.ipynb
 Write dissertation.ipynb
