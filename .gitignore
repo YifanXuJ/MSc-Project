@@ -7,4 +7,4 @@ validation_data/*.npy
 model/
 results/
 
-Write dissertation.ipynb
+dissertation_plot.ipynb
