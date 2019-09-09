@@ -3,7 +3,7 @@
 .ipynb_checkpoints/
 /SHP15_*/
 training_data/
-validation_data/
+validation_data/*.npy
 model/
 results/
 dissertation/
