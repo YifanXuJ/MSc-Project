@@ -24,10 +24,10 @@ def save_data(filename, data):
 # change it for different labeled data
 filename = 'labeled_data_0025_Sina.txt'
 # give the name for feature file
-file_name_4D = 'test_4D_3x3'
-file_name_3D = 'test_3D_3x3'
+file_name_4D = 'validation_data_4D_5x5'
+file_name_3D = 'validation_data_3D_5x5'
 # set the feature size, can be 1, 3 or 5
-feature_size = 3
+feature_size = 5
 # assign the keyword for target data folder
 keyword = 'SHP'
 
