@@ -85,6 +85,8 @@ for i in range(num_classes_4D):
 	plt.imshow(final_img_4D, 'gray')
 	plt.axis('off')
 	plt.title('Segment for 4D data, class {:d}'.format(i))
+	# name_4D = 'analyse_label_4D_'+str(i)+'.png'
+	# plt.savefig(name_4D, bbox_inches='tight', pad_inches=0.0)
 
 
 for i in range(num_classes_3D):
@@ -98,10 +100,14 @@ for i in range(num_classes_3D):
 	plt.imshow(final_img_3D, 'gray')
 	plt.axis('off')
 	plt.title('Segment for 3D data, class {:d}'.format(i))
+	# name_3D = 'analyse_label_3D_'+str(i)+'.png'
+	# plt.savefig(name_3D, bbox_inches='tight', pad_inches=0.0)
 
 plt.figure()
 img = cv2.imread(target_slice, -1)
 plt.imshow(img, 'gray')
+plt.axis('off')
 plt.title('Original slice')
+# plt.savefig('original_image.png', bbox_inches='tight', pad_inches=0.0)
 
 plt.show()
