@@ -71,16 +71,18 @@ for i in range(num_centres_3D):
 
 	# plot the centre
 	fig = plt.figure()
-	fig.suptitle('Visualisation for 3D centre {:d}'.format(i+1))
+	fig.suptitle('Visualisation for 3D centre {:d}'.format(i+1), x=0.5, y=0.8)
 	ax = plt.subplot(131)
 	ax.imshow(img_1, 'gray')
-	ax.set_title('bot slice')
+	ax.set_title('Bot slice')
 	ax = plt.subplot(132)
 	ax.imshow(img_2, 'gray')
-	ax.set_title('mid slice')
+	ax.set_title('Mid slice')
 	ax = plt.subplot(133)
 	ax.imshow(img_3, 'gray')
-	ax.set_title('top slice')
+	ax.set_title('Top slice')
+	name = '3D_centre_'+str(i+1)+'.png'
+	fig.savefig(name, bbox_inches='tight', pad_inches=0.0)
 
 # This part show the centre for 4D data
 size_img = int(dim_4D/3/3)
@@ -121,15 +123,15 @@ for i in range(num_centres_4D):
 	fig = plt.figure()
 	fig.suptitle('Visualisation for 4D centre {:d}'.format(i+1)) 
 	ax = plt.subplot(331)
+	ax.set_title('Bot slice')
 	ax.imshow(img_1, 'gray')
-	# ax.set_title('bot slice')
 	ax = plt.subplot(332)
+	ax.set_title('Mid slice')
 	ax.imshow(img_2, 'gray')
-	# ax.set_title('mid slice')
 	ax = plt.subplot(333)
+	ax.set_title('Top slice')
 	ax.imshow(img_3, 'gray')
-	# ax.set_title('top slice')
-
+	
 	ax = plt.subplot(334)
 	ax.imshow(img_4, 'gray')
 	# ax.set_title('bot slice')
@@ -149,6 +151,9 @@ for i in range(num_centres_4D):
 	ax = plt.subplot(339)
 	ax.imshow(img_9, 'gray')
 	# ax.set_title('top slice')
+
+	name = '4D_centre_'+str(i+1)+'.png'
+	fig.savefig(name, bbox_inches='tight', pad_inches=0.0)
 
 plt.show()
 
