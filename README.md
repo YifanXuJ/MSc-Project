@@ -1,5 +1,9 @@
 # MSc-Project - Segmentation for 4D data
 
+## Important!
+
+Since these data is relevant to the unpublished research, I will not release any data about this experiment, but only upload my code.
+
 ## Environment building
 
 Recommend using miniconda (if do not have Anaconda) to build the virtual environment. If you want to run all the codes, you may need to install all the package.
