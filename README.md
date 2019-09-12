@@ -67,7 +67,9 @@ $ conda deactivate
 I will give detailed instructions for using my program to segment the data. You should open the scripts.sh to refer the command in it since we need to add some arguments for using these files.
 
 ### 0. Prepare the folder and environment
-First, move the data which need to be segmented in the same directory with these files. Then, activate the conda virtual environment. Note that, each time, we only work on one cylinder with different time stamps. ![Path](https://github.com/misclick47/MSc-Project/tree/master/images/path.png)
+First, move the data which need to be segmented in the same directory with these files. Then, activate the conda virtual environment. Note that, each time, we only work on one cylinder with different time stamps. 
+
+![Path](https://github.com/misclick47/MSc-Project/tree/master/images/path.png)
 
 
 ### 1. Prepare the training data
@@ -76,11 +78,18 @@ Before run the program, we should change some default parameter for our program.
 #### mask_centre and radius
 you should run the find_mask.py to check the centre and radius of our mask. After obtaining the correct parameter, open create_training_data.py, change the value of mask_centre and radius.
 
+![click centre](https://github.com/misclick47/MSc-Project/tree/master/images/click_centre.png)
+
+![show radius](https://github.com/misclick47/MSc-Project/tree/master/images/show_radius.png)
+
+
 #### keyword
 also, you need to change the keyword. Keywork is the name for our cylinder, like 'SHP'. Our program need this word to find all the data folder.
 
 #### subsampling_rate
 We suggest control the whole number of training data points being 2 million. You can set it freely.
+
+![Masked image](https://github.com/misclick47/MSc-Project/tree/master/images/masked.png)
 
 #### Run the program
 We need to prepare training data for different time stamp. Refer the command in scripts.sh - Cerate training data. 
@@ -90,6 +99,12 @@ In training process, we can set different parameter to train our model. See scri
 
 ### 3. Find label
 Run analyse label.py with arguments, which will load one image, and show the segmentation results with different single labels. Then we choose the label(s) representing pores according to these images.
+
+![raw image](https://github.com/misclick47/MSc-Project/tree/master/images/raw_image.png)
+
+![class 0](https://github.com/misclick47/MSc-Project/tree/master/images/analyse_label_4D_0.png)
+![class 1](https://github.com/misclick47/MSc-Project/tree/master/images/analyse_label_4D_1.png)
+![class 2](https://github.com/misclick47/MSc-Project/tree/master/images/analyse_label_4D_2.png)
 
 ### 4. Segment
 There are two files can be used to segment. segment_index.py will segment the image one by one, and it is slow.
