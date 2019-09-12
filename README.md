@@ -67,7 +67,7 @@ $ conda deactivate
 I will give detailed instructions for using my program to segment the data. You should open the scripts.sh to refer the command in it since we need to add some arguments for using these files.
 
 ### 0. Prepare the folder and environment
-First, move the data which need to be segmented in the same directory with these files. Then, activate the conda virtual environment. Note that, each time, we only work on one cylinder with different time stamps.
+First, move the data which need to be segmented in the same directory with these files. Then, activate the conda virtual environment. Note that, each time, we only work on one cylinder with different time stamps. ![Path](https://github.com/misclick47/MSc-Project/images/path.png)
 
 ### 1. Prepare the training data
 Before run the program, we should change some default parameter for our program.
