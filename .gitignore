@@ -1,5 +1,5 @@
 # ignore all the data
-.DS_Store
+# This part for directory
 .ipynb_checkpoints/
 /SHP15_*/
 training_data/
@@ -7,4 +7,6 @@ validation_data/*.npy
 model/
 results/
 
+# This part for files
+.DS_Store
 dissertation_plot.ipynb
