@@ -45,13 +45,13 @@ def get_args():
 # get argument from args function
 args = get_args()
 # set the parameter of mask here
-mask_centre = (700, 810)
-radius = 550
+mask_centre = (718, 682)
+radius = 562
 # set the subsampling rate here
 # means, for each slice, we just randomly pick 1% points as training data
 subsampling_rate = 0.01
 # for locate target folder
-keyword = 'SHP'
+keyword = 'VA10_Pc200_Ram25_Pf'
 
 
 current_path = os.getcwd()

@@ -16,6 +16,8 @@ import argparse
 import time
 import tensorflow as tf 
 
+tf.compat.v1.disable_eager_execution()  # newly added
+
 def get_args():
 	parser = argparse.ArgumentParser(description='Show single results')
 
@@ -120,9 +122,9 @@ def segment(begin_slice, end_slice, kernel_3D_list, kernel_4D_list_1, kernel_4D_
 args = get_args()
 
 # Here we set the paramater
-mask_centre = (700, 810)
-radius = 550
-keyword = 'SHP'
+mask_centre = (718, 682)
+radius = 562
+keyword = 'VA10_Pc200_Ram25_Pf'
 # transfer the pore from string to list
 pore_4D = args.pore_4D.split(',')
 pore_4D = [int(i) for i in pore_4D]

@@ -14,18 +14,19 @@ import numpy as np
 import module.content as content
 
 # Set different centre to get different mask area
-centre = (700, 810)
+centre = (718, 682)  #(700, 810)
 # Here, centre match the definition in image, but not match the definition in matrix
 # In matrix index, we use [row, column], which equals to (column, row) in image
-radius = 550
+radius = 562  #550
 # assign the target timestamp manually
 # will automatically pick the first slice
-timestamp = '0025'
+timestamp = '0050'
 
 
 current_path = os.getcwd()
-all_timestamp = content.get_folder(current_path, 'SHP')
+all_timestamp = content.get_folder(current_path, 'Pf')
 timestamp_index = [all_timestamp.index(i) for i in all_timestamp if timestamp in i]
+print(timestamp_index)
 target_timestamp = all_timestamp[timestamp_index[0]]
 sub_path = os.path.join(current_path, target_timestamp)
 sub_all_tif = content.get_allslice(sub_path)

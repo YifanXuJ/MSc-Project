@@ -8,7 +8,7 @@ from joblib import load
 import argparse
 import time
 import matplotlib
-matplotlib.use('MacOSX')
+# matplotlib.use('MacOSX')
 
 def get_args():
 	parser = argparse.ArgumentParser(description='Show single results')
@@ -31,9 +31,9 @@ def get_args():
 
 args = get_args()
 # Here we set the paramater
-mask_centre = (700, 810)
-radius = 550
-keyword = 'SHP'
+mask_centre = (718, 682)
+radius = 562
+keyword = 'VA10_Pc200_Ram25_Pf'
 
 # get the path for target slice
 current_path = os.getcwd()
