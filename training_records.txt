@@ -1,0 +1,3032 @@
+2023-02-16 06:58:31.157608: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1616] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 21631 MB memory:  -> device: 0, name: NVIDIA RTX A5000, pci bus id: 0000:61:00.0, compute capability: 8.6
+
+
+
+
+
+python train.py --data_3D training_data_3D_3x3 --data_4D training_data_4D_3x3 --model_type mini_batch_kmeans --num_cluster 2 --name_4D mini_kmeans_4D_2_3x3 --name_3D mini_kmeans_3D_2_3x3
+
+Namespace(data_3D='training_data_3D_3x3', data_4D='training_data_4D_3x3', model_type='mini_batch_kmeans', num_cluster=2, covariance_type='None', name_4D='mini_kmeans_4D_2_3x3', name_3D='mini_kmeans_3D_2_3x3')
+Loading data...
+Finished!
+Number of samples: 9970605
+mini-batch kmeans for 4D data
+Running...
+Run time: 6.93936824798584
+Saving model, please wait...
+Finished!
+mini-batch kmeans for 3D data
+Running...
+Run time: 1.6333906650543213
+Saving model, please wait...
+Finished!
+
+==========================on data from timestamp 0050 - 0090, slice 900-1100, subsampling rate 0.002
+=====mini_batch_kmeans,feature(3),cluster 2
+python train.py --data_3D training_data_3D_3x3 --data_4D training_data_4D_3x3 --model_type mini_batch_kmeans --num_cluster 2 --name_4D mini_kmeans_4D_2_3x3 --name_3D mini_kmeans_3D_2_3x3
+
+Namespace(data_3D='training_data_3D_3x3', data_4D='training_data_4D_3x3', model_type='mini_batch_kmeans', num_cluster=2, covariance_type='None', name_4D='mini_kmeans_4D_2_3x3', name_3D='mini_kmeans_3D_2_3x3')
+Loading data...
+Finished!
+Number of samples: 1854225
+mini-batch kmeans for 4D data
+Running...
+Run time: 3.251718044281006
+Saving model, please wait...
+Finished!
+mini-batch kmeans for 3D data
+Running...
+Run time: 2.052812337875366
+Saving model, please wait...
+Finished!
+
+
+=====mini_batch_kmeans,feature(3),cluster 3
+python train.py --data_3D training_data_3D_3x3 --data_4D training_data_4D_3x3 --model_type mini_batch_kmeans --num_cluster 3 --name_4D mini_kmeans_4D_3_3x3 --name_3D mini_kmeans_3D_3_3x3
+
+Namespace(data_3D='training_data_3D_3x3', data_4D='training_data_4D_3x3', model_type='mini_batch_kmeans', num_cluster=3, covariance_type='None', name_4D='mini_kmeans_4D_3_3x3', name_3D='mini_kmeans_3D_3_3x3')
+Loading data...
+Finished!
+Number of samples: 1854225
+mini-batch kmeans for 4D data
+Running...
+Run time: 2.9990174770355225
+Saving model, please wait...
+Finished!
+mini-batch kmeans for 3D data
+Running...
+Run time: 2.2371227741241455
+Saving model, please wait...
+Finished!
+
+
+=====mini_batch_kmeans,feature(3),cluster 4
+python train.py --data_3D training_data_3D_3x3 --data_4D training_data_4D_3x3 --model_type mini_batch_kmeans --num_cluster 4 --name_4D mini_kmeans_4D_4_3x3 --name_3D mini_kmeans_3D_4_3x3
+
+Namespace(data_3D='training_data_3D_3x3', data_4D='training_data_4D_3x3', model_type='mini_batch_kmeans', num_cluster=4, covariance_type='None', name_4D='mini_kmeans_4D_4_3x3', name_3D='mini_kmeans_3D_4_3x3')
+Loading data...
+Finished!
+Number of samples: 1854225
+mini-batch kmeans for 4D data
+Running...
+Run time: 5.767187118530273
+Saving model, please wait...
+Finished!
+mini-batch kmeans for 3D data
+Running...
+Run time: 2.9696757793426514
+Saving model, please wait...
+Finished!
+
+=====mini_batch_kmeans,feature(3),cluster 5
+python train.py --data_3D training_data_3D_3x3 --data_4D training_data_4D_3x3 --model_type mini_batch_kmeans --num_cluster 5 --name_4D mini_kmeans_4D_5_3x3 --name_3D mini_kmeans_3D_5_3x3
+
+Namespace(data_3D='training_data_3D_3x3', data_4D='training_data_4D_3x3', model_type='mini_batch_kmeans', num_cluster=5, covariance_type='None', name_4D='mini_kmeans_4D_5_3x3', name_3D='mini_kmeans_3D_5_3x3')
+Loading data...
+Finished!
+Number of samples: 1854225
+mini-batch kmeans for 4D data
+Running...
+Run time: 3.7326297760009766
+Saving model, please wait...
+Finished!
+mini-batch kmeans for 3D data
+Running...
+Run time: 3.3255841732025146
+Saving model, please wait...
+Finished!
+
+
+=====mini_batch_kmeans,feature(3),cluster 6
+python train.py --data_3D training_data_3D_3x3 --data_4D training_data_4D_3x3 --model_type mini_batch_kmeans --num_cluster 6 --name_4D mini_kmeans_4D_6_3x3 --name_3D mini_kmeans_3D_6_3x3
+
+Namespace(data_3D='training_data_3D_3x3', data_4D='training_data_4D_3x3', model_type='mini_batch_kmeans', num_cluster=6, covariance_type='None', name_4D='mini_kmeans_4D_6_3x3', name_3D='mini_kmeans_3D_6_3x3')
+Loading data...
+Finished!
+Number of samples: 1854225
+mini-batch kmeans for 4D data
+Running...
+Run time: 3.876462459564209
+Saving model, please wait...
+Finished!
+mini-batch kmeans for 3D data
+Running...
+Run time: 2.2413458824157715
+Saving model, please wait...
+Finished!
+
+
+
+
+
+==========================on data timestamp 0050, slice 900-1100, subsampling rate 0.01
+
+=====mini_batch_kmeans,feature(3),cluster 2
+python train.py --data_3D training_data_3D_3x3_0050 --data_4D training_data_4D_3x3_0050 --model_type mini_batch_kmeans --num_cluster 2 --name_4D mini_kmeans_4D_2_3x3_0050 --name_3D mini_kmeans_3D_2_3x3_0050
+
+Namespace(data_3D='training_data_3D_3x3_0050', data_4D='training_data_4D_3x3_0050', model_type='mini_batch_kmeans', num_cluster=2, covariance_type='None', name_4D='mini_kmeans_4D_2_3x3_0050', name_3D='mini_kmeans_3D_2_3x3_0050')
+Loading data...
+Finished!
+Number of samples: 1854627
+mini-batch kmeans for 4D data
+Running...
+Run time: 2.969029664993286
+Saving model, please wait...
+Finished!
+mini-batch kmeans for 3D data
+Running...
+Run time: 2.4281651973724365
+Saving model, please wait...
+Finished!
+
+
+=====mini_batch_kmeans,feature(3),cluster 3
+python train.py --data_3D training_data_3D_3x3_0050 --data_4D training_data_4D_3x3_0050 --model_type mini_batch_kmeans --num_cluster 3 --name_4D mini_kmeans_4D_3_3x3_0050 --name_3D mini_kmeans_3D_3_3x3_0050
+
+Namespace(data_3D='training_data_3D_3x3_0050', data_4D='training_data_4D_3x3_0050', model_type='mini_batch_kmeans', num_cluster=3, covariance_type='None', name_4D='mini_kmeans_4D_3_3x3_0050', name_3D='mini_kmeans_3D_3_3x3_0050')
+Loading data...
+Finished!
+Number of samples: 1854627
+mini-batch kmeans for 4D data
+Running...
+Run time: 4.3590428829193115
+Saving model, please wait...
+Finished!
+mini-batch kmeans for 3D data
+Running...
+Run time: 1.3333969116210938
+Saving model, please wait...
+Finished!
+
+=====mini_batch_kmeans,feature(3),cluster 4
+python train.py --data_3D training_data_3D_3x3_0050 --data_4D training_data_4D_3x3_0050 --model_type mini_batch_kmeans --num_cluster 4 --name_4D mini_kmeans_4D_4_3x3_0050 --name_3D mini_kmeans_3D_4_3x3_0050
+
+Namespace(data_3D='training_data_3D_3x3_0050', data_4D='training_data_4D_3x3_0050', model_type='mini_batch_kmeans', num_cluster=4, covariance_type='None', name_4D='mini_kmeans_4D_4_3x3_0050', name_3D='mini_kmeans_3D_4_3x3_0050')
+Loading data...
+Finished!
+Number of samples: 1854627
+mini-batch kmeans for 4D data
+Running...
+Run time: 5.14300274848938
+Saving model, please wait...
+Finished!
+mini-batch kmeans for 3D data
+Running...
+Run time: 2.803593873977661
+Saving model, please wait...
+Finished!
+
+
+=====mini_batch_kmeans,feature(3),cluster 5
+python train.py --data_3D training_data_3D_3x3_0050 --data_4D training_data_4D_3x3_0050 --model_type mini_batch_kmeans --num_cluster 5 --name_4D mini_kmeans_4D_5_3x3_0050 --name_3D mini_kmeans_3D_5_3x3_0050
+
+Namespace(data_3D='training_data_3D_3x3_0050', data_4D='training_data_4D_3x3_0050', model_type='mini_batch_kmeans', num_cluster=5, covariance_type='None', name_4D='mini_kmeans_4D_5_3x3_0050', name_3D='mini_kmeans_3D_5_3x3_0050')
+Loading data...
+Finished!
+Number of samples: 1854627
+mini-batch kmeans for 4D data
+Running...
+Run time: 3.79380202293396
+Saving model, please wait...
+Finished!
+mini-batch kmeans for 3D data
+Running...
+Run time: 2.374560832977295
+Saving model, please wait...
+Finished!
+
+=====mini_batch_kmeans,feature(3),cluster 6
+python train.py --data_3D training_data_3D_3x3_0050 --data_4D training_data_4D_3x3_0050 --model_type mini_batch_kmeans --num_cluster 6 --name_4D mini_kmeans_4D_6_3x3_0050 --name_3D mini_kmeans_3D_6_3x3_0050
+
+Namespace(data_3D='training_data_3D_3x3_0050', data_4D='training_data_4D_3x3_0050', model_type='mini_batch_kmeans', num_cluster=6, covariance_type='None', name_4D='mini_kmeans_4D_6_3x3_0050', name_3D='mini_kmeans_3D_6_3x3_0050')
+Loading data...
+Finished!
+Number of samples: 1854627
+mini-batch kmeans for 4D data
+Running...
+Run time: 3.380296230316162
+Saving model, please wait...
+Finished!
+mini-batch kmeans for 3D data
+Running...
+Run time: 2.59674072265625
+Saving model, please wait...
+Finished!
+
+=====gmm(full),feature(3),cluster 3
+python train.py --data_3D training_data_3D_3x3_0050 --data_4D training_data_4D_3x3_0050 --model_type gmm --num_cluster 3 --name_4D gmmfull_4D_3_3x3_0050 --name_3D gmmfull_3D_3_3x3_0050 --covariance_type full
+
+Namespace(data_3D='training_data_3D_3x3_0050', data_4D='training_data_4D_3x3_0050', model_type='gmm', num_cluster=3, covariance_type='full', name_4D='gmmfull_4D_3_3x3_0050', name_3D='gmmfull_3D_3_3x3_0050')
+Loading data...
+Finished!
+Number of samples: 1854627
+GMM for 4D data
+Running...
+Run time: 78.70142650604248
+Saving model, please wait...
+Finished!
+GMM for 3D data
+Running...
+Run time: 23.910237789154053
+Saving model, please wait...
+Finished!
+
+==========================on data timestamp 0070, slice 900-1100, subsampling rate 0.01
+
+=====mini_batch_kmeans,feature(3),cluster 2
+=====mini_batch_kmeans,feature(3),cluster 3
+=====mini_batch_kmeans,feature(3),cluster 4
+=====mini_batch_kmeans,feature(3),cluster 5
+=====mini_batch_kmeans,feature(3),cluster 6
+
+
+
+===================================Segmenting
+
+python analyse_label.py --model_4D gmmfull_4D_3_3x3_0050 --model_3D gmmfull_3D_3_3x3_0050 --size 3 --timestamp 0050 --slice 950
+Namespace(model_4D='gmmfull_4D_3_3x3_0050', model_3D='gmmfull_3D_3_3x3_0050', size=3, timestamp='0050', slice=950)
+Pick one slice to get mask and features index
+Current slice: D:\MSc-Project\VA10_Pc200_Ram25_Pf50_T125_0050\VA10_Pc200_Ram25_Pf50_T125_0050_0950.rec.8bit.tif
+Loading 9 images...
+Finished!
+Getting features...
+Finished!
+Concatenating features...
+Finished!
+Segmenting...
+Run time: 2.2206192016601562
+
+
+
+
+python segment_conv.py --model_4D gmmfull_4D_3_3x3_0050 --model_3D gmmfull_3D_3_3x3_0050 --timestamp 0050 --pore_4D 0 --pore_3D 0
+Namespace(model_4D='gmmfull_4D_3_3x3_0050', model_3D='gmmfull_3D_3_3x3_0050', timestamp='0050', pore_4D='0', pore_3D='0')
+Traceback (most recent call last):
+  File "D:\MSc-Project\segment_conv.py", line 150, in <module>
+    centre_4D = model_4D_type.cluster_centers_
+AttributeError: 'GaussianMixture' object has no attribute 'cluster_centers_'
+
+
+python analyse_label.py --model_4D gmmfull_4D_3_3x3_0050 --model_3D gmmfull_3D_3_3x3_0050 --size 3 --timestamp 0050 --slice 950
+
+
+
+python analyse_label.py --model_4D mini_kmeans_4D_3_3x3_0050 --model_3D mini_kmeans_3D_3_3x3_0050 --size 3 --timestamp 0050 --slice 950
+python segment_conv.py --model_4D mini_kmeans_4D_3_3x3_0050 --model_3D mini_kmeans_3D_3_3x3_0050 --timestamp 0050 --pore_4D 2 --pore_3D 2
+1.1271841526031494 per session
+
+
+python analyse_label.py --model_4D mini_kmeans_4D_3_3x3 --model_3D mini_kmeans_3D_3_3x3 --size 3 --timestamp 0050 --slice 950
+python segment_conv.py --model_4D mini_kmeans_4D_3_3x3 --model_3D mini_kmeans_3D_3_3x3 --timestamp 0050 --pore_4D 0 --pore_3D 1
+1.1544556617736816
+6:17.55 - 6:23.57
+
+python analyse_label.py --model_4D mini_kmeans_4D_6_3x3 --model_3D mini_kmeans_3D_6_3x3 --size 3 --timestamp 0050 --slice 950
+python segment_conv.py --model_4D mini_kmeans_4D_6_3x3 --model_3D mini_kmeans_3D_6_3x3 --timestamp 0050 --pore_4D 2 --pore_3D 3
+2.489786148071289 - 3.6545825004577637
+6:32 - 6:43
+
+
+
+python analyse_label.py --model_4D mini_kmeans_4D_6_3x3_0050 --model_3D mini_kmeans_3D_6_3x3_0050 --size 3 --timestamp 0050 --slice 950
+python segment_conv.py --model_4D mini_kmeans_4D_6_3x3_0050 --model_3D mini_kmeans_3D_6_3x3_0050 --timestamp 0050 --pore_4D 2 --pore_3D 3
+2.621561050415039 - 3.6841704845428467
+6:47 - 6:58  ==> 11 mins
+
+
+
+# gmm 6 clusters
+python train.py --data_3D training_data_3D_3x3_0050 --data_4D training_data_4D_3x3_0050 --model_type gmm --num_cluster 6 --name_4D gmmfull_4D_6_3x3_0050 --name_3D gmmfull_3D_6_3x3_0050 --covariance_type full
+
+Namespace(data_3D='training_data_3D_3x3_0050', data_4D='training_data_4D_3x3_0050', model_type='gmm', num_cluster=6, covariance_type='full', name_4D='gmmfull_4D_6_3x3_0050', name_3D='gmmfull_3D_6_3x3_0050')
+Loading data...
+Finished!
+Number of samples: 1854627
+GMM for 4D data
+Running...
+Run time: 366.8629562854767
+Saving model, please wait...
+Finished!
+GMM for 3D data
+Running...
+Run time: 79.74371886253357
+Saving model, please wait...
+Finished!
+
+
+
+python analyse_label.py --model_4D gmmfull_4D_6_3x3_0050 --model_3D gmmfull_3D_6_3x3_0050 --size 3 --timestamp 0050 --slice 950
+
+
+# gmm 7 clusters
+python train.py --data_3D training_data_3D_3x3_0050 --data_4D training_data_4D_3x3_0050 --model_type gmm --num_cluster 7 --name_4D gmmfull_4D_7_3x3_0050 --name_3D gmmfull_3D_7_3x3_0050 --covariance_type full
+
+Namespace(data_3D='training_data_3D_3x3_0050', data_4D='training_data_4D_3x3_0050', model_type='gmm', num_cluster=7, covariance_type='full', name_4D='gmmfull_4D_7_3x3_0050', name_3D='gmmfull_3D_7_3x3_0050')
+Loading data...
+Finished!
+Number of samples: 1854627
+GMM for 4D data
+Running...
+Run time: 181.3095064163208
+Saving model, please wait...
+Finished!
+GMM for 3D data
+Running...
+Run time: 147.0470175743103
+Saving model, please wait...
+Finished!
+
+
+python analyse_label.py --model_4D gmmfull_4D_7_3x3_0050 --model_3D gmmfull_3D_7_3x3_0050 --size 3 --timestamp 0050 --slice 950
+
+Namespace(model_4D='gmmfull_4D_7_3x3_0050', model_3D='gmmfull_3D_7_3x3_0050', size=3, timestamp='0050', slice=950)
+Pick one slice to get mask and features index
+Current slice: D:\MSc-Project\VA10_Pc200_Ram25_Pf50_T125_0050\VA10_Pc200_Ram25_Pf50_T125_0050_0950.rec.8bit.tif
+Loading 9 images...
+Finished!
+Getting features...
+Finished!
+Concatenating features...
+Finished!
+Segmenting...
+Run time: 4.806386470794678
+
+
+
+
+
+# gmm 8 clusters
+python train.py --data_3D training_data_3D_3x3_0050 --data_4D training_data_4D_3x3_0050 --model_type gmm --num_cluster 8 --name_4D gmmfull_4D_8_3x3_0050 --name_3D gmmfull_3D_8_3x3_0050 --covariance_type full
+
+Namespace(data_3D='training_data_3D_3x3_0050', data_4D='training_data_4D_3x3_0050', model_type='gmm', num_cluster=8, covariance_type='full', name_4D='gmmfull_4D_8_3x3_0050', name_3D='gmmfull_3D_8_3x3_0050')
+Loading data...
+Finished!
+Number of samples: 1854627
+GMM for 4D data
+Running...
+Run time: 316.6672990322113
+Saving model, please wait...
+Finished!
+GMM for 3D data
+Running...
+Run time: 94.74512958526611
+Saving model, please wait...
+Finished!
+
+
+python analyse_label.py --model_4D gmmfull_4D_8_3x3_0050 --model_3D gmmfull_3D_8_3x3_0050 --size 3 --timestamp 0050 --slice 950
+
+Namespace(model_4D='gmmfull_4D_8_3x3_0050', model_3D='gmmfull_3D_8_3x3_0050', size=3, timestamp='0050', slice=950)
+Pick one slice to get mask and features index
+Current slice: D:\MSc-Project\VA10_Pc200_Ram25_Pf50_T125_0050\VA10_Pc200_Ram25_Pf50_T125_0050_0950.rec.8bit.tif
+Loading 9 images...
+Finished!
+Getting features...
+Finished!
+Concatenating features...
+Finished!
+Segmenting...
+Run time: 5.629948139190674
+
+
+
+
+
+# gmm 10 clusters
+python train.py --data_3D training_data_3D_3x3_0050 --data_4D training_data_4D_3x3_0050 --model_type gmm --num_cluster 10 --name_4D gmmfull_4D_10_3x3_0050 --name_3D gmmfull_3D_10_3x3_0050 --covariance_type full
+
+Namespace(data_3D='training_data_3D_3x3_0050', data_4D='training_data_4D_3x3_0050', model_type='gmm', num_cluster=10, covariance_type='full', name_4D='gmmfull_4D_10_3x3_0050', name_3D='gmmfull_3D_10_3x3_0050')
+Loading data...
+Finished!
+Number of samples: 1854627
+GMM for 4D data
+Running...
+Run time: 420.5656158924103
+Saving model, please wait...
+Finished!
+GMM for 3D data
+Running...
+Run time: 143.0373992919922
+Saving model, please wait...
+Finished!
+
+
+python analyse_label.py --model_4D gmmfull_4D_10_3x3_0050 --model_3D gmmfull_3D_10_3x3_0050 --size 3 --timestamp 0050 --slice 950
+
+Namespace(model_4D='gmmfull_4D_10_3x3_0050', model_3D='gmmfull_3D_10_3x3_0050', size=3, timestamp='0050', slice=950)
+Pick one slice to get mask and features index
+Current slice: D:\MSc-Project\VA10_Pc200_Ram25_Pf50_T125_0050\VA10_Pc200_Ram25_Pf50_T125_0050_0950.rec.8bit.tif
+Loading 9 images...
+Finished!
+Getting features...
+Finished!
+Concatenating features...
+Finished!
+Segmenting...
+Run time: 7.059897184371948
+
+
+
+
+# gmm cluster 4
+python train.py --data_3D training_data_3D_3x3_0050 --data_4D training_data_4D_3x3_0050 --model_type gmm --num_cluster 4 --name_4D gmmfull_4D_4_3x3_0050 --name_3D gmmfull_3D_4_3x3_0050 --covariance_type full
+
+Namespace(data_3D='training_data_3D_3x3_0050', data_4D='training_data_4D_3x3_0050', model_type='gmm', num_cluster=4, covariance_type='full', name_4D='gmmfull_4D_4_3x3_0050', name_3D='gmmfull_3D_4_3x3_0050')
+Loading data...
+Finished!
+Number of samples: 1854627
+GMM for 4D data
+Running...
+Run time: 147.14412140846252
+Saving model, please wait...
+Finished!
+GMM for 3D data
+Running...
+Run time: 38.687033891677856
+Saving model, please wait...
+Finished!
+
+
+# gmm cluster 5
+python train.py --data_3D training_data_3D_3x3_0050 --data_4D training_data_4D_3x3_0050 --model_type gmm --num_cluster 5 --name_4D gmmfull_4D_5_3x3_0050 --name_3D gmmfull_3D_5_3x3_0050 --covariance_type full
+
+Namespace(data_3D='training_data_3D_3x3_0050', data_4D='training_data_4D_3x3_0050', model_type='gmm', num_cluster=5, covariance_type='full', name_4D='gmmfull_4D_5_3x3_0050', name_3D='gmmfull_3D_5_3x3_0050')
+Loading data...
+Finished!
+Number of samples: 1854627
+GMM for 4D data
+Running...
+Run time: 219.3037874698639
+Saving model, please wait...
+Finished!
+GMM for 3D data
+Running...
+Run time: 59.082149028778076
+Saving model, please wait...
+Finished!
+
+
+# mini k means cluster 7
+python train.py --data_3D training_data_3D_3x3_0050 --data_4D training_data_4D_3x3_0050 --model_type mini_batch_kmeans --num_cluster 7 --name_4D mini_kmeans_4D_7_3x3_0050 --name_3D mini_kmeans_3D_7_3x3_0050
+
+Namespace(data_3D='training_data_3D_3x3_0050', data_4D='training_data_4D_3x3_0050', model_type='mini_batch_kmeans', num_cluster=7, covariance_type='None', name_4D='mini_kmeans_4D_7_3x3_0050', name_3D='mini_kmeans_3D_7_3x3_0050')
+Loading data...
+Finished!
+Number of samples: 1854627
+mini-batch kmeans for 4D data
+Running...
+Run time: 5.126591920852661
+Saving model, please wait...
+Finished!
+mini-batch kmeans for 3D data
+Running...
+Run time: 1.6282305717468262
+Saving model, please wait...
+Finished!
+
+
+# mini k means cluster 8
+python train.py --data_3D training_data_3D_3x3_0050 --data_4D training_data_4D_3x3_0050 --model_type mini_batch_kmeans --num_cluster 8 --name_4D mini_kmeans_4D_8_3x3_0050 --name_3D mini_kmeans_3D_8_3x3_0050
+
+Namespace(data_3D='training_data_3D_3x3_0050', data_4D='training_data_4D_3x3_0050', model_type='mini_batch_kmeans', num_cluster=8, covariance_type='None', name_4D='mini_kmeans_4D_8_3x3_0050', name_3D='mini_kmeans_3D_8_3x3_0050')
+Loading data...
+Finished!
+Number of samples: 1854627
+mini-batch kmeans for 4D data
+Running...
+Run time: 4.912917375564575
+Saving model, please wait...
+Finished!
+mini-batch kmeans for 3D data
+Running...
+Run time: 2.460322856903076
+Saving model, please wait...
+Finished!
+
+
+# mini k means cluster 10
+python train.py --data_3D training_data_3D_3x3_0050 --data_4D training_data_4D_3x3_0050 --model_type mini_batch_kmeans --num_cluster 10 --name_4D mini_kmeans_4D_10_3x3_0050 --name_3D mini_kmeans_3D_10_3x3_0050
+
+Namespace(data_3D='training_data_3D_3x3_0050', data_4D='training_data_4D_3x3_0050', model_type='mini_batch_kmeans', num_cluster=10, covariance_type='None', name_4D='mini_kmeans_4D_10_3x3_0050', name_3D='mini_kmeans_3D_10_3x3_0050')
+Loading data...
+Finished!
+Number of samples: 1854627
+mini-batch kmeans for 4D data
+Running...
+Run time: 5.44243049621582
+Saving model, please wait...
+Finished!
+mini-batch kmeans for 3D data
+Running...
+Run time: 1.885671615600586
+Saving model, please wait...
+Finished!
+
+
+
+
+======================================= analyse slices between 400-800 =======================================
+1. gmm cluster 3
+python analyse_label.py --model_4D gmmfull_4D_3_3x3_0050 --model_3D gmmfull_3D_3_3x3_0050 --size 3 --timestamp 0050 --slice 400
+python analyse_label.py --model_4D gmmfull_4D_3_3x3_0050 --model_3D gmmfull_3D_3_3x3_0050 --size 3 --timestamp 0050 --slice 500
+python analyse_label.py --model_4D gmmfull_4D_3_3x3_0050 --model_3D gmmfull_3D_3_3x3_0050 --size 3 --timestamp 0050 --slice 600
+python analyse_label.py --model_4D gmmfull_4D_3_3x3_0050 --model_3D gmmfull_3D_3_3x3_0050 --size 3 --timestamp 0050 --slice 700
+python analyse_label.py --model_4D gmmfull_4D_3_3x3_0050 --model_3D gmmfull_3D_3_3x3_0050 --size 3 --timestamp 0050 --slice 800
+
+
+2. gmm cluster 4
+python analyse_label.py --model_4D gmmfull_4D_4_3x3_0050 --model_3D gmmfull_3D_4_3x3_0050 --size 3 --timestamp 0050 --slice 400
+python analyse_label.py --model_4D gmmfull_4D_4_3x3_0050 --model_3D gmmfull_3D_4_3x3_0050 --size 3 --timestamp 0050 --slice 500
+python analyse_label.py --model_4D gmmfull_4D_4_3x3_0050 --model_3D gmmfull_3D_4_3x3_0050 --size 3 --timestamp 0050 --slice 600
+python analyse_label.py --model_4D gmmfull_4D_4_3x3_0050 --model_3D gmmfull_3D_4_3x3_0050 --size 3 --timestamp 0050 --slice 700
+python analyse_label.py --model_4D gmmfull_4D_4_3x3_0050 --model_3D gmmfull_3D_4_3x3_0050 --size 3 --timestamp 0050 --slice 800
+
+
+3. gmm cluster 5
+python analyse_label.py --model_4D gmmfull_4D_5_3x3_0050 --model_3D gmmfull_3D_5_3x3_0050 --size 3 --timestamp 0050 --slice 400
+python analyse_label.py --model_4D gmmfull_4D_5_3x3_0050 --model_3D gmmfull_3D_5_3x3_0050 --size 3 --timestamp 0050 --slice 500
+python analyse_label.py --model_4D gmmfull_4D_5_3x3_0050 --model_3D gmmfull_3D_5_3x3_0050 --size 3 --timestamp 0050 --slice 600
+python analyse_label.py --model_4D gmmfull_4D_5_3x3_0050 --model_3D gmmfull_3D_5_3x3_0050 --size 3 --timestamp 0050 --slice 700
+python analyse_label.py --model_4D gmmfull_4D_5_3x3_0050 --model_3D gmmfull_3D_5_3x3_0050 --size 3 --timestamp 0050 --slice 800
+
+
+4. gmm cluster 6
+python analyse_label.py --model_4D gmmfull_4D_6_3x3_0050 --model_3D gmmfull_3D_6_3x3_0050 --size 3 --timestamp 0050 --slice 400
+python analyse_label.py --model_4D gmmfull_4D_6_3x3_0050 --model_3D gmmfull_3D_6_3x3_0050 --size 3 --timestamp 0050 --slice 500
+python analyse_label.py --model_4D gmmfull_4D_6_3x3_0050 --model_3D gmmfull_3D_6_3x3_0050 --size 3 --timestamp 0050 --slice 600
+python analyse_label.py --model_4D gmmfull_4D_6_3x3_0050 --model_3D gmmfull_3D_6_3x3_0050 --size 3 --timestamp 0050 --slice 700
+python analyse_label.py --model_4D gmmfull_4D_6_3x3_0050 --model_3D gmmfull_3D_6_3x3_0050 --size 3 --timestamp 0050 --slice 800
+
+
+5. gmm cluster 7
+python analyse_label.py --model_4D gmmfull_4D_7_3x3_0050 --model_3D gmmfull_3D_7_3x3_0050 --size 3 --timestamp 0050 --slice 400
+python analyse_label.py --model_4D gmmfull_4D_7_3x3_0050 --model_3D gmmfull_3D_7_3x3_0050 --size 3 --timestamp 0050 --slice 500
+python analyse_label.py --model_4D gmmfull_4D_7_3x3_0050 --model_3D gmmfull_3D_7_3x3_0050 --size 3 --timestamp 0050 --slice 600
+python analyse_label.py --model_4D gmmfull_4D_7_3x3_0050 --model_3D gmmfull_3D_7_3x3_0050 --size 3 --timestamp 0050 --slice 700
+python analyse_label.py --model_4D gmmfull_4D_7_3x3_0050 --model_3D gmmfull_3D_7_3x3_0050 --size 3 --timestamp 0050 --slice 800
+
+6. gmm cluster 8
+python analyse_label.py --model_4D gmmfull_4D_8_3x3_0050 --model_3D gmmfull_3D_8_3x3_0050 --size 3 --timestamp 0050 --slice 400
+python analyse_label.py --model_4D gmmfull_4D_8_3x3_0050 --model_3D gmmfull_3D_8_3x3_0050 --size 3 --timestamp 0050 --slice 500
+python analyse_label.py --model_4D gmmfull_4D_8_3x3_0050 --model_3D gmmfull_3D_8_3x3_0050 --size 3 --timestamp 0050 --slice 600
+python analyse_label.py --model_4D gmmfull_4D_8_3x3_0050 --model_3D gmmfull_3D_8_3x3_0050 --size 3 --timestamp 0050 --slice 700
+python analyse_label.py --model_4D gmmfull_4D_8_3x3_0050 --model_3D gmmfull_3D_8_3x3_0050 --size 3 --timestamp 0050 --slice 800
+
+
+7. gmm cluster 10
+python analyse_label.py --model_4D gmmfull_4D_10_3x3_0050 --model_3D gmmfull_3D_10_3x3_0050 --size 3 --timestamp 0050 --slice 400
+python analyse_label.py --model_4D gmmfull_4D_10_3x3_0050 --model_3D gmmfull_3D_10_3x3_0050 --size 3 --timestamp 0050 --slice 500
+python analyse_label.py --model_4D gmmfull_4D_10_3x3_0050 --model_3D gmmfull_3D_10_3x3_0050 --size 3 --timestamp 0050 --slice 600
+python analyse_label.py --model_4D gmmfull_4D_10_3x3_0050 --model_3D gmmfull_3D_10_3x3_0050 --size 3 --timestamp 0050 --slice 700
+python analyse_label.py --model_4D gmmfull_4D_10_3x3_0050 --model_3D gmmfull_3D_10_3x3_0050 --size 3 --timestamp 0050 --slice 800
+
+
+8. mini batch k means cluster 3
+python analyse_label.py --model_4D mini_kmeans_4D_3_3x3_0050 --model_3D mini_kmeans_3D_3_3x3_0050 --size 3 --timestamp 0050 --slice 400
+python analyse_label.py --model_4D mini_kmeans_4D_3_3x3_0050 --model_3D mini_kmeans_3D_3_3x3_0050 --size 3 --timestamp 0050 --slice 500
+python analyse_label.py --model_4D mini_kmeans_4D_3_3x3_0050 --model_3D mini_kmeans_3D_3_3x3_0050 --size 3 --timestamp 0050 --slice 600
+python analyse_label.py --model_4D mini_kmeans_4D_3_3x3_0050 --model_3D mini_kmeans_3D_3_3x3_0050 --size 3 --timestamp 0050 --slice 700
+python analyse_label.py --model_4D mini_kmeans_4D_3_3x3_0050 --model_3D mini_kmeans_3D_3_3x3_0050 --size 3 --timestamp 0050 --slice 800
+
+
+9. mini batch k means cluster 4
+python analyse_label.py --model_4D mini_kmeans_4D_4_3x3_0050 --model_3D mini_kmeans_3D_4_3x3_0050 --size 3 --timestamp 0050 --slice 400
+python analyse_label.py --model_4D mini_kmeans_4D_4_3x3_0050 --model_3D mini_kmeans_3D_4_3x3_0050 --size 3 --timestamp 0050 --slice 500
+python analyse_label.py --model_4D mini_kmeans_4D_4_3x3_0050 --model_3D mini_kmeans_3D_4_3x3_0050 --size 3 --timestamp 0050 --slice 600
+python analyse_label.py --model_4D mini_kmeans_4D_4_3x3_0050 --model_3D mini_kmeans_3D_4_3x3_0050 --size 3 --timestamp 0050 --slice 700
+python analyse_label.py --model_4D mini_kmeans_4D_4_3x3_0050 --model_3D mini_kmeans_3D_4_3x3_0050 --size 3 --timestamp 0050 --slice 800
+
+10. mini batch k means cluster 5
+python analyse_label.py --model_4D mini_kmeans_4D_5_3x3_0050 --model_3D mini_kmeans_3D_5_3x3_0050 --size 3 --timestamp 0050 --slice 400
+python analyse_label.py --model_4D mini_kmeans_4D_5_3x3_0050 --model_3D mini_kmeans_3D_5_3x3_0050 --size 3 --timestamp 0050 --slice 500
+python analyse_label.py --model_4D mini_kmeans_4D_5_3x3_0050 --model_3D mini_kmeans_3D_5_3x3_0050 --size 3 --timestamp 0050 --slice 600
+python analyse_label.py --model_4D mini_kmeans_4D_5_3x3_0050 --model_3D mini_kmeans_3D_5_3x3_0050 --size 3 --timestamp 0050 --slice 700
+python analyse_label.py --model_4D mini_kmeans_4D_5_3x3_0050 --model_3D mini_kmeans_3D_5_3x3_0050 --size 3 --timestamp 0050 --slice 800
+
+11. mini batch k means cluster 6
+python analyse_label.py --model_4D mini_kmeans_4D_6_3x3_0050 --model_3D mini_kmeans_3D_6_3x3_0050 --size 3 --timestamp 0050 --slice 400
+python analyse_label.py --model_4D mini_kmeans_4D_6_3x3_0050 --model_3D mini_kmeans_3D_6_3x3_0050 --size 3 --timestamp 0050 --slice 500
+python analyse_label.py --model_4D mini_kmeans_4D_6_3x3_0050 --model_3D mini_kmeans_3D_6_3x3_0050 --size 3 --timestamp 0050 --slice 600
+python analyse_label.py --model_4D mini_kmeans_4D_6_3x3_0050 --model_3D mini_kmeans_3D_6_3x3_0050 --size 3 --timestamp 0050 --slice 700
+python analyse_label.py --model_4D mini_kmeans_4D_6_3x3_0050 --model_3D mini_kmeans_3D_6_3x3_0050 --size 3 --timestamp 0050 --slice 800
+
+12. mini batch k means cluster 7
+python analyse_label.py --model_4D mini_kmeans_4D_7_3x3_0050 --model_3D mini_kmeans_3D_7_3x3_0050 --size 3 --timestamp 0050 --slice 400
+python analyse_label.py --model_4D mini_kmeans_4D_7_3x3_0050 --model_3D mini_kmeans_3D_7_3x3_0050 --size 3 --timestamp 0050 --slice 500
+python analyse_label.py --model_4D mini_kmeans_4D_7_3x3_0050 --model_3D mini_kmeans_3D_7_3x3_0050 --size 3 --timestamp 0050 --slice 600
+python analyse_label.py --model_4D mini_kmeans_4D_7_3x3_0050 --model_3D mini_kmeans_3D_7_3x3_0050 --size 3 --timestamp 0050 --slice 700
+python analyse_label.py --model_4D mini_kmeans_4D_7_3x3_0050 --model_3D mini_kmeans_3D_7_3x3_0050 --size 3 --timestamp 0050 --slice 800
+
+
+13. mini batch k means cluster 8
+python analyse_label.py --model_4D mini_kmeans_4D_8_3x3_0050 --model_3D mini_kmeans_3D_8_3x3_0050 --size 3 --timestamp 0050 --slice 400
+python analyse_label.py --model_4D mini_kmeans_4D_8_3x3_0050 --model_3D mini_kmeans_3D_8_3x3_0050 --size 3 --timestamp 0050 --slice 500
+python analyse_label.py --model_4D mini_kmeans_4D_8_3x3_0050 --model_3D mini_kmeans_3D_8_3x3_0050 --size 3 --timestamp 0050 --slice 600
+python analyse_label.py --model_4D mini_kmeans_4D_8_3x3_0050 --model_3D mini_kmeans_3D_8_3x3_0050 --size 3 --timestamp 0050 --slice 700
+python analyse_label.py --model_4D mini_kmeans_4D_8_3x3_0050 --model_3D mini_kmeans_3D_8_3x3_0050 --size 3 --timestamp 0050 --slice 800
+
+
+14. mini batch k means cluster 10
+python analyse_label.py --model_4D mini_kmeans_4D_10_3x3_0050 --model_3D mini_kmeans_3D_10_3x3_0050 --size 3 --timestamp 0050 --slice 400
+python analyse_label.py --model_4D mini_kmeans_4D_10_3x3_0050 --model_3D mini_kmeans_3D_10_3x3_0050 --size 3 --timestamp 0050 --slice 500
+python analyse_label.py --model_4D mini_kmeans_4D_10_3x3_0050 --model_3D mini_kmeans_3D_10_3x3_0050 --size 3 --timestamp 0050 --slice 600
+python analyse_label.py --model_4D mini_kmeans_4D_10_3x3_0050 --model_3D mini_kmeans_3D_10_3x3_0050 --size 3 --timestamp 0050 --slice 700
+python analyse_label.py --model_4D mini_kmeans_4D_10_3x3_0050 --model_3D mini_kmeans_3D_10_3x3_0050 --size 3 --timestamp 0050 --slice 800
+
+
+
+python seg_slice.py --model_4D gmmfull_4D_3_3x3_0050 --model_3D gmmfull_3D_3_3x3_0050 --size 3 --timestamp 0050 --slice 400
+python seg_slice.py --model_4D gmmfull_4D_4_3x3_0050 --model_3D gmmfull_3D_4_3x3_0050 --size 3 --timestamp 0050 --slice 400
+python seg_slice.py --model_4D gmmfull_4D_5_3x3_0050 --model_3D gmmfull_3D_5_3x3_0050 --size 3 --timestamp 0050 --slice 400
+python seg_slice.py --model_4D gmmfull_4D_6_3x3_0050 --model_3D gmmfull_3D_6_3x3_0050 --size 3 --timestamp 0050 --slice 400
+python seg_slice.py --model_4D gmmfull_4D_7_3x3_0050 --model_3D gmmfull_3D_7_3x3_0050 --size 3 --timestamp 0050 --slice 400
+python seg_slice.py --model_4D gmmfull_4D_8_3x3_0050 --model_3D gmmfull_3D_8_3x3_0050 --size 3 --timestamp 0050 --slice 400
+python seg_slice.py --model_4D gmmfull_4D_10_3x3_0050 --model_3D gmmfull_3D_10_3x3_0050 --size 3 --timestamp 0050 --slice 400
+
+python seg_slice.py --model_4D mini_kmeans_4D_3_3x3_0050 --model_3D mini_kmeans_3D_3_3x3_0050 --size 3 --timestamp 0050 --slice 400
+python seg_slice.py --model_4D mini_kmeans_4D_4_3x3_0050 --model_3D mini_kmeans_3D_4_3x3_0050 --size 3 --timestamp 0050 --slice 400
+python seg_slice.py --model_4D mini_kmeans_4D_5_3x3_0050 --model_3D mini_kmeans_3D_5_3x3_0050 --size 3 --timestamp 0050 --slice 400
+python seg_slice.py --model_4D mini_kmeans_4D_6_3x3_0050 --model_3D mini_kmeans_3D_6_3x3_0050 --size 3 --timestamp 0050 --slice 400
+python seg_slice.py --model_4D mini_kmeans_4D_8_3x3_0050 --model_3D mini_kmeans_3D_8_3x3_0050 --size 3 --timestamp 0050 --slice 400
+
+
+
+
+
+
+
+
+
+1. the difference between segment_conv_400_800 and the seg_res
+is because they use different number of neighbors?
+segment_conv_400_800 get 11 in a roll
+seg_res seems to be 9 
+need to be confirmed.
+
+
+2. it seems, as the slices number gets larger, probably the reaction gets more active, 
+
+3. in 3d model when cluster number is 3, both algorithms seem to work better, comparing to the other parameter ranging from 3-10. However, gmm prefers 6\7 at the beginning (400, 500, 600).
+  starting from 700th, cluster 3\4 works better.
+
+4. in 3d model, As the cluster number increases to 6, the performance 
+   keeps going down. And when cluster number goes even larger, it performs even worse. One reason could be that the reaction only involves 4 materials, so the ground truth of the cluster
+   number should be 4. When we try to use larger cluster number, more area would be extracted as other class and hence reduce the f1-score. If more clusters split those who should have 
+   be in the same class, can we use very large cluster number, and assign each cluster to its real destination?
+
+5. in 4d model, it was the cluster number 6 and 8, who works better. it seems increasing the cluster number helps.
+
+6. for better evaluation, need to segment 400 to 800, 401 slices in total, for each model. And compare with the corresponding volume. 
+   because the current segmentation results used as label is also sth get from other algorithms; in other words, it was not the ground truth. 
+   but it gives the info of positions of each components, which is very important.
+
+
+7. for supervised phase where we assign each class from raw segmentation results to the four true classes, we need the training set, validation set, and test set. These data
+   sets we need to acquire from the results of same cluster number, for example 128. We first use 128 model to segment the image in timestamp 50 or other timestamp. 
+   Use either segmentation results from timestamp 50 but other than 400-800 slices or use segmentation results from other timestamps as training set and validation set. 
+   Timestamp 50 slice 400-800 is the test set, where we truely wanted to do segment on in order to test. 
+
+   Another question: is timestamp 50 slice 400-800 the test set, or the whole timestamp 50 the test set?
+
+   Evaluation should be done by the volume version, which is more close to the ground truth: this makes it make sense to use only 400-800 as test set, because this is calculating
+   the volume only between 400-800. However, shouldn't the whole volume be our focus?
+
+8. we want to build the pipeline of 7, which could also be used in next year's study to use deep learning models on this. 
+
+
+
+================== large cluster number ===============================
+
+======== gmm ========
+# 16 clusters
+python train.py --data_3D training_data_3D_3x3_0050 --data_4D training_data_4D_3x3_0050 --model_type gmm --num_cluster 16 --name_4D gmmfull_4D_16_3x3_0050 --name_3D gmmfull_3D_16_3x3_0050 --covariance_type full
+
+Namespace(data_3D='training_data_3D_3x3_0050', data_4D='training_data_4D_3x3_0050', model_type='gmm', num_cluster=16, covariance_type='full', name_4D='gmmfull_4D_16_3x3_0050', name_3D='gmmfull_3D_16_3x3_0050')
+Loading data...
+Finished!
+Number of samples: 1854627
+GMM for 4D data
+Running...
+Run time: 1105.3293583393097
+Saving model, please wait...
+Finished!
+GMM for 3D data
+Running...
+Run time: 255.08232831954956
+Saving model, please wait...
+Finished!
+
+
+# 32 clusters
+python train.py --data_3D training_data_3D_3x3_0050 --data_4D training_data_4D_3x3_0050 --model_type gmm --num_cluster 32 --name_4D gmmfull_4D_32_3x3_0050 --name_3D gmmfull_3D_32_3x3_0050 --covariance_type full
+
+Namespace(data_3D='training_data_3D_3x3_0050', data_4D='training_data_4D_3x3_0050', model_type='gmm', num_cluster=32, covariance_type='full', name_4D='gmmfull_4D_32_3x3_0050', name_3D='gmmfull_3D_32_3x3_0050')
+Loading data...
+Finished!
+Number of samples: 1854627
+GMM for 4D data
+Running...
+Run time: 1634.9272184371948
+Saving model, please wait...
+Finished!
+GMM for 3D data
+Running...
+Run time: 516.4070427417755
+Saving model, please wait...
+Finished!
+
+
+# 64 clusters
+python train.py --data_3D training_data_3D_3x3_0050 --data_4D training_data_4D_3x3_0050 --model_type gmm --num_cluster 64 --name_4D gmmfull_4D_64_3x3_0050 --name_3D gmmfull_3D_64_3x3_0050 --covariance_type full
+
+Namespace(data_3D='training_data_3D_3x3_0050', data_4D='training_data_4D_3x3_0050', model_type='gmm', num_cluster=64, covariance_type='full', name_4D='gmmfull_4D_64_3x3_0050', name_3D='gmmfull_3D_64_3x3_0050')
+Loading data...
+Finished!
+Number of samples: 1854627
+GMM for 4D data
+Running...
+Run time: 4925.161747932434
+Saving model, please wait...
+Finished!
+GMM for 3D data
+Running...
+Run time: 1044.5423221588135
+Saving model, please wait...
+Finished!
+
+
+# 128 clusters
+python train.py --data_3D training_data_3D_3x3_0050 --data_4D training_data_4D_3x3_0050 --model_type gmm --num_cluster 128 --name_4D gmmfull_4D_128_3x3_0050 --name_3D gmmfull_3D_128_3x3_0050 --covariance_type full
+
+Namespace(data_3D='training_data_3D_3x3_0050', data_4D='training_data_4D_3x3_0050', model_type='gmm', num_cluster=128, covariance_type='full', name_4D='gmmfull_4D_128_3x3_0050', name_3D='gmmfull_3D_128_3x3_0050')
+Loading data...
+Finished!
+Number of samples: 1854627
+GMM for 4D data
+Running...
+Run time: 9104.239814043045
+Saving model, please wait...
+Finished!
+GMM for 3D data
+Running...
+Run time: 2203.0460929870605
+Saving model, please wait...
+Finished!
+
+
+
+======== mini batch k means ========
+
+# 16 clusters
+python train.py --data_3D training_data_3D_3x3_0050 --data_4D training_data_4D_3x3_0050 --model_type mini_batch_kmeans --num_cluster 16 --name_4D mini_kmeans_4D_16_3x3_0050 --name_3D mini_kmeans_3D_16_3x3_0050
+
+Namespace(data_3D='training_data_3D_3x3_0050', data_4D='training_data_4D_3x3_0050', model_type='mini_batch_kmeans', num_cluster=16, covariance_type='None', name_4D='mini_kmeans_4D_16_3x3_0050', name_3D='mini_kmeans_3D_16_3x3_0050')
+Loading data...
+Finished!
+Number of samples: 1854627
+mini-batch kmeans for 4D data
+Running...
+Run time: 6.206995725631714
+Saving model, please wait...
+Finished!
+mini-batch kmeans for 3D data
+Running...
+Run time: 2.928840160369873
+Saving model, please wait...
+Finished!
+
+
+# 32 cluster
+python train.py --data_3D training_data_3D_3x3_0050 --data_4D training_data_4D_3x3_0050 --model_type mini_batch_kmeans --num_cluster 32 --name_4D mini_kmeans_4D_32_3x3_0050 --name_3D mini_kmeans_3D_32_3x3_0050
+
+Namespace(data_3D='training_data_3D_3x3_0050', data_4D='training_data_4D_3x3_0050', model_type='mini_batch_kmeans', num_cluster=32, covariance_type='None', name_4D='mini_kmeans_4D_32_3x3_0050', name_3D='mini_kmeans_3D_32_3x3_0050')
+Loading data...
+Finished!
+Number of samples: 1854627
+mini-batch kmeans for 4D data
+Running...
+Run time: 7.17271089553833
+Saving model, please wait...
+Finished!
+mini-batch kmeans for 3D data
+Running...
+Run time: 3.7477469444274902
+Saving model, please wait...
+Finished!
+
+
+# 64 cluster
+python train.py --data_3D training_data_3D_3x3_0050 --data_4D training_data_4D_3x3_0050 --model_type mini_batch_kmeans --num_cluster 64 --name_4D mini_kmeans_4D_64_3x3_0050 --name_3D mini_kmeans_3D_64_3x3_0050
+
+Namespace(data_3D='training_data_3D_3x3_0050', data_4D='training_data_4D_3x3_0050', model_type='mini_batch_kmeans', num_cluster=64, covariance_type='None', name_4D='mini_kmeans_4D_64_3x3_0050', name_3D='mini_kmeans_3D_64_3x3_0050')
+Loading data...
+Finished!
+Number of samples: 1854627
+mini-batch kmeans for 4D data
+Running...
+Run time: 8.42975378036499
+Saving model, please wait...
+Finished!
+mini-batch kmeans for 3D data
+Running...
+Run time: 5.233144760131836
+Saving model, please wait...
+Finished!
+
+
+# 128 cluster
+python train.py --data_3D training_data_3D_3x3_0050 --data_4D training_data_4D_3x3_0050 --model_type mini_batch_kmeans --num_cluster 128 --name_4D mini_kmeans_4D_128_3x3_0050 --name_3D mini_kmeans_3D_128_3x3_0050
+
+Namespace(data_3D='training_data_3D_3x3_0050', data_4D='training_data_4D_3x3_0050', model_type='mini_batch_kmeans', num_cluster=128, covariance_type='None', name_4D='mini_kmeans_4D_128_3x3_0050', name_3D='mini_kmeans_3D_128_3x3_0050')
+Loading data...
+Finished!
+Number of samples: 1854627
+mini-batch kmeans for 4D data
+Running...
+Run time: 11.695793390274048
+Saving model, please wait...
+Finished!
+mini-batch kmeans for 3D data
+Running...
+Run time: 9.283326625823975
+Saving model, please wait...
+Finished!
+
+
+
+
+
+========================== k-means large cluster segmentation ====================================
+
+# 16 cluster
+python segment_conv.py --model_4D mini_kmeans_4D_16_3x3_0050 --model_3D mini_kmeans_3D_16_3x3_0050 --timestamp 0050 --pore_4D 0 --pore_3D 0
+
+
+python segment_conv.py --model_4D mini_kmeans_4D_16_3x3_0050 --model_3D mini_kmeans_3D_16_3x3_0050 --timestamp 0050 --pore_4D 1 --pore_3D 1
+
+Segment from slice 800 to 811
+Current timestamp: D:\MSc-Project\VA10_Pc200_Ram25_Pf50_T125_0050
+Creating image batch...
+Finished!
+Current timestamp: D:\MSc-Project\VA10_Pc200_Ram25_Pf50_T125_0040
+Creating image batch...
+Finished!
+Current timestamp: D:\MSc-Project\VA10_Pc200_Ram25_Pf50_T125_0060
+Creating image batch...
+Finished!
+Creat tensorflow graph...
+Convolution...
+2023-03-09 08:04:06.512627: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1616] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 21626 MB memory:  -> device: 0, name: NVIDIA RTX A5000, pci bus id: 0000:61:00.0, compute capability: 8.6
+3D segmentation...
+4D segmentation...
+Calculating distance...
+Finished!
+7.501397132873535
+Saving image...
+Finished!
+
+
+python segment_conv.py --model_4D mini_kmeans_4D_16_3x3_0050 --model_3D mini_kmeans_3D_16_3x3_0050 --timestamp 0050 --pore_4D 2 --pore_3D 2
+python segment_conv.py --model_4D mini_kmeans_4D_16_3x3_0050 --model_3D mini_kmeans_3D_16_3x3_0050 --timestamp 0050 --pore_4D 3 --pore_3D 3
+python segment_conv.py --model_4D mini_kmeans_4D_16_3x3_0050 --model_3D mini_kmeans_3D_16_3x3_0050 --timestamp 0050 --pore_4D 4 --pore_3D 4
+python segment_conv.py --model_4D mini_kmeans_4D_16_3x3_0050 --model_3D mini_kmeans_3D_16_3x3_0050 --timestamp 0050 --pore_4D 5 --pore_3D 5
+python segment_conv.py --model_4D mini_kmeans_4D_16_3x3_0050 --model_3D mini_kmeans_3D_16_3x3_0050 --timestamp 0050 --pore_4D 6 --pore_3D 6
+python segment_conv.py --model_4D mini_kmeans_4D_16_3x3_0050 --model_3D mini_kmeans_3D_16_3x3_0050 --timestamp 0050 --pore_4D 7 --pore_3D 7
+python segment_conv.py --model_4D mini_kmeans_4D_16_3x3_0050 --model_3D mini_kmeans_3D_16_3x3_0050 --timestamp 0050 --pore_4D 8 --pore_3D 8
+python segment_conv.py --model_4D mini_kmeans_4D_16_3x3_0050 --model_3D mini_kmeans_3D_16_3x3_0050 --timestamp 0050 --pore_4D 9 --pore_3D 9
+python segment_conv.py --model_4D mini_kmeans_4D_16_3x3_0050 --model_3D mini_kmeans_3D_16_3x3_0050 --timestamp 0050 --pore_4D 10 --pore_3D 10
+python segment_conv.py --model_4D mini_kmeans_4D_16_3x3_0050 --model_3D mini_kmeans_3D_16_3x3_0050 --timestamp 0050 --pore_4D 11 --pore_3D 11
+python segment_conv.py --model_4D mini_kmeans_4D_16_3x3_0050 --model_3D mini_kmeans_3D_16_3x3_0050 --timestamp 0050 --pore_4D 12 --pore_3D 12
+python segment_conv.py --model_4D mini_kmeans_4D_16_3x3_0050 --model_3D mini_kmeans_3D_16_3x3_0050 --timestamp 0050 --pore_4D 13 --pore_3D 13
+python segment_conv.py --model_4D mini_kmeans_4D_16_3x3_0050 --model_3D mini_kmeans_3D_16_3x3_0050 --timestamp 0050 --pore_4D 14 --pore_3D 14
+python segment_conv.py --model_4D mini_kmeans_4D_16_3x3_0050 --model_3D mini_kmeans_3D_16_3x3_0050 --timestamp 0050 --pore_4D 15 --pore_3D 15
+
+
+
+
+# 32 cluster
+python segment_conv.py --model_4D mini_kmeans_4D_32_3x3_0050 --model_3D mini_kmeans_3D_32_3x3_0050 --timestamp 0050 --pore_4D 0 --pore_3D 0
+python segment_conv.py --model_4D mini_kmeans_4D_32_3x3_0050 --model_3D mini_kmeans_3D_32_3x3_0050 --timestamp 0050 --pore_4D 1 --pore_3D 1
+
+Segment from slice 790 to 801
+Current timestamp: D:\MSc-Project\VA10_Pc200_Ram25_Pf50_T125_0050
+Creating image batch...
+Finished!
+Current timestamp: D:\MSc-Project\VA10_Pc200_Ram25_Pf50_T125_0040
+Creating image batch...
+Finished!
+Current timestamp: D:\MSc-Project\VA10_Pc200_Ram25_Pf50_T125_0060
+Creating image batch...
+Finished!
+Creat tensorflow graph...
+Convolution...
+2023-03-09 10:22:19.436058: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1616] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 21626 MB memory:  -> device: 0, name: NVIDIA RTX A5000, pci bus id: 0000:61:00.0, compute capability: 8.6
+3D segmentation...
+4D segmentation...
+Calculating distance...
+Finished!
+16.88163948059082
+Saving image...
+Finished!
+
+python segment_conv.py --model_4D mini_kmeans_4D_32_3x3_0050 --model_3D mini_kmeans_3D_32_3x3_0050 --timestamp 0050 --pore_4D 2 --pore_3D 2
+python segment_conv.py --model_4D mini_kmeans_4D_32_3x3_0050 --model_3D mini_kmeans_3D_32_3x3_0050 --timestamp 0050 --pore_4D 3 --pore_3D 3
+python segment_conv.py --model_4D mini_kmeans_4D_32_3x3_0050 --model_3D mini_kmeans_3D_32_3x3_0050 --timestamp 0050 --pore_4D 4 --pore_3D 4
+python segment_conv.py --model_4D mini_kmeans_4D_32_3x3_0050 --model_3D mini_kmeans_3D_32_3x3_0050 --timestamp 0050 --pore_4D 5 --pore_3D 5
+python segment_conv.py --model_4D mini_kmeans_4D_32_3x3_0050 --model_3D mini_kmeans_3D_32_3x3_0050 --timestamp 0050 --pore_4D 6 --pore_3D 6
+python segment_conv.py --model_4D mini_kmeans_4D_32_3x3_0050 --model_3D mini_kmeans_3D_32_3x3_0050 --timestamp 0050 --pore_4D 7 --pore_3D 7
+
+python segment_conv.py --model_4D mini_kmeans_4D_32_3x3_0050 --model_3D mini_kmeans_3D_32_3x3_0050 --timestamp 0050 --pore_4D 8 --pore_3D 8
+python segment_conv.py --model_4D mini_kmeans_4D_32_3x3_0050 --model_3D mini_kmeans_3D_32_3x3_0050 --timestamp 0050 --pore_4D 9 --pore_3D 9
+python segment_conv.py --model_4D mini_kmeans_4D_32_3x3_0050 --model_3D mini_kmeans_3D_32_3x3_0050 --timestamp 0050 --pore_4D 10 --pore_3D 10
+python segment_conv.py --model_4D mini_kmeans_4D_32_3x3_0050 --model_3D mini_kmeans_3D_32_3x3_0050 --timestamp 0050 --pore_4D 11 --pore_3D 11
+python segment_conv.py --model_4D mini_kmeans_4D_32_3x3_0050 --model_3D mini_kmeans_3D_32_3x3_0050 --timestamp 0050 --pore_4D 12 --pore_3D 12
+python segment_conv.py --model_4D mini_kmeans_4D_32_3x3_0050 --model_3D mini_kmeans_3D_32_3x3_0050 --timestamp 0050 --pore_4D 13 --pore_3D 13
+python segment_conv.py --model_4D mini_kmeans_4D_32_3x3_0050 --model_3D mini_kmeans_3D_32_3x3_0050 --timestamp 0050 --pore_4D 14 --pore_3D 14
+python segment_conv.py --model_4D mini_kmeans_4D_32_3x3_0050 --model_3D mini_kmeans_3D_32_3x3_0050 --timestamp 0050 --pore_4D 15 --pore_3D 15
+
+python segment_conv.py --model_4D mini_kmeans_4D_32_3x3_0050 --model_3D mini_kmeans_3D_32_3x3_0050 --timestamp 0050 --pore_4D 16 --pore_3D 16
+python segment_conv.py --model_4D mini_kmeans_4D_32_3x3_0050 --model_3D mini_kmeans_3D_32_3x3_0050 --timestamp 0050 --pore_4D 17 --pore_3D 17
+python segment_conv.py --model_4D mini_kmeans_4D_32_3x3_0050 --model_3D mini_kmeans_3D_32_3x3_0050 --timestamp 0050 --pore_4D 18 --pore_3D 18
+python segment_conv.py --model_4D mini_kmeans_4D_32_3x3_0050 --model_3D mini_kmeans_3D_32_3x3_0050 --timestamp 0050 --pore_4D 19 --pore_3D 19
+python segment_conv.py --model_4D mini_kmeans_4D_32_3x3_0050 --model_3D mini_kmeans_3D_32_3x3_0050 --timestamp 0050 --pore_4D 20 --pore_3D 20
+python segment_conv.py --model_4D mini_kmeans_4D_32_3x3_0050 --model_3D mini_kmeans_3D_32_3x3_0050 --timestamp 0050 --pore_4D 21 --pore_3D 21
+python segment_conv.py --model_4D mini_kmeans_4D_32_3x3_0050 --model_3D mini_kmeans_3D_32_3x3_0050 --timestamp 0050 --pore_4D 22 --pore_3D 22
+python segment_conv.py --model_4D mini_kmeans_4D_32_3x3_0050 --model_3D mini_kmeans_3D_32_3x3_0050 --timestamp 0050 --pore_4D 23 --pore_3D 23
+
+python segment_conv.py --model_4D mini_kmeans_4D_32_3x3_0050 --model_3D mini_kmeans_3D_32_3x3_0050 --timestamp 0050 --pore_4D 24 --pore_3D 24
+python segment_conv.py --model_4D mini_kmeans_4D_32_3x3_0050 --model_3D mini_kmeans_3D_32_3x3_0050 --timestamp 0050 --pore_4D 25 --pore_3D 25
+python segment_conv.py --model_4D mini_kmeans_4D_32_3x3_0050 --model_3D mini_kmeans_3D_32_3x3_0050 --timestamp 0050 --pore_4D 26 --pore_3D 26
+python segment_conv.py --model_4D mini_kmeans_4D_32_3x3_0050 --model_3D mini_kmeans_3D_32_3x3_0050 --timestamp 0050 --pore_4D 27 --pore_3D 27
+python segment_conv.py --model_4D mini_kmeans_4D_32_3x3_0050 --model_3D mini_kmeans_3D_32_3x3_0050 --timestamp 0050 --pore_4D 28 --pore_3D 28
+python segment_conv.py --model_4D mini_kmeans_4D_32_3x3_0050 --model_3D mini_kmeans_3D_32_3x3_0050 --timestamp 0050 --pore_4D 29 --pore_3D 29
+python segment_conv.py --model_4D mini_kmeans_4D_32_3x3_0050 --model_3D mini_kmeans_3D_32_3x3_0050 --timestamp 0050 --pore_4D 30 --pore_3D 30
+python segment_conv.py --model_4D mini_kmeans_4D_32_3x3_0050 --model_3D mini_kmeans_3D_32_3x3_0050 --timestamp 0050 --pore_4D 31 --pore_3D 31
+
+
+# 64 clusters
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 0 --pore_3D 0
+
+Segment from slice 800 to 811
+Current timestamp: D:\MSc-Project\VA10_Pc200_Ram25_Pf50_T125_0050
+Creating image batch...
+Finished!
+Current timestamp: D:\MSc-Project\VA10_Pc200_Ram25_Pf50_T125_0040
+Creating image batch...
+Finished!
+Current timestamp: D:\MSc-Project\VA10_Pc200_Ram25_Pf50_T125_0060
+Creating image batch...
+Finished!
+Creat tensorflow graph...
+Convolution...
+2023-03-09 18:16:58.771681: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1616] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 21626 MB memory:  -> device: 0, name: NVIDIA RTX A5000, pci bus id: 0000:61:00.0, compute capability: 8.6
+3D segmentation...
+4D segmentation...
+Calculating distance...
+Finished!
+46.37157320976257
+Saving image...
+Finished!
+
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 1 --pore_3D 1
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 2 --pore_3D 2
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 3 --pore_3D 3
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 4 --pore_3D 4
+
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 5 --pore_3D 5
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 6 --pore_3D 6
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 7 --pore_3D 7
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 8 --pore_3D 8
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 9 --pore_3D 9
+
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 10 --pore_3D 10
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 11 --pore_3D 11
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 12 --pore_3D 12
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 13 --pore_3D 13
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 14 --pore_3D 14
+
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 15 --pore_3D 15
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 16 --pore_3D 16
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 17 --pore_3D 17
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 18 --pore_3D 18
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 19 --pore_3D 19
+
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 20 --pore_3D 20
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 21 --pore_3D 21
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 22 --pore_3D 22
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 23 --pore_3D 23
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 24 --pore_3D 24
+
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 25 --pore_3D 25
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 26 --pore_3D 26
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 27 --pore_3D 27
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 28 --pore_3D 28
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 29 --pore_3D 29
+
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 30 --pore_3D 30
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 31 --pore_3D 31
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 32 --pore_3D 32
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 33 --pore_3D 33
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 34 --pore_3D 34
+
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 35 --pore_3D 35
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 36 --pore_3D 36
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 37 --pore_3D 37
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 38 --pore_3D 38
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 39 --pore_3D 39
+
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 40 --pore_3D 40
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 41 --pore_3D 41
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 42 --pore_3D 42
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 43 --pore_3D 43
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 44 --pore_3D 44
+
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 45 --pore_3D 45
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 46 --pore_3D 46
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 47 --pore_3D 47
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 48 --pore_3D 48
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 49 --pore_3D 49
+
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 50 --pore_3D 50
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 51 --pore_3D 51
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 52 --pore_3D 52
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 53 --pore_3D 53
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 54 --pore_3D 54
+
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 55 --pore_3D 55
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 56 --pore_3D 56
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 57 --pore_3D 57
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 58 --pore_3D 58
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 59 --pore_3D 59
+
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 60 --pore_3D 60
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 61 --pore_3D 61
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 62 --pore_3D 62
+python segment_conv.py --model_4D mini_kmeans_4D_64_3x3_0050 --model_3D mini_kmeans_3D_64_3x3_0050 --timestamp 0050 --pore_4D 63 --pore_3D 63
+
+
+# cluster 128
+python segment_conv.py --model_4D mini_kmeans_4D_128_3x3_0050 --model_3D mini_kmeans_3D_128_3x3_0050 --timestamp 0050 --pore_4D 0 --pore_3D 0
+
+
+
+
+========================== gmm large cluster =================================
+# 16 cluster
+python segment_index_400_800.py --model_4D gmmfull_4D_16_3x3_0050 --model_3D gmmfull_3D_16_3x3_0050 --size 3 --timestamp 0050 --pore_4D 0 --pore_3D 0
+
+Current slice: D:\MSc-Project\VA10_Pc200_Ram25_Pf50_T125_0050\VA10_Pc200_Ram25_Pf50_T125_0050_0800.rec.8bit.tif
+Loading 9 images...
+Finished!
+Getting features...
+Finished!
+Concatenating features...
+Finished!
+Segmenting...
+Finished!
+Saving results...
+19.76196265220642
+Saving results...
+19.98362421989441
+Saving results...
+20.124560117721558
+Saving results...
+20.173158407211304
+Saving results...
+20.298763275146484
+Saving results...
+20.52527379989624
+Saving results...
+20.666893005371094
+Saving results...
+20.704493761062622
+Saving results...
+20.87221050262451
+Saving results...
+20.977309226989746
+Saving results...
+21.18621253967285
+Saving results...
+21.226726293563843
+Saving results...
+21.298805475234985
+Saving results...
+21.45526671409607
+Saving results...
+21.60234260559082
+Saving results...
+22.0947208404541
+
+# 32 cluster
+python segment_index_400_800.py --model_4D gmmfull_4D_32_3x3_0050 --model_3D gmmfull_3D_32_3x3_0050 --size 3 --timestamp 0050 --pore_4D 0 --pore_3D 0
+
+32
+
+# 64 cluster
+python segment_index_400_800.py --model_4D gmmfull_4D_64_3x3_0050 --model_3D gmmfull_3D_64_3x3_0050 --size 3 --timestamp 0050 --pore_4D 0 --pore_3D 0
+
+45
+
+# 128 cluster
+python segment_index_400_800.py --model_4D gmmfull_4D_128_3x3_0050 --model_3D gmmfull_3D_128_3x3_0050 --size 3 --timestamp 0050 --pore_4D 0 --pore_3D 0
+
+
+Current slice: D:\MSc-Project\VA10_Pc200_Ram25_Pf50_T125_0050\VA10_Pc200_Ram25_Pf50_T125_0050_0800.rec.8bit.tif
+Loading 9 images...
+Finished!
+Getting features...
+Finished!
+Concatenating features...
+Finished!
+Segmenting...
+Finished!
+Saving results...
+89.6283528804779
+Saving results...
+89.662428855896
+Saving results...
+89.67993664741516
+Saving results...
+89.6970067024231
+Saving results...
+89.7645914554596
+Saving results...
+89.78659653663635
+Saving results...
+89.81910920143127
+Saving results...
+89.856125831604
+Saving results...
+89.87913250923157
+Saving results...
+89.89764070510864
+Saving results...
+89.92071270942688
+Saving results...
+89.97022986412048
+Saving results...
+89.99629759788513
+Saving results...
+90.02180767059326
+Saving results...
+90.05685925483704
+Saving results...
+90.07589936256409
+Saving results...
+90.10441017150879
+Saving results...
+90.13241863250732
+Saving results...
+90.19144034385681
+Saving results...
+90.23245739936829
+Saving results...
+90.26151585578918
+Saving results...
+90.2775206565857
+Saving results...
+90.31303381919861
+Saving results...
+90.3686134815216
+Saving results...
+90.38412022590637
+Saving results...
+90.40412616729736
+Saving results...
+90.44469809532166
+Saving results...
+90.48124313354492
+Saving results...
+90.51075387001038
+Saving results...
+90.53976202011108
+Saving results...
+90.58125138282776
+Saving results...
+90.60876488685608
+Saving results...
+90.63927626609802
+Saving results...
+90.67785739898682
+Saving results...
+90.7003173828125
+Saving results...
+90.71832275390625
+Saving results...
+90.7378306388855
+Saving results...
+90.75933861732483
+Saving results...
+90.81185674667358
+Saving results...
+90.82991528511047
+Saving results...
+90.91250586509705
+Saving results...
+90.9720983505249
+Saving results...
+90.99760961532593
+Saving results...
+91.07366418838501
+Saving results...
+91.09667110443115
+Saving results...
+91.11417841911316
+Saving results...
+91.14669036865234
+Saving results...
+91.18176078796387
+Saving results...
+91.2303318977356
+Saving results...
+91.26884531974792
+Saving results...
+91.29435515403748
+Saving results...
+91.31136059761047
+Saving results...
+91.33392667770386
+Saving results...
+91.37444186210632
+Saving results...
+91.39449834823608
+Saving results...
+91.44401621818542
+Saving results...
+91.46507096290588
+Saving results...
+91.48610591888428
+Saving results...
+91.51761794090271
+Saving results...
+91.54966568946838
+Saving results...
+91.57871150970459
+Saving results...
+91.59771752357483
+Saving results...
+91.61522507667542
+Saving results...
+91.6427354812622
+Saving results...
+91.66980767250061
+Saving results...
+91.71132183074951
+Saving results...
+91.74838590621948
+Saving results...
+91.77189421653748
+Saving results...
+91.80140519142151
+Saving results...
+91.8694281578064
+Saving results...
+91.89749526977539
+Saving results...
+91.91450047492981
+Saving results...
+91.93401026725769
+Saving results...
+91.9610800743103
+Saving results...
+92.08112382888794
+Saving results...
+92.13869595527649
+Saving results...
+92.16470313072205
+Saving results...
+92.19421553611755
+Saving results...
+92.21072316169739
+Saving results...
+92.23028135299683
+Saving results...
+92.27379584312439
+Saving results...
+92.29385280609131
+Saving results...
+92.32536435127258
+Saving results...
+92.35487508773804
+Saving results...
+92.37788128852844
+Saving results...
+92.39244604110718
+Saving results...
+92.41045260429382
+Saving results...
+92.43196034431458
+Saving results...
+92.51359272003174
+Saving results...
+92.53559875488281
+Saving results...
+92.55910921096802
+Saving results...
+92.59862303733826
+Saving results...
+92.62613296508789
+Saving results...
+92.65645980834961
+Saving results...
+92.68397045135498
+Saving results...
+92.70403003692627
+Saving results...
+92.73344922065735
+Saving results...
+92.75345492362976
+Saving results...
+92.78096652030945
+Saving results...
+92.7924735546112
+Saving results...
+92.816481590271
+Saving results...
+92.856600522995
+Saving results...
+92.87760806083679
+Saving results...
+92.90511870384216
+Saving results...
+92.92962718009949
+Saving results...
+92.9491376876831
+Saving results...
+92.97514486312866
+Saving results...
+92.99120736122131
+Saving results...
+93.02672076225281
+Saving results...
+93.06956648826599
+Saving results...
+93.09108877182007
+Saving results...
+93.10659766197205
+Saving results...
+93.12460327148438
+Saving results...
+93.16111588478088
+Saving results...
+93.17762303352356
+Saving results...
+93.21413993835449
+Saving results...
+93.24226021766663
+Saving results...
+93.2637722492218
+Saving results...
+93.30485582351685
+Saving results...
+93.35046052932739
+Saving results...
+93.3777437210083
+Saving results...
+93.40031886100769
+Saving results...
+93.42082715034485
+Saving results...
+93.44583368301392
+Saving results...
+93.46834421157837
+Saving results...
+93.48940181732178
+Saving results...
+93.53591823577881
+Saving results...
+93.58598709106445
+
+
+
+
+
+
+
+========================= testing code for large cluster experiments =================================
+python segment_conv_test.py --model_4D mini_kmeans_4D_6_3x3 --model_3D mini_kmeans_3D_6_3x3 --timestamp 0050 --pore_4D 1 --pore_3D 3
+python seg_slice.py --model_4D mini_kmeans_4D_16_3x3_0050 --model_3D mini_kmeans_3D_16_3x3_0050 --size 3 --timestamp 0050 --slice 600
+
+python segment_index_400_800.py --model_4D gmmfull_4D_16_3x3_0050 --model_3D gmmfull_3D_16_3x3_0050 --size 3 --timestamp 0050 --pore_4D 0 --pore_3D 0
+python segment_index_400_800.py --model_4D gmmfull_4D_3_3x3_0050 --model_3D gmmfull_3D_3_3x3_0050 --size 3 --timestamp 0050 --pore_4D 0 --pore_3D 0
+python segment_index_400_800.py --model_4D gmmfull_4D_128_3x3_0050 --model_3D gmmfull_3D_128_3x3_0050 --size 3 --timestamp 0050 --pore_4D 0 --pore_3D 0
+
+
+
+To separate the manually segment of cluster 64 results
+I put 64-cluster classes from 6 (included) into folder of 128.
+
+segment_conv.py and segment_index_400_800.py are the files looping through all clusters for slice 400 to 800.
+
+
+
+
+
+It makes sense to have high precision and low recall.
+presicion: the points it labeled to be true is actually true.
+recall: the ratio of the points that is actually true is labeled as true.
+
+There are 0 precision and 0 recall. 
+
+
+
+
+============ label ============
+==== gmm 3d 16
+0 gypsum (0.57 p), bassanite (0.3 p)
+1 gypsum 
+2 pore (0.42 p), bassanite (0,467 p)
+3 gypsum (0.56 p), bassanite (0.3 p)
+4 gypsum (0.55 p), bassanite (0.3 p)
+5 gypsum 
+6 gypsum (0.57 p), bassanite (0.28 p)
+7 pore (0.23 p), bassanite (0.68)
+8 gypsum
+9 pore (0.41), gypsum (0.17), bassanite (0.4)
+10 gypsum
+11 pore (0.75), bassanite (0.2)
+12 pore (0.14), gypsum (0.43), bassanite (0.39)
+13 bassanite (0.85)
+14 gypsum (0.63), bassanite (0.27)
+15 gypsum
+
+==== gmm 3d 32
+0 gypsum
+1 gypsum (0.54), bassanite (0.31)
+2 pore (0.41 p), gypsum (0,48 p)
+3 gypsum (0.56 p), bassanite (0.3 p)
+4 gypsum (0.55 p), bassanite (0.3 p)
+5 gypsum 
+6 gypsum (0.57 p), bassanite (0.28 p)
+7 pore (0.23 p), bassanite (0.68)
+8 gypsum
+9 pore (0.41), gypsum (0.17), bassanite (0.4)
+10 gypsum
+11 pore (0.75), bassanite (0.2)
+12 pore (0.14), gypsum (0.43), bassanite (0.39)
+13 bassanite (0.85)
+14 gypsum (0.63), bassanite (0.27)
+15 gypsum
+16 gypsum (0.57 p), bassanite (0.3 p)
+17 gypsum 
+18 pore (0.42 p), bassanite (0,467 p)
+19 gypsum (0.56 p), bassanite (0.3 p)
+20 gypsum (0.55 p), bassanite (0.3 p)
+21 gypsum 
+22 gypsum (0.57 p), bassanite (0.28 p)
+23 pore (0.23 p), bassanite (0.68)
+24 gypsum
+25 pore (0.41), gypsum (0.17), bassanite (0.4)
+26 gypsum
+27 pore (0.75), bassanite (0.2)
+28 pore (0.14), gypsum (0.43), bassanite (0.39)
+29 bassanite (0.85)
+30 gypsum (0.63), bassanite (0.27)
+31 gypsum
+
+
+
+
+
+
+
+=============== create training data with rectangle mask ===============
+python create_training_data.py --begin_time 0050 --end_time 0050 --begin_slice 600 --end_slice 800 --filename_3D training_data_3D_3x3_0050_rec --filename_4D training_data_4D_3x3_0050_rec --size 3
+
+======================= train =======================
+=======k-means=========
+python train.py --data_3D training_data_3D_3x3_0050_rec --data_4D training_data_4D_3x3_0050_rec --model_type mini_batch_kmeans --num_cluster 16 --name_4D mini_kmeans_4D_16_3x3_0050_rec --name_3D mini_kmeans_3D_16_3x3_0050_rec
+
+Namespace(data_3D='training_data_3D_3x3_0050_rec', data_4D='training_data_4D_3x3_0050_rec', model_type='mini_batch_kmeans', num_cluster=16, covariance_type='None', name_4D='mini_kmeans_4D_16_3x3_0050_rec', name_3D='mini_kmeans_3D_16_3x3_0050_rec')
+Loading data...
+Finished!
+Number of samples: 2165373
+mini-batch kmeans for 4D data
+Running...
+Run time: 6.347519636154175
+Saving model, please wait...
+Finished!
+mini-batch kmeans for 3D data
+Running...
+Run time: 7.57790207862854
+Saving model, please wait...
+Finished!
+
+
+
+python train.py --data_3D training_data_3D_3x3_0050_rec --data_4D training_data_4D_3x3_0050_rec --model_type mini_batch_kmeans --num_cluster 32 --name_4D mini_kmeans_4D_32_3x3_0050_rec --name_3D mini_kmeans_3D_32_3x3_0050_rec
+
+Namespace(data_3D='training_data_3D_3x3_0050_rec', data_4D='training_data_4D_3x3_0050_rec', model_type='mini_batch_kmeans', num_cluster=32, covariance_type='None', name_4D='mini_kmeans_4D_32_3x3_0050_rec', name_3D='mini_kmeans_3D_32_3x3_0050_rec')
+Loading data...
+Finished!
+Number of samples: 2165373
+mini-batch kmeans for 4D data
+Running...
+Run time: 4.841191053390503
+Saving model, please wait...
+Finished!
+mini-batch kmeans for 3D data
+Running...
+Run time: 5.320916175842285
+Saving model, please wait...
+Finished!
+
+
+
+python train.py --data_3D training_data_3D_3x3_0050_rec --data_4D training_data_4D_3x3_0050_rec --model_type mini_batch_kmeans --num_cluster 64 --name_4D mini_kmeans_4D_64_3x3_0050_rec --name_3D mini_kmeans_3D_64_3x3_0050_rec
+
+Namespace(data_3D='training_data_3D_3x3_0050_rec', data_4D='training_data_4D_3x3_0050_rec', model_type='mini_batch_kmeans', num_cluster=64, covariance_type='None', name_4D='mini_kmeans_4D_64_3x3_0050_rec', name_3D='mini_kmeans_3D_64_3x3_0050_rec')
+Loading data...
+Finished!
+Number of samples: 2165373
+mini-batch kmeans for 4D data
+Running...
+Run time: 10.641162872314453
+Saving model, please wait...
+Finished!
+mini-batch kmeans for 3D data
+Running...
+Run time: 5.7869343757629395
+Saving model, please wait...
+Finished!
+
+
+
+
+python train.py --data_3D training_data_3D_3x3_0050_rec --data_4D training_data_4D_3x3_0050_rec --model_type mini_batch_kmeans --num_cluster 128 --name_4D mini_kmeans_4D_128_3x3_0050_rec --name_3D mini_kmeans_3D_128_3x3_0050_rec
+
+Namespace(data_3D='training_data_3D_3x3_0050_rec', data_4D='training_data_4D_3x3_0050_rec', model_type='mini_batch_kmeans', num_cluster=128, covariance_type='None', name_4D='mini_kmeans_4D_128_3x3_0050_rec', name_3D='mini_kmeans_3D_128_3x3_0050_rec')
+Loading data...
+Finished!
+Number of samples: 2165373
+mini-batch kmeans for 4D data
+Running...
+Run time: 11.828126430511475
+Saving model, please wait...
+Finished!
+mini-batch kmeans for 3D data
+Running...
+Run time: 8.096652269363403
+Saving model, please wait...
+Finished!
+
+
+=======gmm=========
+python train.py --data_3D training_data_3D_3x3_0050_rec --data_4D training_data_4D_3x3_0050_rec --model_type gmm --num_cluster 16 --name_4D gmmfull_4D_16_3x3_0050_rec --name_3D gmmfull_3D_16_3x3_0050_rec --covariance_type full
+
+Namespace(data_3D='training_data_3D_3x3_0050_rec', data_4D='training_data_4D_3x3_0050_rec', model_type='gmm', num_cluster=16, covariance_type='full', name_4D='gmmfull_4D_16_3x3_0050_rec', name_3D='gmmfull_3D_16_3x3_0050_rec')
+Loading data...
+Finished!
+Number of samples: 2165373
+GMM for 4D data
+Running...
+Run time: 614.6833438873291
+Saving model, please wait...
+Finished!
+GMM for 3D data
+Running...
+Run time: 335.70389223098755
+Saving model, please wait...
+Finished!
+
+
+python train.py --data_3D training_data_3D_3x3_0050_rec --data_4D training_data_4D_3x3_0050_rec --model_type gmm --num_cluster 32 --name_4D gmmfull_4D_32_3x3_0050_rec --name_3D gmmfull_3D_32_3x3_0050_rec --covariance_type full
+
+Namespace(data_3D='training_data_3D_3x3_0050_rec', data_4D='training_data_4D_3x3_0050_rec', model_type='gmm', num_cluster=32, covariance_type='full', name_4D='gmmfull_4D_32_3x3_0050_rec', name_3D='gmmfull_3D_32_3x3_0050_rec')
+Loading data...
+Finished!
+Number of samples: 2165373
+GMM for 4D data
+Running...
+Run time: 2936.513480424881
+Saving model, please wait...
+Finished!
+GMM for 3D data
+Running...
+Run time: 696.9864587783813
+Saving model, please wait...
+Finished!
+
+
+
+python train.py --data_3D training_data_3D_3x3_0050_rec --data_4D training_data_4D_3x3_0050_rec --model_type gmm --num_cluster 64 --name_4D gmmfull_4D_64_3x3_0050_rec --name_3D gmmfull_3D_64_3x3_0050_rec --covariance_type full
+
+Namespace(data_3D='training_data_3D_3x3_0050_rec', data_4D='training_data_4D_3x3_0050_rec', model_type='gmm', num_cluster=64, covariance_type='full', name_4D='gmmfull_4D_64_3x3_0050_rec', name_3D='gmmfull_3D_64_3x3_0050_rec')
+Loading data...
+Finished!
+Number of samples: 2165373
+GMM for 4D data
+Running...
+Run time: 5433.694411277771
+Saving model, please wait...
+Finished!
+GMM for 3D data
+Running...
+Run time: 1285.5403938293457
+Saving model, please wait...
+Finished!
+
+
+
+python train.py --data_3D training_data_3D_3x3_0050_rec --data_4D training_data_4D_3x3_0050_rec --model_type gmm --num_cluster 128 --name_4D gmmfull_4D_128_3x3_0050_rec --name_3D gmmfull_3D_128_3x3_0050_rec --covariance_type full
+
+Namespace(data_3D='training_data_3D_3x3_0050_rec', data_4D='training_data_4D_3x3_0050_rec', model_type='gmm', num_cluster=128, covariance_type='full', name_4D='gmmfull_4D_128_3x3_0050_rec', name_3D='gmmfull_3D_128_3x3_0050_rec')
+Loading data...
+Finished!
+Number of samples: 2165373
+GMM for 4D data
+Running...
+Run time: 10979.044741392136
+Saving model, please wait...
+Finished!
+GMM for 3D data
+Running...
+Run time: 2645.417575120926
+Saving model, please wait...
+Finished!
+
+
+
+
+
+
+================================
+=  segment_conv: 400-800, circle
+=  segment_index_400_800: 400-800, circle
+=  segment_conv_400_800_rec: rec
+=  segment_index_400_800: rec
+================================
+
+
+
+
+
+
+
+======================================== segmentation with rec ========================================
+
+======================== k-means =========================
+# 16 cluster
+python segment_conv_400_800_rec.py --model_4D mini_kmeans_4D_16_3x3_0050_rec --model_3D mini_kmeans_3D_16_3x3_0050_rec --timestamp 0050 --pore_4D 0 --pore_3D 0
+
+
+Segment from slice 800 to 811
+Current timestamp: D:\MSc-Project\VA10_Pc200_Ram25_Pf50_T125_0050
+Creating image batch...
+Finished!
+Current timestamp: D:\MSc-Project\VA10_Pc200_Ram25_Pf50_T125_0040
+Creating image batch...
+Finished!
+Current timestamp: D:\MSc-Project\VA10_Pc200_Ram25_Pf50_T125_0060
+Creating image batch...
+Finished!
+Creat tensorflow graph...
+Convolution...
+2023-03-15 14:49:13.872992: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1616] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 21626 MB memory:  -> device: 0, name: NVIDIA RTX A5000, pci bus id: 0000:61:00.0, compute capability: 8.6
+3D segmentation...
+4D segmentation...
+Calculating distance...
+Finished!
+7.662594318389893
+Saving image...
+Finished!
+8.993672370910645
+Saving image...
+Finished!
+10.335096836090088
+Saving image...
+Finished!
+11.680943965911865
+Saving image...
+Finished!
+13.006798505783081
+Saving image...
+Finished!
+14.379355192184448
+Saving image...
+Finished!
+15.710587501525879
+Saving image...
+Finished!
+17.02008628845215
+Saving image...
+Finished!
+18.382322072982788
+Saving image...
+Finished!
+19.745878219604492
+Saving image...
+Finished!
+21.086195468902588
+Saving image...
+Finished!
+22.411518812179565
+Saving image...
+Finished!
+23.75882911682129
+Saving image...
+Finished!
+25.068238973617554
+Saving image...
+Finished!
+26.41495156288147
+Saving image...
+Finished!
+27.75446343421936
+Saving image...
+Finished!
+One Session Finished!
+
+# 32 cluster
+python segment_conv_400_800_rec.py --model_4D mini_kmeans_4D_32_3x3_0050_rec --model_3D mini_kmeans_3D_32_3x3_0050_rec --timestamp 0050 --pore_4D 0 --pore_3D 0
+
+Segment from slice 800 to 811
+Current timestamp: D:\MSc-Project\VA10_Pc200_Ram25_Pf50_T125_0050
+Creating image batch...
+Finished!
+Current timestamp: D:\MSc-Project\VA10_Pc200_Ram25_Pf50_T125_0040
+Creating image batch...
+Finished!
+Current timestamp: D:\MSc-Project\VA10_Pc200_Ram25_Pf50_T125_0060
+Creating image batch...
+Finished!
+Creat tensorflow graph...
+Convolution...
+2023-03-15 17:51:23.461455: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1616] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 21626 MB memory:  -> device: 0, name: NVIDIA RTX A5000, pci bus id: 0000:61:00.0, compute capability: 8.6
+3D segmentation...
+4D segmentation...
+Calculating distance...
+Finished!
+16.841734886169434
+Saving image...
+Finished!
+19.404746532440186
+Saving image...
+Finished!
+21.99143123626709
+Saving image...
+Finished!
+24.56404399871826
+Saving image...
+Finished!
+27.163430213928223
+Saving image...
+Finished!
+29.719934463500977
+Saving image...
+Finished!
+32.28250503540039
+Saving image...
+Finished!
+34.86109471321106
+Saving image...
+Finished!
+37.41860294342041
+Saving image...
+Finished!
+40.00195264816284
+Saving image...
+Finished!
+42.54756450653076
+Saving image...
+Finished!
+45.147544860839844
+Saving image...
+Finished!
+47.7673122882843
+Saving image...
+Finished!
+50.32982397079468
+Saving image...
+Finished!
+52.93192958831787
+Saving image...
+Finished!
+55.49138164520264
+Saving image...
+Finished!
+58.12186598777771
+Saving image...
+Finished!
+60.68403458595276
+Saving image...
+Finished!
+63.282811403274536
+Saving image...
+Finished!
+65.88228511810303
+Saving image...
+Finished!
+68.44434475898743
+Saving image...
+Finished!
+71.00860524177551
+Saving image...
+Finished!
+73.57965421676636
+Saving image...
+Finished!
+76.16313672065735
+Saving image...
+Finished!
+78.73617696762085
+Saving image...
+Finished!
+81.31529760360718
+Saving image...
+Finished!
+83.88772320747375
+Saving image...
+Finished!
+86.44021916389465
+Saving image...
+Finished!
+89.04636645317078
+Saving image...
+Finished!
+91.6165931224823
+Saving image...
+Finished!
+94.24396634101868
+Saving image...
+Finished!
+96.84571504592896
+Saving image...
+Finished!
+One Session Finished!
+
+
+
+
+# 64 cluster
+python segment_conv_400_800_rec.py --model_4D mini_kmeans_4D_64_3x3_0050_rec --model_3D mini_kmeans_3D_64_3x3_0050_rec --timestamp 0050 --pore_4D 0 --pore_3D 0
+
+
+Current timestamp: D:\MSc-Project\VA10_Pc200_Ram25_Pf50_T125_0050
+Creating image batch...
+Finished!
+Current timestamp: D:\MSc-Project\VA10_Pc200_Ram25_Pf50_T125_0040
+Creating image batch...
+Finished!
+Current timestamp: D:\MSc-Project\VA10_Pc200_Ram25_Pf50_T125_0060
+Creating image batch...
+Finished!
+Creat tensorflow graph...
+Convolution...
+2023-03-16 00:43:37.782172: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1616] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 21626 MB memory:  -> device: 0, name: NVIDIA RTX A5000, pci bus id: 0000:61:00.0, compute capability: 8.6
+3D segmentation...
+4D segmentation...
+Calculating distance...
+Finished!
+45.113970041275024
+Saving image...
+Finished!
+50.22027063369751
+Saving image...
+Finished!
+55.2329888343811
+Saving image...
+Finished!
+60.27823543548584
+Saving image...
+Finished!
+65.32579803466797
+Saving image...
+Finished!
+70.36673259735107
+Saving image...
+Finished!
+75.43640279769897
+Saving image...
+Finished!
+80.45040702819824
+Saving image...
+Finished!
+85.45146608352661
+Saving image...
+Finished!
+90.48164510726929
+Saving image...
+Finished!
+95.56140923500061
+Saving image...
+Finished!
+100.5444803237915
+Saving image...
+Finished!
+105.56742429733276
+Saving image...
+Finished!
+110.56344532966614
+Saving image...
+Finished!
+115.5754292011261
+Saving image...
+Finished!
+120.57858061790466
+Saving image...
+Finished!
+125.58106732368469
+Saving image...
+Finished!
+130.57674145698547
+Saving image...
+Finished!
+135.6122145652771
+Saving image...
+Finished!
+140.60689282417297
+Saving image...
+Finished!
+145.6223659515381
+Saving image...
+Finished!
+150.6390233039856
+Saving image...
+Finished!
+155.62251377105713
+Saving image...
+Finished!
+160.6126458644867
+Saving image...
+Finished!
+165.59451699256897
+Saving image...
+Finished!
+170.591463804245
+Saving image...
+Finished!
+175.5935308933258
+Saving image...
+Finished!
+180.59123492240906
+Saving image...
+Finished!
+185.60458660125732
+Saving image...
+Finished!
+190.61031222343445
+Saving image...
+Finished!
+195.61315321922302
+Saving image...
+Finished!
+200.69034028053284
+Saving image...
+Finished!
+205.67511200904846
+Saving image...
+Finished!
+210.68838262557983
+Saving image...
+Finished!
+215.6854681968689
+Saving image...
+Finished!
+220.67183756828308
+Saving image...
+Finished!
+225.67449688911438
+Saving image...
+Finished!
+230.65553045272827
+Saving image...
+Finished!
+235.65381336212158
+Saving image...
+Finished!
+240.64415550231934
+Saving image...
+Finished!
+245.65744948387146
+Saving image...
+Finished!
+250.65907168388367
+Saving image...
+Finished!
+255.66968774795532
+Saving image...
+Finished!
+260.67489290237427
+Saving image...
+Finished!
+265.669958114624
+Saving image...
+Finished!
+270.67390036582947
+Saving image...
+Finished!
+275.6995544433594
+Saving image...
+Finished!
+280.68881392478943
+Saving image...
+Finished!
+285.6752142906189
+Saving image...
+Finished!
+290.68815565109253
+Saving image...
+Finished!
+295.70643281936646
+Saving image...
+Finished!
+300.71914196014404
+Saving image...
+Finished!
+305.7221314907074
+Saving image...
+Finished!
+310.74793553352356
+Saving image...
+Finished!
+315.7526843547821
+Saving image...
+Finished!
+320.73675632476807
+Saving image...
+Finished!
+325.7674090862274
+Saving image...
+Finished!
+330.7695891857147
+Saving image...
+Finished!
+335.76358127593994
+Saving image...
+Finished!
+340.7695002555847
+Saving image...
+Finished!
+345.7660667896271
+Saving image...
+Finished!
+350.7482554912567
+Saving image...
+Finished!
+355.7493176460266
+Saving image...
+Finished!
+360.7484781742096
+Saving image...
+Finished!
+One Session Finished!
+
+
+# 128 cluster
+python segment_conv_400_800_rec.py --model_4D mini_kmeans_4D_128_3x3_0050_rec --model_3D mini_kmeans_3D_128_3x3_0050_rec --timestamp 0050 --pore_4D 0 --pore_3D 0
+
+Segment from slice 800 to 811
+Current timestamp: D:\MSc-Project\VA10_Pc200_Ram25_Pf50_T125_0050
+Creating image batch...
+Finished!
+Current timestamp: D:\MSc-Project\VA10_Pc200_Ram25_Pf50_T125_0040
+Creating image batch...
+Finished!
+Current timestamp: D:\MSc-Project\VA10_Pc200_Ram25_Pf50_T125_0060
+Creating image batch...
+Finished!
+Creat tensorflow graph...
+Convolution...
+2023-03-17 05:08:53.901736: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1616] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 21626 MB memory:  -> device: 0, name: NVIDIA RTX A5000, pci bus id: 0000:61:00.0, compute capability: 8.6
+3D segmentation...
+4D segmentation...
+Calculating distance...
+Finished!
+157.99536848068237
+Saving image...
+Finished!
+167.89995694160461
+Saving image...
+Finished!
+177.89463233947754
+Saving image...
+Finished!
+187.89567065238953
+Saving image...
+Finished!
+197.7489471435547
+Saving image...
+Finished!
+207.60327553749084
+Saving image...
+Finished!
+217.50225639343262
+Saving image...
+Finished!
+227.3838975429535
+Saving image...
+Finished!
+237.3178951740265
+Saving image...
+Finished!
+247.26850533485413
+Saving image...
+Finished!
+257.18630599975586
+Saving image...
+Finished!
+267.1275713443756
+Saving image...
+Finished!
+277.0872688293457
+Saving image...
+Finished!
+287.0172326564789
+Saving image...
+Finished!
+297.08986949920654
+Saving image...
+Finished!
+307.0257658958435
+Saving image...
+Finished!
+316.99733543395996
+Saving image...
+Finished!
+326.9749975204468
+Saving image...
+Finished!
+336.98147201538086
+Saving image...
+Finished!
+346.9181604385376
+Saving image...
+Finished!
+356.7601993083954
+Saving image...
+Finished!
+366.61529874801636
+Saving image...
+Finished!
+376.50021481513977
+Saving image...
+Finished!
+386.3207516670227
+Saving image...
+Finished!
+396.20838928222656
+Saving image...
+Finished!
+406.104909658432
+Saving image...
+Finished!
+416.01283383369446
+Saving image...
+Finished!
+425.9374952316284
+Saving image...
+Finished!
+435.7622740268707
+Saving image...
+Finished!
+445.64319014549255
+Saving image...
+Finished!
+455.49109721183777
+Saving image...
+Finished!
+465.32675290107727
+Saving image...
+Finished!
+475.22786569595337
+Saving image...
+Finished!
+485.1000978946686
+Saving image...
+Finished!
+495.029500246048
+Saving image...
+Finished!
+504.9529733657837
+Saving image...
+Finished!
+514.9221153259277
+Saving image...
+Finished!
+524.7880227565765
+Saving image...
+Finished!
+534.621248960495
+Saving image...
+Finished!
+544.4461641311646
+Saving image...
+Finished!
+554.3107016086578
+Saving image...
+Finished!
+564.2527437210083
+Saving image...
+Finished!
+574.1516613960266
+Saving image...
+Finished!
+584.0658555030823
+Saving image...
+Finished!
+593.9967210292816
+Saving image...
+Finished!
+603.9785325527191
+Saving image...
+Finished!
+613.9607183933258
+Saving image...
+Finished!
+623.9695837497711
+Saving image...
+Finished!
+633.83495926857
+Saving image...
+Finished!
+643.7470109462738
+Saving image...
+Finished!
+653.6316254138947
+Saving image...
+Finished!
+663.5437786579132
+Saving image...
+Finished!
+673.4215912818909
+Saving image...
+Finished!
+683.306916475296
+Saving image...
+Finished!
+693.1800625324249
+Saving image...
+Finished!
+703.1508629322052
+Saving image...
+Finished!
+713.0304880142212
+Saving image...
+Finished!
+722.9608469009399
+Saving image...
+Finished!
+732.8252799510956
+Saving image...
+Finished!
+742.735267162323
+Saving image...
+Finished!
+752.5748200416565
+Saving image...
+Finished!
+762.4683744907379
+Saving image...
+Finished!
+772.3346328735352
+Saving image...
+Finished!
+782.28830742836
+Saving image...
+Finished!
+792.2558689117432
+Saving image...
+Finished!
+802.1308374404907
+Saving image...
+Finished!
+812.1028442382812
+Saving image...
+Finished!
+822.0270819664001
+Saving image...
+Finished!
+832.0303847789764
+Saving image...
+Finished!
+841.9932904243469
+Saving image...
+Finished!
+851.8455872535706
+Saving image...
+Finished!
+861.7466726303101
+Saving image...
+Finished!
+871.6750626564026
+Saving image...
+Finished!
+881.511251449585
+Saving image...
+Finished!
+891.4261193275452
+Saving image...
+Finished!
+901.3341767787933
+Saving image...
+Finished!
+911.2588500976562
+Saving image...
+Finished!
+921.1522138118744
+Saving image...
+Finished!
+931.0992369651794
+Saving image...
+Finished!
+941.050243139267
+Saving image...
+Finished!
+951.0143339633942
+Saving image...
+Finished!
+960.9497900009155
+Saving image...
+Finished!
+970.8294005393982
+Saving image...
+Finished!
+980.6852812767029
+Saving image...
+Finished!
+990.6291832923889
+Saving image...
+Finished!
+1000.4759840965271
+Saving image...
+Finished!
+1010.3660800457001
+Saving image...
+Finished!
+1020.237336397171
+Saving image...
+Finished!
+1030.1538507938385
+Saving image...
+Finished!
+1040.1152443885803
+Saving image...
+Finished!
+1050.0967316627502
+Saving image...
+Finished!
+1060.010006427765
+Saving image...
+Finished!
+1069.8908653259277
+Saving image...
+Finished!
+1079.7436308860779
+Saving image...
+Finished!
+1089.676697254181
+Saving image...
+Finished!
+1099.5044977664948
+Saving image...
+Finished!
+1109.3477983474731
+Saving image...
+Finished!
+1119.2298457622528
+Saving image...
+Finished!
+1129.1449596881866
+Saving image...
+Finished!
+1139.0789630413055
+Saving image...
+Finished!
+1149.0905349254608
+Saving image...
+Finished!
+1159.0435082912445
+Saving image...
+Finished!
+1169.046257019043
+Saving image...
+Finished!
+1179.0044333934784
+Saving image...
+Finished!
+1188.8708419799805
+Saving image...
+Finished!
+1198.7534453868866
+Saving image...
+Finished!
+1208.6821432113647
+Saving image...
+Finished!
+1218.5864000320435
+Saving image...
+Finished!
+1228.4583764076233
+Saving image...
+Finished!
+1238.391939163208
+Saving image...
+Finished!
+1248.307101726532
+Saving image...
+Finished!
+1258.2382571697235
+Saving image...
+Finished!
+1268.1794192790985
+Saving image...
+Finished!
+1278.1426734924316
+Saving image...
+Finished!
+1288.1007168293
+Saving image...
+Finished!
+1298.0697157382965
+Saving image...
+Finished!
+1308.0111362934113
+Saving image...
+Finished!
+1317.893584728241
+Saving image...
+Finished!
+1327.8084909915924
+Saving image...
+Finished!
+1337.7414331436157
+Saving image...
+Finished!
+1347.575556755066
+Saving image...
+Finished!
+1357.4590604305267
+Saving image...
+Finished!
+1367.3254487514496
+Saving image...
+Finished!
+1377.3183417320251
+Saving image...
+Finished!
+1387.2458806037903
+Saving image...
+Finished!
+1397.1768760681152
+Saving image...
+Finished!
+1407.169340133667
+Saving image...
+Finished!
+1417.111362695694
+Saving image...
+Finished!
+One Session Finished!
+
+
+
+
+======================== gmm =========================
+# 16 cluster
+python segment_index_400_800_rec.py --model_4D gmmfull_4D_16_3x3_0050_rec --model_3D gmmfull_3D_16_3x3_0050_rec --size 3 --timestamp 0050 --pore_4D 0 --pore_3D 0
+
+Current slice: D:\MSc-Project\VA10_Pc200_Ram25_Pf50_T125_0050\VA10_Pc200_Ram25_Pf50_T125_0050_0800.rec.8bit.tif
+Loading 9 images...
+Finished!
+Getting features...
+Finished!
+Concatenating features...
+Finished!
+Segmenting...
+Finished!
+Saving results...
+13.034446001052856
+Saving results...
+13.163554668426514
+Saving results...
+13.288199424743652
+Saving results...
+13.409266948699951
+Saving results...
+13.469937086105347
+Saving results...
+13.486942529678345
+Saving results...
+13.56955623626709
+Saving results...
+13.631162166595459
+Saving results...
+13.833273887634277
+Saving results...
+13.910379648208618
+Saving results...
+13.974984645843506
+Saving results...
+14.026021003723145
+Saving results...
+14.071644067764282
+Saving results...
+14.097663164138794
+Saving results...
+14.402586936950684
+Saving results...
+14.572811126708984
+
+
+# 32 cluster
+python segment_index_400_800_rec.py --model_4D gmmfull_4D_32_3x3_0050_rec --model_3D gmmfull_3D_32_3x3_0050_rec --size 3 --timestamp 0050 --pore_4D 0 --pore_3D 0
+
+Current slice: D:\MSc-Project\VA10_Pc200_Ram25_Pf50_T125_0050\VA10_Pc200_Ram25_Pf50_T125_0050_0800.rec.8bit.tif
+Loading 9 images...
+Finished!
+Getting features...
+Finished!
+Concatenating features...
+Finished!
+Segmenting...
+Finished!
+Saving results...
+19.534212112426758
+Saving results...
+19.588730812072754
+Saving results...
+19.623299598693848
+Saving results...
+19.667868852615356
+Saving results...
+19.691381692886353
+Saving results...
+19.77696180343628
+Saving results...
+19.806472778320312
+Saving results...
+19.880555391311646
+Saving results...
+19.924070596694946
+Saving results...
+19.953125953674316
+Saving results...
+20.007729053497314
+Saving results...
+20.062753200531006
+Saving results...
+20.118271589279175
+Saving results...
+20.15278458595276
+Saving results...
+20.174856424331665
+Saving results...
+20.21036982536316
+Saving results...
+20.317513704299927
+Saving results...
+20.406967401504517
+Saving results...
+20.445481777191162
+Saving results...
+20.506559371948242
+Saving results...
+20.601659297943115
+Saving results...
+20.620665311813354
+Saving results...
+20.672504425048828
+Saving results...
+20.766595363616943
+Saving results...
+20.793105840682983
+Saving results...
+20.9797580242157
+Saving results...
+21.0818190574646
+Saving results...
+21.161899089813232
+Saving results...
+21.20541501045227
+Saving results...
+21.245482921600342
+Saving results...
+21.277995824813843
+Saving results...
+21.43010926246643
+
+
+# 64 cluster
+python segment_index_400_800_rec.py --model_4D gmmfull_4D_64_3x3_0050_rec --model_3D gmmfull_3D_64_3x3_0050_rec --size 3 --timestamp 0050 --pore_4D 0 --pore_3D 0
+
+Current slice: D:\MSc-Project\VA10_Pc200_Ram25_Pf50_T125_0050\VA10_Pc200_Ram25_Pf50_T125_0050_0800.rec.8bit.tif
+Loading 9 images...
+Finished!
+Getting features...
+Finished!
+Concatenating features...
+Finished!
+Segmenting...
+Finished!
+Saving results...
+32.54245615005493
+Saving results...
+32.567574977874756
+Saving results...
+32.59282398223877
+Saving results...
+32.631349086761475
+Saving results...
+32.654672622680664
+Saving results...
+32.67667865753174
+Saving results...
+32.69018507003784
+Saving results...
+32.70418858528137
+Saving results...
+32.75072741508484
+Saving results...
+32.783294439315796
+Saving results...
+32.8138062953949
+Saving results...
+32.83481240272522
+Saving results...
+32.85589408874512
+Saving results...
+32.9394257068634
+Saving results...
+32.95943069458008
+Saving results...
+32.98093914985657
+Saving results...
+33.003018617630005
+Saving results...
+33.02752733230591
+Saving results...
+33.0515341758728
+Saving results...
+33.08359360694885
+Saving results...
+33.10910391807556
+Saving results...
+33.13117170333862
+Saving results...
+33.18919324874878
+Saving results...
+33.22175741195679
+Saving results...
+33.254242181777954
+Saving results...
+33.27730321884155
+Saving results...
+33.30731010437012
+Saving results...
+33.33482122421265
+Saving results...
+33.38640475273132
+Saving results...
+33.45543026924133
+Saving results...
+33.47793889045715
+Saving results...
+33.51700735092163
+Saving results...
+33.55451989173889
+Saving results...
+33.58258533477783
+Saving results...
+33.61948204040527
+Saving results...
+33.64399242401123
+Saving results...
+33.67150354385376
+Saving results...
+33.69555950164795
+Saving results...
+33.77359080314636
+Saving results...
+33.79209899902344
+Saving results...
+33.82461142539978
+Saving results...
+33.86212658882141
+Saving results...
+33.894126415252686
+Saving results...
+33.91814661026001
+Saving results...
+33.98016881942749
+Saving results...
+34.002678871154785
+Saving results...
+34.02368378639221
+Saving results...
+34.07670450210571
+Saving results...
+34.10880088806152
+Saving results...
+34.144821882247925
+Saving results...
+34.16338849067688
+Saving results...
+34.21495962142944
+Saving results...
+34.25197911262512
+Saving results...
+34.291009187698364
+Saving results...
+34.33552384376526
+Saving results...
+34.349539041519165
+Saving results...
+34.44865298271179
+Saving results...
+34.55223631858826
+Saving results...
+34.576252460479736
+Saving results...
+34.67141532897949
+Saving results...
+34.689430952072144
+Saving results...
+34.73346471786499
+Saving results...
+34.792487144470215
+Saving results...
+34.81150507926941
+
+
+# 128 cluster
+python segment_index_400_800_rec.py --model_4D gmmfull_4D_128_3x3_0050_rec --model_3D gmmfull_3D_128_3x3_0050_rec --size 3 --timestamp 0050 --pore_4D 0 --pore_3D 0
+
+Current slice: D:\MSc-Project\VA10_Pc200_Ram25_Pf50_T125_0050\VA10_Pc200_Ram25_Pf50_T125_0050_0800.rec.8bit.tif
+Loading 9 images...
+Finished!
+Getting features...
+Finished!
+Concatenating features...
+Finished!
+Segmenting...
+Finished!
+Saving results...
+58.9155113697052
+Saving results...
+58.93851709365845
+Saving results...
+58.95702600479126
+Saving results...
+58.971030473709106
+Saving results...
+58.99409770965576
+Saving results...
+59.01412630081177
+Saving results...
+59.05964112281799
+Saving results...
+59.07669401168823
+Saving results...
+59.09369874000549
+Saving results...
+59.11828565597534
+Saving results...
+59.15434193611145
+Saving results...
+59.168386697769165
+Saving results...
+59.193896770477295
+Saving results...
+59.21890377998352
+Saving results...
+59.233927488327026
+Saving results...
+59.28655028343201
+Saving results...
+59.31355690956116
+Saving results...
+59.32698130607605
+Saving results...
+59.357035636901855
+Saving results...
+59.373040199279785
+Saving results...
+59.3930869102478
+Saving results...
+59.446099519729614
+Saving results...
+59.46910786628723
+Saving results...
+59.487184286117554
+Saving results...
+59.506699085235596
+Saving results...
+59.528706312179565
+Saving results...
+59.560741662979126
+Saving results...
+59.57483530044556
+Saving results...
+59.60888409614563
+Saving results...
+59.662508964538574
+Saving results...
+59.68651556968689
+Saving results...
+59.708024740219116
+Saving results...
+59.73208403587341
+Saving results...
+59.747087478637695
+Saving results...
+59.76614737510681
+Saving results...
+59.78872990608215
+Saving results...
+59.814735412597656
+Saving results...
+59.851834297180176
+Saving results...
+59.874840259552
+Saving results...
+59.906408071517944
+Saving results...
+59.92586660385132
+Saving results...
+59.94092655181885
+Saving results...
+59.98198890686035
+Saving results...
+60.012808084487915
+Saving results...
+60.03181457519531
+Saving results...
+60.05632424354553
+Saving results...
+60.110398054122925
+Saving results...
+60.13046312332153
+Saving results...
+60.159470081329346
+Saving results...
+60.18151569366455
+Saving results...
+60.19908833503723
+Saving results...
+60.2170934677124
+Saving results...
+60.23214888572693
+Saving results...
+60.262659549713135
+Saving results...
+60.279664278030396
+Saving results...
+60.30572438240051
+Saving results...
+60.343037366867065
+Saving results...
+60.368547201156616
+Saving results...
+60.38505411148071
+Saving results...
+60.39905834197998
+Saving results...
+60.4286253452301
+Saving results...
+60.447654724121094
+Saving results...
+60.469661235809326
+Saving results...
+60.50836133956909
+Saving results...
+60.53436779975891
+Saving results...
+60.55740308761597
+Saving results...
+60.57596945762634
+Saving results...
+60.594974756240845
+Saving results...
+60.61448645591736
+Saving results...
+60.640546798706055
+Saving results...
+60.65555191040039
+Saving results...
+60.69557213783264
+Saving results...
+60.72208046913147
+Saving results...
+60.73809099197388
+Saving results...
+60.75960087776184
+Saving results...
+60.78745889663696
+Saving results...
+60.806463956832886
+Saving results...
+60.853386640548706
+Saving results...
+60.8663911819458
+Saving results...
+60.89117765426636
+Saving results...
+60.92268919944763
+Saving results...
+60.953200578689575
+Saving results...
+60.97020697593689
+Saving results...
+60.99457097053528
+Saving results...
+61.030203104019165
+Saving results...
+61.048710107803345
+Saving results...
+61.06271409988403
+Saving results...
+61.08922481536865
+Saving results...
+61.118969440460205
+Saving results...
+61.13447618484497
+Saving results...
+61.15848207473755
+Saving results...
+61.18495178222656
+Saving results...
+61.207679271698
+Saving results...
+61.25752544403076
+Saving results...
+61.27652978897095
+Saving results...
+61.296210527420044
+Saving results...
+61.31571698188782
+Saving results...
+61.32872033119202
+Saving results...
+61.35103750228882
+Saving results...
+61.36604142189026
+Saving results...
+61.39855360984802
+Saving results...
+61.435264348983765
+Saving results...
+61.453771114349365
+Saving results...
+61.47528123855591
+Saving results...
+61.50579261779785
+Saving results...
+61.526798725128174
+Saving results...
+61.54530596733093
+Saving results...
+61.55931043624878
+Saving results...
+61.57962346076965
+Saving results...
+61.594627380371094
+Saving results...
+61.61213421821594
+Saving results...
+61.6296443939209
+Saving results...
+61.64964938163757
+Saving results...
+61.66815757751465
+Saving results...
+61.68516182899475
+Saving results...
+61.7106716632843
+Saving results...
+61.72892951965332
+Saving results...
+61.753437519073486
+Saving results...
+61.76844143867493
+Saving results...
+61.80789494514465
+Saving results...
+61.828556299209595
+Saving results...
+61.887094497680664
+Saving results...
+61.90960240364075
+Saving results...
+61.94157838821411
+Saving results...
+61.960596323013306
+Saving results...
+61.98310446739197
+Saving results...
+62.00458788871765
+Saving results...
+62.021592140197754
+
+
+
+
+
+
+==============
+meeting 0316: 
+1: coloring plot
+2: cnn phase
+3: analyse overall performance for each model and comparision
+4: identify the classes that makes confusions
+==============
