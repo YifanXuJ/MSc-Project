@@ -2,6 +2,8 @@
 This file contains all the functions which return 4D feature and 3D feature
 it has 3 types: 1x1x1, 3x3x3, 5x5x5
 
+---> get_mask() has been changed for rectangle frame
+
 Author: Yan Gao
 email: gaoy4477@gmail.com
 '''
@@ -14,12 +16,30 @@ import module.content as content
 
 # This function will return the mask based on input centre and radius
 # Also, it will return the feature index based on the input parameter, mask index is used for get features
-def get_mask(path, mask_centre, radius, size):
+"""def get_mask(path, mask_centre, radius, size):
 	print('Pick one slice to get mask and features index')
 	img = cv2.imread(path, -1)
 	height, width = img.shape
 	mask = np.zeros((height, width), np.uint8)
 	cv2.circle(mask, mask_centre, radius, 1, thickness=-1)
+	# Now begin to index the features
+	coordinate = mask.nonzero()
+	if size == 3:
+		feature_index = [[i-1, i+2, j-1, j+2] for i, j in zip(coordinate[0], coordinate[1])]
+	elif size == 1:
+		feature_index = [[i, j] for i, j in zip(coordinate[0], coordinate[1])]
+	elif size == 5:
+		feature_index = [[i-2, i+3, j-2, j+3] for i, j in zip(coordinate[0], coordinate[1])]
+	else:
+		raise ValueError('Have not input the correct size!')
+
+	return mask, feature_index"""
+def get_mask(path, size):
+	print('Pick one slice to get mask and features index')
+	img = cv2.imread(path, -1)
+	height, width = img.shape
+	mask = np.zeros((height, width), np.uint8)
+	cv2.rectangle(mask, (282, 353), (1136, 1052), 1, -1)
 	# Now begin to index the features
 	coordinate = mask.nonzero()
 	if size == 3:

@@ -38,11 +38,22 @@ def get_args():
 	return args
 
 # function for saving the .png file
-def save_png(raw_img_path, save_folder, img_data):
+def save_png(raw_img_path, save_folder, img_data, cluster):
 	# plt.figure(figsize=(height/1000, width/1000), dpi=100)
 	# plt.imshow(img_data, 'gray')
 	# plt.axis('off')
-	save_path = os.path.join(save_folder, os.path.basename(raw_img_path[:-9])+'8bit.png')
+	slice_num = os.path.basename(raw_img_path[-17:-13])
+	
+	cluster_num = ''
+	if cluster // 10 == 0:
+		cluster_num = cluster_num + '00' + str(cluster)
+	elif cluster // 100 == 0:
+		cluster_num = cluster_num + '0' + str(cluster)
+	else:
+		cluster_num = str(cluster)
+
+	save_path = os.path.join(save_folder, 'VA10_0050_'+slice_num +'_'+cluster_num +'.rec.8bit.png')
+	#os.path.join(save_folder, os.path.basename(raw_img_path[:-9])+'8bit.png')
 	# plt.savefig(save_path, dpi=1000)
 	# plt.close()
 	cv2.imwrite(save_path, img_data)
@@ -60,11 +71,11 @@ def segment(begin_slice, end_slice, kernel_3D_list, kernel_4D_list_1, kernel_4D_
 	# create graph for tensorflow -> share the same size for input
 	x_3D = tf.compat.v1.placeholder(tf.float32, shape=(1, end_slice-begin_slice+1, height, width, 1))
 	# layer for 3D data
-	layer_list_3D = [tf.nn.conv3d(x_3D, filter=i, strides = conv_stride, padding='SAME') for i in kernel_3D_list]
+	layer_list_3D = [tf.compat.v1.nn.conv3d(x_3D, filter=i, strides = conv_stride, padding='SAME') for i in kernel_3D_list]
 	# layer for 4D data
-	layer_list_4D_1 = [tf.nn.conv3d(x_3D, filter=i, strides = conv_stride, padding='SAME') for i in kernel_4D_list_1]
-	layer_list_4D_2 = [tf.nn.conv3d(x_3D, filter=i, strides = conv_stride, padding='SAME') for i in kernel_4D_list_2]
-	layer_list_4D_3 = [tf.nn.conv3d(x_3D, filter=i, strides = conv_stride, padding='SAME') for i in kernel_4D_list_3]
+	layer_list_4D_1 = [tf.compat.v1.nn.conv3d(x_3D, filter=i, strides = conv_stride, padding='SAME') for i in kernel_4D_list_1]
+	layer_list_4D_2 = [tf.compat.v1.nn.conv3d(x_3D, filter=i, strides = conv_stride, padding='SAME') for i in kernel_4D_list_2]
+	layer_list_4D_3 = [tf.compat.v1.nn.conv3d(x_3D, filter=i, strides = conv_stride, padding='SAME') for i in kernel_4D_list_3]
 
 	print('Convolution...')
 	# run the graph
@@ -88,42 +99,74 @@ def segment(begin_slice, end_slice, kernel_3D_list, kernel_4D_list_1, kernel_4D_
 	distance_list_4D = [constant_4D_list[i]-2*result_4D_1_reshape[i]-2*result_4D_2_reshape[i]-2*result_4D_3_reshape[i] for i in range(num_centre_4D)]
 	print('Finished!')
 
-	compare_3D = [distance_list[pore_3D[0]] < distance_list[j] for j in range(num_centre_3D) if j != pore_3D[0]]
-	for element in pore_3D[1:]:
-		compare_3D_ = [distance_list[element] < distance_list[j] for j in range(num_centre_3D) if j != element]
-		for i in range(len(compare_3D)):
-			compare_3D[i] += compare_3D_[i]
+	# compare_3D = [distance_list[pore_3D[0]] < distance_list[j] for j in range(num_centre_3D) if j != pore_3D[0]]
+	# for element in pore_3D[1:]:
+	# 	compare_3D_ = [distance_list[element] < distance_list[j] for j in range(num_centre_3D) if j != element]
+	# 	for i in range(len(compare_3D)):
+	# 		compare_3D[i] += compare_3D_[i]
 
-	compare_4D = [distance_list_4D[pore_4D[0]] < distance_list_4D[j] for j in range(num_centre_4D) if j != pore_4D[0]]
-	for element in pore_4D[1:]:
-		compare_4D_ = [distance_list_4D[element] < distance_list_4D[j] for j in range(num_centre_4D) if j != element]
-		for i in range(len(compare_4D)):
-			compare_4D[i] += compare_4D_[i]
+	# compare_4D = [distance_list_4D[pore_4D[0]] < distance_list_4D[j] for j in range(num_centre_4D) if j != pore_4D[0]]
+	# for element in pore_4D[1:]:
+	# 	compare_4D_ = [distance_list_4D[element] < distance_list_4D[j] for j in range(num_centre_4D) if j != element]
+	# 	for i in range(len(compare_4D)):
+	# 		compare_4D[i] += compare_4D_[i]
 
-	segment_3D = mask
-	for i in compare_3D:
-		segment_3D = segment_3D * i
+	for c in range(25, 64):
 
-	segment_4D = mask
-	for i in compare_4D:
-		segment_4D = segment_4D * i
+		compare_3D = [distance_list[c] < distance_list[j] for j in range(num_centre_3D) if j != c]
 
-	# inverse color for plotting
-	segment_inv_3D = cv2.bitwise_not(255*segment_3D)
-	segment_inv_4D = cv2.bitwise_not(255*segment_4D)
+		compare_4D = [distance_list_4D[c] < distance_list_4D[j] for j in range(num_centre_4D) if j != c]
 
-	end = time.time()
-	print(end-start)
+		segment_3D = mask
+		for i in compare_3D:
+			segment_3D = segment_3D * i
 
-	return segment_inv_4D, segment_inv_3D
+		segment_4D = mask
+		for i in compare_4D:
+			segment_4D = segment_4D * i
+
+		# inverse color for plotting
+		segment_inv_3D = cv2.bitwise_not(255*segment_3D)
+		segment_inv_4D = cv2.bitwise_not(255*segment_4D)
+
+		end = time.time()
+		print(end-start)
+
+		print('Saving image...')
+		for index, j in enumerate(range(begin_slice+1,end_slice)):
+			save_png(sub_all_tif[j-1], save_path_3D, segment_inv_3D[index+1], c)
+			save_png(sub_all_tif[j-1], save_path_4D, segment_inv_4D[index+1], c)
+		print('Finished!')
+
+
+	# compare_3D = [distance_list[pore_3D[0]] < distance_list[j] for j in range(num_centre_3D) if j != pore_3D[0]]
+
+	# compare_4D = [distance_list_4D[pore_4D[0]] < distance_list_4D[j] for j in range(num_centre_4D) if j != pore_4D[0]]
+
+	# segment_3D = mask
+	# for i in compare_3D:
+	# 	segment_3D = segment_3D * i
+
+	# segment_4D = mask
+	# for i in compare_4D:
+	# 	segment_4D = segment_4D * i
+
+	# # inverse color for plotting
+	# segment_inv_3D = cv2.bitwise_not(255*segment_3D)
+	# segment_inv_4D = cv2.bitwise_not(255*segment_4D)
+
+	# end = time.time()
+	# print(end-start)
+
+	# return segment_inv_4D, segment_inv_3D
 
 
 
 args = get_args()
 
 # Here we set the paramater
-mask_centre = (718, 682)
-radius = 562
+mask_centre = (705, 682)
+radius = 542
 keyword = 'VA10_Pc200_Ram25_Pf'
 # transfer the pore from string to list
 pore_4D = args.pore_4D.split(',')
@@ -172,38 +215,40 @@ mask = np.zeros((height, width), np.uint8)
 cv2.circle(mask, mask_centre, radius, 1, thickness=-1)
 
 # create folder to save the segmentation result
-save_path_3D = os.path.join(sub_path, 'segmentation_3D')
-save_path_4D = os.path.join(sub_path, 'segmentation_4D')
-if not os.path.exists(save_path_3D):
-	os.mkdir(save_path_3D)
-if not os.path.exists(save_path_4D):
-	os.mkdir(save_path_4D)
+save_path_3D = os.path.join(current_path, 'large_clusters', '3d', 'cluster_64_3')
+save_path_4D = os.path.join(current_path, 'large_clusters', '4d', 'cluster_64_3')
+
+# if not os.path.exists(save_path_3D):
+# 	os.mkdir(save_path_3D)
+# if not os.path.exists(save_path_4D):
+# 	os.mkdir(save_path_4D)
 
 # creat group to train
-total_number = len(sub_all_tif)
+total_number = 410  #len(sub_all_tif)
 group = 10
 
-first = [1, group+1]
-remain_num = total_number % group
-if remain_num != 0:
-	last = [total_number-remain_num, total_number]
-	slice_list = [[i, i+group+1] for i in range(group, total_number-remain_num, group)]
-	slice_list.append(last)
-	slice_list.insert(0, first)
-else:
-	last = [total_number-group, total_number]
-	slice_list = [[i, i+group+1] for i in range(group, total_number-group-1, group)]
-	slice_list.append(last)
+slice_list = [[i, i+group+1] for i in range(390,810, group)]
 
+# first = [1, group+1]
+# remain_num = total_number % group
+# if remain_num != 0:
+# 	last = [total_number-remain_num, total_number]
+# 	slice_list = [[i, i+group+1] for i in range(group, total_number-remain_num, group)]
+# 	slice_list.append(last)
+# 	slice_list.insert(0, first)
+# else:
+# 	last = [total_number-group, total_number]
+# 	slice_list = [[i, i+group+1] for i in range(group, total_number-group-1, group)]
+# 	slice_list.append(last)
 
 for i in slice_list:
-	segment_inv_4D, segment_inv_3D = segment(i[0], i[1], kernel_3D_list, kernel_4D_list_1, kernel_4D_list_2, kernel_4D_list_3, 
+	segment(i[0], i[1], kernel_3D_list, kernel_4D_list_1, kernel_4D_list_2, kernel_4D_list_3, 
 											 constant_3D_list, constant_4D_list, pore_3D, pore_4D, mask, sub_path, sub_path_previous, sub_path_next)
-	print('Saving image...')
-	for index, j in enumerate(range(i[0]+1,i[1])):
-		save_png(sub_all_tif[j-1], save_path_3D, segment_inv_3D[index+1])
-		save_png(sub_all_tif[j-1], save_path_4D, segment_inv_4D[index+1])
-	print('Finished!')
+	# print('Saving image...')
+	# for index, j in enumerate(range(i[0]+1,i[1])):
+	# 	save_png(sub_all_tif[j-1], save_path_3D, segment_inv_3D[index+1], pore_3D[0])
+	# 	save_png(sub_all_tif[j-1], save_path_4D, segment_inv_4D[index+1], pore_4D[0])
+	print('One Session Finished!')
 
 
 

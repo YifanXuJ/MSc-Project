@@ -129,9 +129,9 @@ def segment(path_img, save_path_4D, save_path_3D, model_4D, model_3D,
 args = get_args()
 
 # Here we set the paramater
-mask_centre = (700, 810)
-radius = 550
-keyword = 'SHP'
+mask_centre = (705, 682)
+radius = 542
+keyword = 'VA10_Pc200_Ram25_Pf'
 # transfer the pore from string to list
 pore_4D = args.pore_4D.split(',')
 pore_4D = [int(i) for i in pore_4D]

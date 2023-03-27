@@ -31,8 +31,8 @@ def get_args():
 
 args = get_args()
 # Here we set the paramater
-mask_centre = (718, 682)
-radius = 562
+mask_centre = (705, 682)
+radius = 542
 keyword = 'VA10_Pc200_Ram25_Pf'
 
 # get the path for target slice
@@ -61,6 +61,8 @@ else:
 	raise ValueError('Please input the right size, should be 1, 3 or 5.')
 
 print('Segmenting...')
+start_t = time.time()  #added
+	
 # segment
 prediction_4D = model_4D_type.predict(feature_4D)
 prediction_3D = model_3D_type.predict(feature_3D)
@@ -70,6 +72,9 @@ coordinate = mask.nonzero()
 
 num_classes_4D = len(set(prediction_4D))
 num_classes_3D = len(set(prediction_3D))
+
+end_t = time.time()  #added
+print('Run time:', end_t-start_t)
 
 height, width = mask.shape
 

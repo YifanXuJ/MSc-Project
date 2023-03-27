@@ -45,14 +45,13 @@ def get_args():
 # get argument from args function
 args = get_args()
 # set the parameter of mask here
-mask_centre = (718, 682)
-radius = 562
+# mask_centre = (705, 682)
+# radius = 542
 # set the subsampling rate here
 # means, for each slice, we just randomly pick 1% points as training data
-subsampling_rate = 0.01
+subsampling_rate = 0.018
 # for locate target folder
 keyword = 'VA10_Pc200_Ram25_Pf'
-
 
 current_path = os.getcwd()
 all_timestamp = content.get_folder(current_path, keyword)
@@ -78,7 +77,7 @@ for sub_timestamp in target_timestamp:
 	target_slice = sub_all_tif[args.begin_slice-1: args.end_slice]
 
 	# use feature_index to get the features
-	_, feature_index = features.get_mask(sub_all_tif[0], mask_centre, radius, args.size)
+	_, feature_index = features.get_mask(sub_all_tif[0], args.size)
 	total_feature_num = len(feature_index)
 	sample_feature_num = int(subsampling_rate * total_feature_num)
 	sample_list = random.sample(range(total_feature_num), sample_feature_num)
@@ -117,6 +116,5 @@ if os.path.exists(file_path_3D):
 np.save(file_path_4D, training_data_4D)
 np.save(file_path_3D, training_data_3D)
 print('Finished!')
-
 
 

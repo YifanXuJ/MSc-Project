@@ -69,6 +69,7 @@ prediction_3D = model_3D_type.predict(feature_3D)
 
 # write the image
 coordinate = mask.nonzero()
+print(coordinate)
 
 num_classes_4D = len(set(prediction_4D))
 num_classes_3D = len(set(prediction_3D))
