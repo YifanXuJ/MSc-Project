@@ -16,7 +16,7 @@ import module.content as content
 
 # This function will return the mask based on input centre and radius
 # Also, it will return the feature index based on the input parameter, mask index is used for get features
-"""def get_mask(path, mask_centre, radius, size):
+def get_mask(path, mask_centre, radius, size):
 	print('Pick one slice to get mask and features index')
 	img = cv2.imread(path, -1)
 	height, width = img.shape
@@ -33,13 +33,53 @@ import module.content as content
 	else:
 		raise ValueError('Have not input the correct size!')
 
-	return mask, feature_index"""
-def get_mask(path, size):
+	return mask, feature_index
+
+
+def get_rec_mask_50(path, size):
 	print('Pick one slice to get mask and features index')
 	img = cv2.imread(path, -1)
 	height, width = img.shape
 	mask = np.zeros((height, width), np.uint8)
-	cv2.rectangle(mask, (282, 353), (1136, 1052), 1, -1)
+	cv2.rectangle(mask, (282, 353), (1136, 1052), 1, -1)  
+	# Now begin to index the features
+	coordinate = mask.nonzero()
+	if size == 3:
+		feature_index = [[i-1, i+2, j-1, j+2] for i, j in zip(coordinate[0], coordinate[1])]
+	elif size == 1:
+		feature_index = [[i, j] for i, j in zip(coordinate[0], coordinate[1])]
+	elif size == 5:
+		feature_index = [[i-2, i+3, j-2, j+3] for i, j in zip(coordinate[0], coordinate[1])]
+	else:
+		raise ValueError('Have not input the correct size!')
+
+	return mask, feature_index
+
+def get_rec_mask_40(path, size):
+	print('Pick one slice to get mask and features index')
+	img = cv2.imread(path, -1)
+	height, width = img.shape
+	mask = np.zeros((height, width), np.uint8)
+	cv2.rectangle(mask, (279, 389), (1133, 1088), 1, -1)  
+	# Now begin to index the features
+	coordinate = mask.nonzero()
+	if size == 3:
+		feature_index = [[i-1, i+2, j-1, j+2] for i, j in zip(coordinate[0], coordinate[1])]
+	elif size == 1:
+		feature_index = [[i, j] for i, j in zip(coordinate[0], coordinate[1])]
+	elif size == 5:
+		feature_index = [[i-2, i+3, j-2, j+3] for i, j in zip(coordinate[0], coordinate[1])]
+	else:
+		raise ValueError('Have not input the correct size!')
+
+	return mask, feature_index
+
+def get_rec_mask_60(path, size):
+	print('Pick one slice to get mask and features index')
+	img = cv2.imread(path, -1)
+	height, width = img.shape
+	mask = np.zeros((height, width), np.uint8)
+	cv2.rectangle(mask, (282, 353), (1136, 1052), 1, -1)  
 	# Now begin to index the features
 	coordinate = mask.nonzero()
 	if size == 3:
@@ -100,12 +140,13 @@ def get_all_features_3(path, feature_index, keyword):
 	img_2 = cv2.imread(current_all_tif[target_space_list[1]], -1)
 	img_3 = cv2.imread(current_all_tif[target_space_list[2]], -1)
 	# three images for space
-	img_4 = cv2.imread(previous_all_tif[target_space_list[0]], -1)
-	img_5 = cv2.imread(previous_all_tif[target_space_list[1]], -1)
-	img_6 = cv2.imread(previous_all_tif[target_space_list[2]], -1)
-	img_7 = cv2.imread(future_all_tif[target_space_list[0]], -1)
-	img_8 = cv2.imread(future_all_tif[target_space_list[1]], -1)
-	img_9 = cv2.imread(future_all_tif[target_space_list[2]], -1)
+	img_4 = cv2.imread(previous_all_tif[target_space_list[0]-65], -1)   # align z-axis 0040 and 0050
+	img_5 = cv2.imread(previous_all_tif[target_space_list[1]-65], -1)
+	img_6 = cv2.imread(previous_all_tif[target_space_list[2]-65], -1)
+
+	img_7 = cv2.imread(future_all_tif[target_space_list[0]+60], -1)  # align z-axis 0050 and 0060
+	img_8 = cv2.imread(future_all_tif[target_space_list[1]+60], -1)
+	img_9 = cv2.imread(future_all_tif[target_space_list[2]+60], -1)
 	print('Finished!')
 	# nine images for space + time
 
@@ -114,9 +155,11 @@ def get_all_features_3(path, feature_index, keyword):
 	feature_img_1 = [img_1[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
 	feature_img_2 = [img_2[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
 	feature_img_3 = [img_3[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
-	feature_img_4 = [img_4[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
-	feature_img_5 = [img_5[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
-	feature_img_6 = [img_6[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
+
+	feature_img_4 = [img_4[i[0]+36:i[1]+36, i[2]-3:i[3]-3].ravel() for i in feature_index]  # align xy plane for 0040 and 0050
+	feature_img_5 = [img_5[i[0]+36:i[1]+36, i[2]-3:i[3]-3].ravel() for i in feature_index]
+	feature_img_6 = [img_6[i[0]+36:i[1]+36, i[2]-3:i[3]-3].ravel() for i in feature_index]
+
 	feature_img_7 = [img_7[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
 	feature_img_8 = [img_8[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
 	feature_img_9 = [img_9[i[0]:i[1], i[2]:i[3]].ravel() for i in feature_index]
