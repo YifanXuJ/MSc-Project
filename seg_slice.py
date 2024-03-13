@@ -50,7 +50,8 @@ model_4D_type = load(model_4D_path)
 model_3D_type = load(model_3D_path)
 
 # get features
-mask, feature_index = features.get_mask(sub_all_tif[0], mask_centre, radius, args.size)
+# mask, feature_index = features.get_mask(sub_all_tif[0], mask_centre, radius, args.size)  # circular mask
+mask, feature_index = features.get_rec_mask_50(sub_all_tif[0], args.size)  # rectangle mask
 if args.size == 1:
 	feature_4D, feature_3D = features.get_all_features_1(target_slice, feature_index, keyword)
 elif args.size == 3:
@@ -69,7 +70,6 @@ prediction_3D = model_3D_type.predict(feature_3D)
 
 # write the image
 coordinate = mask.nonzero()
-print(coordinate)
 
 num_classes_4D = len(set(prediction_4D))
 num_classes_3D = len(set(prediction_3D))
@@ -81,8 +81,8 @@ height, width = mask.shape
 
 
 # save folder 
-save_folder_4d = os.path.join(current_path, 'seg_res\seg_4d\k-means')
-save_folder_3d = os.path.join(current_path, 'seg_res\seg_3d\k-means')
+save_folder_4d = os.path.join(current_path, 'seg_for_report/test_model/4d')
+save_folder_3d = os.path.join(current_path, 'seg_for_report/test_model/3d')
 
 # plot each class for user
 for i in range(num_classes_4D):
